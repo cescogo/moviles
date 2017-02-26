@@ -1,2 +1,0 @@
-# moviles
-.javas
