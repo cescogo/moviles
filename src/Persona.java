@@ -1,40 +1,14 @@
-public class Persona{
+public class Persona extends Usuario{
     
     private String telefono;
     private String email;
     private String nombre;
-    private String cedula;
-    private Usuario usuario;
 
-    public Persona( String nombre, String cedula, String telefono, String email,
-            String clave, int permiso) {
+    public Persona(String telefono, String email, String nombre, String cedula, String clave) {
+        super(cedula, clave);
         this.telefono = telefono;
         this.email = email;
         this.nombre = nombre;
-        usuario= new Usuario(cedula, clave, permiso);
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-    
-    public String getUsu(){
-        return usuario.getUsuario();
-    }
-    public String getPass(){
-        return usuario.getClave();
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public String getTelefono() {

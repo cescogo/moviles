@@ -11,7 +11,7 @@
 public class Matriculador extends Persona {
 
     public Matriculador(String telefono, String email, String nombre, String cedula, String clave) {
-        super( nombre, cedula, telefono, email, clave, 2);
+        super(telefono, email, nombre, cedula, clave);
     }
     
   

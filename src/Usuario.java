@@ -9,33 +9,26 @@
  * @author ccg
  */
 public class Usuario {
-    private String usuario;
+    private String cedula;
     private String clave;
-    private int permiso;
 
-    public Usuario(String cedula, String clave, int permiso) {
-        this.usuario = cedula;
+    public Usuario(String cedula, String clave) {
+        this.cedula = cedula;
         this.clave = clave;
-        this.permiso = permiso;
     }
 
-    public int getPermiso() {
-        return permiso;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setPermiso(int permiso) {
-        this.permiso = permiso;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
     public String getClave() {
         return clave;
     }
+
     public void setClave(String clave) {
         this.clave = clave;
     }
