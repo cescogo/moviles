@@ -1,6 +1,5 @@
 public class Curso 
-{
-    private String codigo;
+{    private String codigo;
     private String nombre;
     private int creditos;
     private int hsemanales;
