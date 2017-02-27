@@ -1,5 +1,6 @@
 package moviles;
 import Conexion.ConexionBD;
+import Vista.VentanaInicio;
 
 public class Moviles {
 
@@ -8,6 +9,8 @@ public class Moviles {
         ConexionBD con = new ConexionBD();
         con.init();
         System.out.println("cesar y marco se maman");
+        VentanaInicio vi= new VentanaInicio();
+        vi.init();
     }
     
 }
