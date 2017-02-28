@@ -71,64 +71,13 @@ public class ConexionBD {
         }
     }
     
-   private void agregaUsuario(String cedula,String password, int tipo) 
-    {
-          try {
-           
-           // Se crea la instancia del driver de la base de datos.
-//            Class.forName(MANEJADOR_DB).newInstance();
-
-            // Se establece una conexión con la base de datos..
-            String URL_servidor = SERVIDOR_POR_DEFECTO;
-            String baseDatos = "matricula";
-            String URL_conexion
-                    = String.format("%s//%s/%s",
-                            PROTOCOLO, URL_servidor, baseDatos);
-            System.out.println(String.format(
-                    "Hilera de conexión: %s", URL_conexion));
-            
-            String usuario = "root";
-            String claveAcceso = "";
-            Connection cnx
-                    = DriverManager.getConnection(
-                            URL_conexion, usuario, claveAcceso);
-
-            // Agrega un registro a la tabla en la base de datos
-            // ANTES de recuperar los datos para mostrarlos
-            // en la consola.
-           
-
-            String COMANDO_AGREGAR
-                    = "INSERT INTO usuario "
-                    + "(user, password,tipo) "
-                    + "VALUES (?, ?, ?) ";
-            PreparedStatement pstm
-                    = cnx.prepareStatement(COMANDO_AGREGAR);
-
-            pstm.clearParameters();
-            pstm.setString(1,cedula);
-            pstm.setString(2, password);
-            pstm.setInt(3, tipo);
-
-            if (pstm.executeUpdate() == 1) {
-                System.out.println("Se insertaron los datos correctamente.");
-            } else {
-                System.out.println("Ocurrió un error al agregar el registro.");
-            }
-            System.out.println();
-            pstm.close();
-            cnx.close();
-
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
-    }
+   
     
-    public void agregaAlumno(Alumno a) 
+    public void agregaPersona(Persona a) 
     {
           try {
            //agregar usuario
-           agregaUsuario(a.getCedula(),a.getPass(),4);
+           
            // Se crea la instancia del driver de la base de datos.
 //            Class.forName(MANEJADOR_DB).newInstance();
 
@@ -151,9 +100,9 @@ public class ConexionBD {
             // ANTES de recuperar los datos para mostrarlos
             // en la consola.
            
-
+// modificar la insercion a datos
             String COMANDO_AGREGAR
-                    = "INSERT INTO ESTUDIANTE "
+                    = "INSERT INTO PERSONA "
                     + "(CEDULA, NOMBRE,F_NACIMIENTO,CORREO,TELEFONO,COD_CARRERA) "
                     + "VALUES (?, ?, ?,?,?,?) ";
             PreparedStatement pstm

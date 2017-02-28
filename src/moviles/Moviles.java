@@ -9,11 +9,11 @@ public class Moviles {
         // TODO code application logic here
         ConexionBD con = new ConexionBD();
         con.mostrarUsuarios();
-        Profesor pro= new Profesor("allan","6",1,"@","123");
-        con.agregaProfesor(pro);
+       // Profesor pro= new Profesor("allan","6",1,"@","123");
+       // con.agregaProfesor(pro);
         System.out.println("luego de la insercion");
-//        VentanaInicio vi= new VentanaInicio();
-       // vi.init();
+        VentanaInicio vi= new VentanaInicio();
+        vi.init();
        con.mostrarUsuarios();
     }
     

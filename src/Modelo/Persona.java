@@ -6,36 +6,18 @@ public class Persona{
     private String email;
     private String nombre;
     private String cedula;
-    private Usuario usuario;
+    private int tipo;
+    private String F_nac;
+    private String clave;
 
-    public Persona( String nombre, String cedula, int telefono, String email,
-            String clave, int permiso) {
+    public Persona(int telefono, String email, String nombre, String cedula, int tipo, String F_nac, String clave) {
         this.telefono = telefono;
         this.email = email;
         this.nombre = nombre;
-        usuario= new Usuario(cedula, clave, permiso);
-        this.cedula=cedula;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-    
-   
-    public String getPass(){
-        return usuario.getClave();
-    }
-
-    public void setCedula(String cedula) {
         this.cedula = cedula;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+        this.tipo = tipo;
+        this.F_nac = F_nac;
+        this.clave = clave;
     }
 
     public int getTelefono() {
@@ -45,8 +27,6 @@ public class Persona{
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
-
- 
 
     public String getEmail() {
         return email;
@@ -64,12 +44,39 @@ public class Persona{
         this.nombre = nombre;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getF_nac() {
+        return F_nac;
+    }
+
+    public void setF_nac(String F_nac) {
+        this.F_nac = F_nac;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
    
-   
-   
-    
-    
-    
- 
+  
     
 }

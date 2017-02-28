@@ -12,9 +12,12 @@ package Modelo;
  */
 public class Matriculador extends Persona {
 
-    public Matriculador(int telefono, String email, String nombre, String cedula, String clave) {
-        super( nombre, cedula, telefono, email, clave, 2);
+    
+    public Matriculador(int telefono, String email, String nombre, String cedula, int tipo, String F_nac, String clave) {
+        super(telefono, email, nombre, cedula, tipo, F_nac, clave);
     }
+
+   
     
   
 }
