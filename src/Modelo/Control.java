@@ -12,15 +12,15 @@ package Modelo;
  */
 public class Control {
     
-    private void agregarProfesor(String telefono, String email, String nombre, String cedula, String clave)
+    private void agregarProfesor(String nombre, String cedula, int telefono, String email, String clave)
     {
-        Profesor p= new Profesor( telefono, email,  nombre, cedula,  clave);
+        Profesor p= new Profesor( nombre, cedula,  telefono, email,  clave);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
     
-    private void agregarAlumno(String carrera, String Fec_Nac, String telefono, String email, String nombre, String cedula, String clave)
+    private void agregarAlumno(String nombre, String cedula,String Fec_Nac, int telefono, String email, String Cod_Car, String clave)
     {
-        Alumno p= new Alumno(carrera,  Fec_Nac, telefono,  email, nombre,  cedula,  clave);
+        Alumno p= new Alumno(nombre,  cedula, Fec_Nac,  telefono, email,Cod_Car,  clave);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
     
@@ -42,14 +42,14 @@ public class Control {
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
            
-        private void agregarMatriculador(String telefono, String email, String nombre, String cedula, String clave)
+        private void agregarMatriculador(int telefono, String email, String nombre, String cedula, String clave)
     {
         Matriculador p= new Matriculador(telefono,  email,  nombre, cedula, clave);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
-          private void agregarAdministrador(String telefono, String email, String nombre, String cedula, String clave)
+          private void agregarAdministrador(String nombre, String cedula, int telefono, String email, String clave)
     {
-        Administrador p= new Administrador(telefono,  email,  nombre, cedula, clave);
+        Administrador p= new Administrador(nombre, cedula,  telefono, email, clave);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
 }

@@ -2,27 +2,26 @@ package Modelo;
 
 public class Persona{
     
-    private String telefono;
+    private int telefono;
     private String email;
     private String nombre;
     private String cedula;
     private Usuario usuario;
 
-    public Persona( String nombre, String cedula, String telefono, String email,
+    public Persona( String nombre, String cedula, int telefono, String email,
             String clave, int permiso) {
         this.telefono = telefono;
         this.email = email;
         this.nombre = nombre;
         usuario= new Usuario(cedula, clave, permiso);
+        this.cedula=cedula;
     }
 
     public String getCedula() {
         return cedula;
     }
     
-    public String getUsu(){
-        return usuario.getUsuario();
-    }
+   
     public String getPass(){
         return usuario.getClave();
     }
@@ -39,13 +38,15 @@ public class Persona{
         this.usuario = usuario;
     }
 
-    public String getTelefono() {
+    public int getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+
+ 
 
     public String getEmail() {
         return email;

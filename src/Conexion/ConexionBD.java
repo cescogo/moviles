@@ -1,5 +1,4 @@
 package Conexion;
-
 import Modelo.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -38,6 +37,7 @@ public class ConexionBD {
             String URL_conexion
                     = String.format("%s//%s/%s",
                             PROTOCOLO, URL_servidor, baseDatos);
+            
             System.out.println(String.format(
                     "Hilera de conexión: %s", URL_conexion));
 
@@ -47,13 +47,6 @@ public class ConexionBD {
                     = DriverManager.getConnection(
                             URL_conexion, usuario, claveAcceso);
 
-           
-            
-           
-            
-            
-          
-            
             // Obtiene los datos de la base..
             Statement stm = cnx.createStatement();
           String comandoListar
@@ -78,7 +71,7 @@ public class ConexionBD {
         }
     }
     
-   public void agregaUsusario(Usuario u) 
+   private void agregaUsuario(String cedula,String password, int tipo) 
     {
           try {
            
@@ -113,9 +106,9 @@ public class ConexionBD {
                     = cnx.prepareStatement(COMANDO_AGREGAR);
 
             pstm.clearParameters();
-            pstm.setString(1,u.getUsuario());
-            pstm.setString(2, u.getClave());
-            pstm.setInt(3, u.getPermiso());
+            pstm.setString(1,cedula);
+            pstm.setString(2, password);
+            pstm.setInt(3, tipo);
 
             if (pstm.executeUpdate() == 1) {
                 System.out.println("Se insertaron los datos correctamente.");
@@ -131,7 +124,123 @@ public class ConexionBD {
         }
     }
     
+    public void agregaAlumno(Alumno a) 
+    {
+          try {
+           //agregar usuario
+           agregaUsuario(a.getCedula(),a.getPass(),4);
+           // Se crea la instancia del driver de la base de datos.
+//            Class.forName(MANEJADOR_DB).newInstance();
 
+            // Se establece una conexión con la base de datos..
+            String URL_servidor = SERVIDOR_POR_DEFECTO;
+            String baseDatos = "matricula";
+            String URL_conexion
+                    = String.format("%s//%s/%s",
+                            PROTOCOLO, URL_servidor, baseDatos);
+            System.out.println(String.format(
+                    "Hilera de conexión: %s", URL_conexion));
+            
+            String usuario = "root";
+            String claveAcceso = "";
+            Connection cnx
+                    = DriverManager.getConnection(
+                            URL_conexion, usuario, claveAcceso);
+
+            // Agrega un registro a la tabla en la base de datos
+            // ANTES de recuperar los datos para mostrarlos
+            // en la consola.
+           
+
+            String COMANDO_AGREGAR
+                    = "INSERT INTO ESTUDIANTE "
+                    + "(CEDULA, NOMBRE,F_NACIMIENTO,CORREO,TELEFONO,COD_CARRERA) "
+                    + "VALUES (?, ?, ?,?,?,?) ";
+            PreparedStatement pstm
+                    = cnx.prepareStatement(COMANDO_AGREGAR);
+
+            pstm.clearParameters();
+            pstm.setString(1,a.getCedula());
+            pstm.setString(2, a.getNombre());
+            pstm.setString(3, a.getFec_Nac());
+            pstm.setString(4,a.getEmail());
+            pstm.setInt(5,a.getTelefono());
+            pstm.setString(7,a.getCarrera());
+            
+            
+
+            if (pstm.executeUpdate() == 1) {
+                System.out.println("Se insertaron los datos correctamente.");
+            } else {
+                System.out.println("Ocurrió un error al agregar el registro.");
+            }
+            System.out.println();
+            pstm.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void agregaProfesor(Profesor a) 
+    {
+          try {
+           //agregar usuario
+           agregaUsuario(a.getCedula(),a.getPass(),3);
+           // Se crea la instancia del driver de la base de datos.
+//            Class.forName(MANEJADOR_DB).newInstance();
+
+            // Se establece una conexión con la base de datos..
+            String URL_servidor = SERVIDOR_POR_DEFECTO;
+            String baseDatos = "matricula";
+            String URL_conexion
+                    = String.format("%s//%s/%s",
+                            PROTOCOLO, URL_servidor, baseDatos);
+            System.out.println(String.format(
+                    "Hilera de conexión: %s", URL_conexion));
+            
+            String usuario = "root";
+            String claveAcceso = "";
+            Connection cnx
+                    = DriverManager.getConnection(
+                            URL_conexion, usuario, claveAcceso);
+
+            // Agrega un registro a la tabla en la base de datos
+            // ANTES de recuperar los datos para mostrarlos
+            // en la consola.
+           
+
+            String COMANDO_AGREGAR
+                    = "INSERT INTO PROFESOR "
+                    + "(CEDULA, NOMBRE,CORREO,TELEFONO) "
+                    + "VALUES (?, ?, ?,?) ";
+            PreparedStatement pstm
+                    = cnx.prepareStatement(COMANDO_AGREGAR);
+
+            pstm.clearParameters();
+            pstm.setString(1,a.getCedula());
+            pstm.setString(2, a.getNombre());
+            pstm.setString(3, a.getEmail());
+            pstm.setInt(4,a.getTelefono());
+           
+            
+            
+
+            if (pstm.executeUpdate() == 1) {
+                System.out.println("Se insertaron los datos correctamente.");
+            } else {
+                System.out.println("Ocurrió un error al agregar el registro.");
+            }
+            System.out.println();
+            pstm.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    
     private static final String MANEJADOR_DB = "com.mysql.jdbc.Driver";
     private static final String PROTOCOLO = "jdbc:mysql:";
     private static final String SERVIDOR_POR_DEFECTO = "localhost";

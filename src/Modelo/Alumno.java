@@ -4,7 +4,7 @@ public class Alumno extends Persona{
     private String carrera;
     private String Fec_Nac;
 
-    public Alumno(String nombre, String cedula, String Fec_Nac, String telefono, 
+    public Alumno(String nombre, String cedula, String Fec_Nac, int telefono, 
           String email,  String carrera, String clave) {
       
         super( nombre, cedula, telefono, email, clave, 4);

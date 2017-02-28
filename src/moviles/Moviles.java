@@ -9,8 +9,8 @@ public class Moviles {
         // TODO code application logic here
         ConexionBD con = new ConexionBD();
         con.mostrarUsuarios();
-        Usuario u= new Usuario("2","2",1);
-        con.agregaUsusario(u);
+        Profesor pro= new Profesor("allan","6",1,"@","123");
+        con.agregaProfesor(pro);
         System.out.println("luego de la insercion");
 //        VentanaInicio vi= new VentanaInicio();
        // vi.init();

@@ -11,22 +11,22 @@ package Modelo;
  * @author ccg
  */
 public class Usuario {
-    private String usuario;
+    private String cedula;
     private String clave;
     private int permiso;
 
     public Usuario(String cedula, String clave, int permiso) {
-        this.usuario = cedula;
+        this.cedula = cedula;
         this.clave = clave;
         this.permiso = permiso;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setCedula(String usuario) {
+        this.cedula = usuario;
     }
 
     public String getClave() {
