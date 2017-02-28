@@ -1,3 +1,5 @@
+package Modelo;
+
 public class Ciclo {
     private int anno;
     private char nciclo;

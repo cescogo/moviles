@@ -1,3 +1,5 @@
+package Modelo;
+
 public class Grupo {
     private char ciclo;
     private int numero;

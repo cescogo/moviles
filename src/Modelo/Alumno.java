@@ -1,3 +1,5 @@
+package Modelo;
+
 public class Alumno extends Persona{
     private String carrera;
     private String Fec_Nac;

@@ -1,3 +1,5 @@
+package Modelo;
+
 
 import java.util.ArrayList;
 
@@ -11,8 +13,18 @@ import java.util.ArrayList;
  *
  * @author ccg
  */
-public class AccesoADatos {
-   //metodos que se comunican con la base de datos
+public class Lista {
+    private ArrayList lista;
+
+   public void agregar(Object e)
+   {
+       lista.add(0, e);
+   }
+
+   public void eliminar(Object e)
+   {
+       lista.remove(e);
+   }
     
     
 }

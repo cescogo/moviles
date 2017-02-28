@@ -1,3 +1,5 @@
+package Modelo;
+
 public class Carrera {
     private String nombre;
     private String codigo;

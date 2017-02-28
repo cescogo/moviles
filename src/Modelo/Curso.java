@@ -1,3 +1,5 @@
+package Modelo;
+
 public class Curso 
 {    private String codigo;
     private String nombre;
