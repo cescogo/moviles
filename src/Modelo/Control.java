@@ -14,13 +14,13 @@ public class Control {
     
     private void agregarProfesor(String nombre, String cedula, int telefono, String email, String clave)
     {
-        Profesor p= new Profesor( nombre, cedula,  telefono, email,  clave);
+        Profesor p= new Profesor( telefono, email,  nombre, cedula, clave);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
     
-    private void agregarAlumno(String nombre, String cedula,String Fec_Nac, int telefono, String email, String Cod_Car, String clave)
+    private void agregarAlumno(String nombre, String cedula,String Fec_Nac, int telefono, String email, String clave)
     {
-        Alumno p= new Alumno(nombre,  cedula, Fec_Nac,  telefono, email,Cod_Car,  clave);
+        Alumno p= new Alumno(telefono,  email, nombre, cedula, Fec_Nac, clave);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
     
@@ -49,7 +49,7 @@ public class Control {
     }
           private void agregarAdministrador(String nombre, String cedula, int telefono, String email, String clave)
     {
-        Administrador p= new Administrador(nombre, cedula,  telefono, email, clave);
+        Administrador p= new Administrador(telefono, email, nombre, cedula, clave);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
 }

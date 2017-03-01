@@ -7,16 +7,14 @@ public class Persona{
     private String nombre;
     private String cedula;
     private int tipo;
-    private String F_nac;
     private String clave;
 
-    public Persona(int telefono, String email, String nombre, String cedula, int tipo, String F_nac, String clave) {
+    public Persona(int telefono, String email, String nombre, String cedula, int tipo, String clave) {
         this.telefono = telefono;
         this.email = email;
         this.nombre = nombre;
         this.cedula = cedula;
         this.tipo = tipo;
-        this.F_nac = F_nac;
         this.clave = clave;
     }
 
@@ -60,13 +58,7 @@ public class Persona{
         this.tipo = tipo;
     }
 
-    public String getF_nac() {
-        return F_nac;
-    }
-
-    public void setF_nac(String F_nac) {
-        this.F_nac = F_nac;
-    }
+    
 
     public String getClave() {
         return clave;
