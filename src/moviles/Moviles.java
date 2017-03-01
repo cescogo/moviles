@@ -9,7 +9,7 @@ public class Moviles {
         // TODO code application logic here
         ConexionBD con = new ConexionBD();
         con.mostrarUsuarios();
-       Alumno pro= new Alumno(8888,"@","allan","514","12/11/1993","56");
+       Profesor pro= new Profesor(8888,"@","allan","51","56");
         con.agregaPersona(pro);
         System.out.println("luego de la insercion");
         VentanaInicio vi= new VentanaInicio();

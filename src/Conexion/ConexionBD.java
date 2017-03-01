@@ -54,8 +54,8 @@ public class ConexionBD {
             ResultSet rs = stm.executeQuery(comandoListar);
 
             while (rs.next()) {
-                String id = rs.getString("user");
-                String nombre = rs.getString("password");
+                String id = rs.getString("cedula");
+                String nombre = rs.getString("pass");
               
                 System.out.println(String.format(
                         "t%2s\t%2s",
@@ -111,12 +111,17 @@ public class ConexionBD {
             pstm.setString(4, a.getNombre());            
             pstm.setString(6,a.getEmail());
             pstm.setInt(7,a.getTelefono());
-         Alumno alu=null;
+         
+            Alumno alu=null;
 
-         //   if(alu instanceof a)
+            if(alu instanceof Persona)
             {
               alu=(Alumno) a;
                 pstm.setString(5, alu.getF_nac());  
+            }
+            else
+            {
+                pstm.setString(5,null);
             }
             
             
