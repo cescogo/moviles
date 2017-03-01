@@ -1,19 +1,31 @@
 package Modelo;
 
 public class Grupo {
+    private String id;
     private char ciclo;
     private int numero;
     private String horario;
     private String  profesor;
     private String curso;
 
-    public Grupo(char ciclo, int numero, String horario, String profesor, String curso) {
+    public Grupo(String id, char ciclo, int numero, String horario, String profesor, String curso) {
+        this.id = id;
         this.ciclo = ciclo;
         this.numero = numero;
         this.horario = horario;
         this.profesor = profesor;
         this.curso = curso;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+   
 
     public char getCiclo() {
         return ciclo;

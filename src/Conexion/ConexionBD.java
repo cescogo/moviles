@@ -73,7 +73,7 @@ public class ConexionBD {
     
    
     
-    public void agregaPersona(Persona a) 
+    public void agrega(Persona a) 
     {
           try {
           
@@ -114,7 +114,7 @@ public class ConexionBD {
          
             Alumno alu=null;
 
-            if(alu instanceof Persona)
+            if(a instanceof Alumno)
             {
               alu=(Alumno) a;
                 pstm.setString(5, alu.getF_nac());  
@@ -140,8 +140,217 @@ public class ConexionBD {
         }
     }
 
-   
+    public void agrega(Carrera a) 
+    {
+          try {
+          
+            // Se establece una conexión con la base de datos..
+            String URL_servidor = SERVIDOR_POR_DEFECTO;
+            String baseDatos = "matricula";
+            String URL_conexion
+                    = String.format("%s//%s/%s",
+                            PROTOCOLO, URL_servidor, baseDatos);
+            System.out.println(String.format(
+                    "Hilera de conexión: %s", URL_conexion));
+            
+            String usuario = "root";
+            String claveAcceso = "";
+            Connection cnx
+                    = DriverManager.getConnection(
+                            URL_conexion, usuario, claveAcceso);
+
+            // Agrega un registro a la tabla en la base de datos
+            // ANTES de recuperar los datos para mostrarlos
+            // en la consola.
+           
+// modificar la insercion a datos
+            String COMANDO_AGREGAR
+                    = "INSERT INTO carrera "
+                    + "(CODIGO, NOMBRE) "
+                    + "VALUES (?, ?) ";
+            PreparedStatement pstm
+                    = cnx.prepareStatement(COMANDO_AGREGAR);
+
+            pstm.clearParameters();
+            pstm.setString(1,a.getCodigo());
+            pstm.setString(2,a.getNombre());
+       
+            
+
+            if (pstm.executeUpdate() == 1) {
+                System.out.println("Se insertaron los datos correctamente.");
+            } else {
+                System.out.println("Ocurrió un error al agregar el registro.");
+            }
+            System.out.println();
+            pstm.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
     
+     public void agrega(Curso a) 
+    {
+          try {
+          
+            // Se establece una conexión con la base de datos..
+            String URL_servidor = SERVIDOR_POR_DEFECTO;
+            String baseDatos = "matricula";
+            String URL_conexion
+                    = String.format("%s//%s/%s",
+                            PROTOCOLO, URL_servidor, baseDatos);
+            System.out.println(String.format(
+                    "Hilera de conexión: %s", URL_conexion));
+            
+            String usuario = "root";
+            String claveAcceso = "";
+            Connection cnx
+                    = DriverManager.getConnection(
+                            URL_conexion, usuario, claveAcceso);
+
+            // Agrega un registro a la tabla en la base de datos
+            // ANTES de recuperar los datos para mostrarlos
+            // en la consola.
+           
+// modificar la insercion a datos
+            String COMANDO_AGREGAR
+                    = "INSERT INTO CURSO "
+                    + "(CODIGO,NOMBRE,CREDITOS,H_SEMANALES,COD_CARRERA,NUM_CICLO) "
+                    + "VALUES (?, ?, ?,?,?,?) ";
+            PreparedStatement pstm
+                    = cnx.prepareStatement(COMANDO_AGREGAR);
+
+            pstm.clearParameters();
+            pstm.setString(1,a.getCodigo());
+            pstm.setString(2,a.getNombre());
+            pstm.setInt(3, a.getCreditos());
+            pstm.setInt(4, a.getHsemanales());            
+            pstm.setString(5,a.getCarrera());
+            pstm.setInt(6,a.getNum_ciclo());
+            
+            
+
+            if (pstm.executeUpdate() == 1) {
+                System.out.println("Se insertaron los datos correctamente.");
+            } else {
+                System.out.println("Ocurrió un error al agregar el registro.");
+            }
+            System.out.println();
+            pstm.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+     
+      public void agrega(Grupo a) 
+    {
+          try {
+          
+            // Se establece una conexión con la base de datos..
+            String URL_servidor = SERVIDOR_POR_DEFECTO;
+            String baseDatos = "matricula";
+            String URL_conexion
+                    = String.format("%s//%s/%s",
+                            PROTOCOLO, URL_servidor, baseDatos);
+            System.out.println(String.format(
+                    "Hilera de conexión: %s", URL_conexion));
+            
+            String usuario = "root";
+            String claveAcceso = "";
+            Connection cnx
+                    = DriverManager.getConnection(
+                            URL_conexion, usuario, claveAcceso);
+
+            // Agrega un registro a la tabla en la base de datos
+            // ANTES de recuperar los datos para mostrarlos
+            // en la consola.
+           
+// modificar la insercion a datos
+            String COMANDO_AGREGAR
+                    = "INSERT INTO GRUPO"
+                    + "(ID_GRUPO,NUMERO,ID_PROF,COD_CURSO) "
+                    + "VALUES (?, ?, ?,?) ";
+            PreparedStatement pstm
+                    = cnx.prepareStatement(COMANDO_AGREGAR);
+
+            pstm.clearParameters();
+            pstm.setString(1, a.getId());
+            pstm.setInt(2,a.getNumero());
+            pstm.setString(3,a.getProfesor());
+            pstm.setString(4, a.getCurso());            
+                  
+
+            if (pstm.executeUpdate() == 1) {
+                System.out.println("Se insertaron los datos correctamente.");
+            } else {
+                System.out.println("Ocurrió un error al agregar el registro.");
+            }
+            System.out.println();
+            pstm.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+      
+      public void agrega(Ciclo a) 
+    {
+          try {
+          
+            // Se establece una conexión con la base de datos..
+            String URL_servidor = SERVIDOR_POR_DEFECTO;
+            String baseDatos = "matricula";
+            String URL_conexion
+                    = String.format("%s//%s/%s",
+                            PROTOCOLO, URL_servidor, baseDatos);
+            System.out.println(String.format(
+                    "Hilera de conexión: %s", URL_conexion));
+            
+            String usuario = "root";
+            String claveAcceso = "";
+            Connection cnx
+                    = DriverManager.getConnection(
+                            URL_conexion, usuario, claveAcceso);
+
+            // Agrega un registro a la tabla en la base de datos
+            // ANTES de recuperar los datos para mostrarlos
+            // en la consola.
+           
+// modificar la insercion a datos
+            String COMANDO_AGREGAR
+                    = "INSERT INTO CICLO "
+                    + "(ID,ANNO,NUM_CICLO,FECHA_INICIO,FECHA_FINAL) "
+                    + "VALUES (?, ?, ?,?,?) ";
+            PreparedStatement pstm
+                    = cnx.prepareStatement(COMANDO_AGREGAR);
+            
+            pstm.clearParameters();
+            pstm.setString(1,a.getId());
+            pstm.setInt(2,a.getAnno());
+            pstm.setInt(3,a.getNciclo());
+            pstm.setString(4, a.getFinicio());            
+            pstm.setString(5,a.getFfinal());
+           
+            
+            if (pstm.executeUpdate() == 1) {
+                System.out.println("Se insertaron los datos correctamente.");
+            } else {
+                System.out.println("Ocurrió un error al agregar el registro.");
+            }
+            System.out.println();
+            pstm.close();
+            cnx.close();
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+      
     private static final String MANEJADOR_DB = "com.mysql.jdbc.Driver";
     private static final String PROTOCOLO = "jdbc:mysql:";
     private static final String SERVIDOR_POR_DEFECTO = "localhost";

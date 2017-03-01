@@ -24,21 +24,23 @@ public class Control {
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
     
-      private void agregarCiclo(int anno, char nciclo, String Finicio, String Ffinal)
+      private void agregarCiclo(int anno, int nciclo, String Finicio, String Ffinal)
     {
-        Ciclo p= new Ciclo(anno,nciclo,Finicio,Ffinal);
+        String id = String.valueOf(anno)+String.valueOf(nciclo);
+        Ciclo p= new Ciclo(id,anno,nciclo,Finicio,Ffinal);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
       
-        private void agregarCurso(String codigo, String nombre, int creditos, int hsemanales,String carrera)
+        private void agregarCurso(String codigo, String nombre, int creditos, int hsemanales,String carrera,int num_ciclo)
     {
-        Curso p= new Curso(codigo,nombre,creditos,hsemanales,carrera);
+        Curso p= new Curso(codigo,nombre,creditos,hsemanales,carrera,num_ciclo);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
         
         private void agregarGrupo(char ciclo, int numero, String horario, String profesor, String curso)
     {
-        Grupo p= new Grupo(ciclo, numero,horario,profesor,curso);
+        String id=curso+'-'+String.valueOf(numero);
+        Grupo p= new Grupo(id,ciclo, numero,horario,profesor,curso);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
            

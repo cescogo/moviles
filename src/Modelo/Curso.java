@@ -6,14 +6,26 @@ public class Curso
     private int creditos;
     private int hsemanales;
     private String carrera;
+    private int num_ciclo;
 
-    public Curso(String codigo, String nombre, int creditos, int hsemanales, String carrera) {
+    public Curso(String codigo, String nombre, int creditos, int hsemanales, String carrera, int num_ciclo) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.creditos = creditos;
         this.hsemanales = hsemanales;
         this.carrera = carrera;
+        this.num_ciclo = num_ciclo;
     }
+
+    public int getNum_ciclo() {
+        return num_ciclo;
+    }
+
+    public void setNum_ciclo(int num_ciclo) {
+        this.num_ciclo = num_ciclo;
+    }
+
+    
 
     public String getCodigo() {
         return codigo;
