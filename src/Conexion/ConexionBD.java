@@ -26,7 +26,8 @@ public class ConexionBD {
 		}
 		return con;
 	}
-    public void mostrarUsuarios() {
+    
+    public void mostrar(Persona a, Lista l) {
         try {
             // Se crea la instancia del driver de la base de datos.
             Class.forName(MANEJADOR_DB).newInstance();
@@ -54,12 +55,16 @@ public class ConexionBD {
             ResultSet rs = stm.executeQuery(comandoListar);
 
             while (rs.next()) {
-                String id = rs.getString("cedula");
-                String nombre = rs.getString("pass");
+                
+                a.setCedula(rs.getString("cedula"));
+                a.setClave(rs.getString("pass"));
+                a.setEmail(rs.getString("correo"));
+                a.setNombre(rs.getString("nombre"));
+                a.setTelefono(rs.getInt("telefono"));
+                a.setTipo(rs.getInt("tipo"));
+                l.agregar(a);
               
-                System.out.println(String.format(
-                        "t%2s\t%2s",
-                        id, nombre));
+                
             }
 
             rs.close();
@@ -71,8 +76,199 @@ public class ConexionBD {
         }
     }
     
-   
+   public void mostrar(Carrera a, Lista l) {
+        try {
+            // Se crea la instancia del driver de la base de datos.
+            Class.forName(MANEJADOR_DB).newInstance();
+
+            // Se establece una conexión con la base de datos..
+            String URL_servidor = SERVIDOR_POR_DEFECTO;
+            String baseDatos = "matricula";
+            String URL_conexion
+                    = String.format("%s//%s/%s",
+                            PROTOCOLO, URL_servidor, baseDatos);
+            
+            System.out.println(String.format(
+                    "Hilera de conexión: %s", URL_conexion));
+
+            String usuario = "root";
+            String claveAcceso = "";
+            Connection cnx
+                    = DriverManager.getConnection(
+                            URL_conexion, usuario, claveAcceso);
+
+            // Obtiene los datos de la base..
+            Statement stm = cnx.createStatement();
+          String comandoListar
+                    = "SELECT * FROM curso";
+            ResultSet rs = stm.executeQuery(comandoListar);
+
+            while (rs.next()) {
+                
+                a.setCodigo(rs.getString("codigo"));
+                a.setNombre(rs.getString("nombre"));
+               
+                l.agregar(a);
+              
+                
+            }
+
+            rs.close();
+            stm.close();
+            cnx.close();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
     
+   public void mostrar(Ciclo a, Lista l) {
+        try {
+            // Se crea la instancia del driver de la base de datos.
+            Class.forName(MANEJADOR_DB).newInstance();
+
+            // Se establece una conexión con la base de datos..
+            String URL_servidor = SERVIDOR_POR_DEFECTO;
+            String baseDatos = "matricula";
+            String URL_conexion
+                    = String.format("%s//%s/%s",
+                            PROTOCOLO, URL_servidor, baseDatos);
+            
+            System.out.println(String.format(
+                    "Hilera de conexión: %s", URL_conexion));
+
+            String usuario = "root";
+            String claveAcceso = "";
+            Connection cnx
+                    = DriverManager.getConnection(
+                            URL_conexion, usuario, claveAcceso);
+
+            // Obtiene los datos de la base..
+            Statement stm = cnx.createStatement();
+          String comandoListar
+                    = "SELECT * FROM ciclo";
+            ResultSet rs = stm.executeQuery(comandoListar);
+
+            while (rs.next()) {
+                
+                a.setAnno(rs.getInt("anno"));
+                a.setFfinal(rs.getString("fecha_final"));
+                a.setFinicio(rs.getString("fecha_inicio"));
+                a.setId(rs.getString("id"));
+                a.setNciclo(rs.getInt("num_ciclo"));
+                l.agregar(a);
+              
+                
+            }
+
+            rs.close();
+            stm.close();
+            cnx.close();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+   
+   public void mostrar(Curso a, Lista l) {
+        try {
+            // Se crea la instancia del driver de la base de datos.
+            Class.forName(MANEJADOR_DB).newInstance();
+
+            // Se establece una conexión con la base de datos..
+            String URL_servidor = SERVIDOR_POR_DEFECTO;
+            String baseDatos = "matricula";
+            String URL_conexion
+                    = String.format("%s//%s/%s",
+                            PROTOCOLO, URL_servidor, baseDatos);
+            
+            System.out.println(String.format(
+                    "Hilera de conexión: %s", URL_conexion));
+
+            String usuario = "root";
+            String claveAcceso = "";
+            Connection cnx
+                    = DriverManager.getConnection(
+                            URL_conexion, usuario, claveAcceso);
+
+            // Obtiene los datos de la base..
+            Statement stm = cnx.createStatement();
+          String comandoListar
+                    = "SELECT * FROM curso";
+            ResultSet rs = stm.executeQuery(comandoListar);
+
+            while (rs.next()) {
+                
+                a.setCodigo(rs.getString("codigo"));
+                a.setNombre(rs.getString("nombre"));
+                a.setCreditos(rs.getInt("creditos"));
+                a.setHsemanales(rs.getInt("h_semanales"));
+                a.setCarrera(rs.getString("cod_caarrera"));
+                a.setNum_ciclo(rs.getInt("num_ciclo"));
+                l.agregar(a);
+              
+                
+            }
+
+            rs.close();
+            stm.close();
+            cnx.close();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+   
+   public void mostrar(Grupo a, Lista l) {
+        try {
+            // Se crea la instancia del driver de la base de datos.
+            Class.forName(MANEJADOR_DB).newInstance();
+
+            // Se establece una conexión con la base de datos..
+            String URL_servidor = SERVIDOR_POR_DEFECTO;
+            String baseDatos = "matricula";
+            String URL_conexion
+                    = String.format("%s//%s/%s",
+                            PROTOCOLO, URL_servidor, baseDatos);
+            
+            System.out.println(String.format(
+                    "Hilera de conexión: %s", URL_conexion));
+
+            String usuario = "root";
+            String claveAcceso = "";
+            Connection cnx
+                    = DriverManager.getConnection(
+                            URL_conexion, usuario, claveAcceso);
+
+            // Obtiene los datos de la base..
+            Statement stm = cnx.createStatement();
+          String comandoListar
+                    = "SELECT * FROM grupo";
+            ResultSet rs = stm.executeQuery(comandoListar);
+
+            while (rs.next()) {
+                
+                a.setId(rs.getString("id_grupo"));
+                a.setNumero(rs.getInt("numero"));
+                a.setProfesor(rs.getString("id_prof"));
+                a.setCurso(rs.getString("cod_curso"));
+                
+                l.agregar(a);
+              
+                
+            }
+
+            rs.close();
+            stm.close();
+            cnx.close();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+   
+
+   
     public void agrega(Persona a) 
     {
           try {

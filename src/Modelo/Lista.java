@@ -15,6 +15,11 @@ import java.util.ArrayList;
  */
 public class Lista {
     private ArrayList lista;
+    
+    public Lista()
+    {
+        lista= new ArrayList();
+    }
 
    public void agregar(Object e)
    {
@@ -25,6 +30,12 @@ public class Lista {
    {
        lista.remove(e);
    }
+
+    @Override
+    public String toString() {
+       return lista.toString();
+    }
     
+   
     
 }

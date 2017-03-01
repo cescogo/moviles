@@ -8,7 +8,11 @@ public class Moviles {
     public static void main(String[] args) {
         // TODO code application logic here
         ConexionBD con = new ConexionBD();
-        con.mostrarUsuarios();
+        Persona aux=new Persona();
+        Lista l= new Lista();
+        
+        con.mostrar(aux,l);
+        System.out.println(l.toString());
        Profesor pro= new Profesor(8888,"@","allan","51","56");
        Administrador ad= new Administrador(7894,"@","marta","1234","12");
        Alumno alu= new Alumno(456,"@","marco","789","25/03/1995","4568");
@@ -26,9 +30,10 @@ public class Moviles {
         con.agrega(gru);
         con.agrega(ma);
         System.out.println("luego de la insercion");
-        VentanaInicio vi= new VentanaInicio();
-        vi.init();
-       con.mostrarUsuarios();
+        //VentanaInicio vi= new VentanaInicio();
+       // vi.init();
+        con.mostrar(aux,l);
+       System.out.println(l.toString());
     }
     
 }

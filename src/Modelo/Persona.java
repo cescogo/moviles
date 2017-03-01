@@ -18,6 +18,16 @@ public class Persona{
         this.clave = clave;
     }
 
+    public Persona() {
+         telefono = 0;
+        email = "";
+        nombre = "";
+        cedula = "";
+        tipo = 0;
+        clave = "";
+    }
+    
+
     public int getTelefono() {
         return telefono;
     }
@@ -66,6 +76,11 @@ public class Persona{
 
     public void setClave(String clave) {
         this.clave = clave;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "telefono=" + telefono + ", email=" + email + ", nombre=" + nombre + ", cedula=" + cedula + ", tipo=" + tipo + ", clave=" + clave + '}';
     }
 
    
