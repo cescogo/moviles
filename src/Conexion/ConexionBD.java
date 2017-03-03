@@ -304,6 +304,9 @@ public class ConexionBD {
                 a.setNombre(rs.getString("nombre"));
                 a.setTelefono(rs.getInt("telefono"));
                 a.setTipo(rs.getInt("tipo"));
+                if(a instanceof Alumno){
+                    ((Alumno) a).setF_nac("F_NACIMIENTO");
+                }
                                
             }
 
