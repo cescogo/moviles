@@ -20,7 +20,7 @@ public class Moviles {
        Ciclo ci= new Ciclo("20171",2017,1,"13/02/2017","28/06/2017");
        Curso cu= new Curso("406","ing.Sis.3",3,10,"eif",1);
        Grupo gru= new Grupo("406-01",'1',01," ","51","406");
-      Matriculador ma= new Matriculador(894,"@","maria","234","12");
+       Matriculador ma= new Matriculador(894,"@","maria","234","12");
         con.agrega(pro);
         con.agrega(ad);
         con.agrega(alu);
@@ -33,7 +33,11 @@ public class Moviles {
         //VentanaInicio vi= new VentanaInicio();
        // vi.init();
         con.mostrar(aux,l);
-       System.out.println(l.toString());
+        System.out.println(l.toString());
+         System.out.println("persona especifica: ");
+         Lista p= new Lista();
+         con.Buscar(aux, "51");
+         System.out.println(aux.toString());
     }
     
 }
