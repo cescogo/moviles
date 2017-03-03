@@ -30,8 +30,8 @@ public class Moviles {
         con.agrega(gru);
         con.agrega(ma);
         System.out.println("luego de la insercion");
-        //VentanaInicio vi= new VentanaInicio();
-       // vi.init();
+        VentanaInicio vi= new VentanaInicio();
+       vi.init();
         con.mostrar(aux,l);
         System.out.println(l.toString());
          System.out.println("persona especifica: ");
