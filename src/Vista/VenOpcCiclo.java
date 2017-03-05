@@ -52,6 +52,7 @@ public class VenOpcCiclo extends JFrame {
 				central.add(agregar);
 				
 				modificar= new JButton("modificar ciclo");
+                                modificar.addActionListener((ActionEvent e)->{modificar();});
 				central.add(modificar);
 				
 				consultar= new JButton("buscar ciclo");
@@ -79,7 +80,12 @@ public class VenOpcCiclo extends JFrame {
         setVisible(true);
        
     }
-    
+     private void modificar()
+     {
+         ModificarCiclo vi= new ModificarCiclo();
+         vi.init();
+         this.dispose();
+     }
     private void agregar()
     {
     	AgregarCiclo vi=new AgregarCiclo();

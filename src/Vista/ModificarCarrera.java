@@ -24,9 +24,9 @@ import javax.swing.JTextField;
  *
  * @author ccg
  */
-public class AgregarCarrera extends JFrame {
-     public AgregarCarrera() {
-            super("agregar Carrera");
+public class ModificarCarrera extends JFrame {
+    public ModificarCarrera() {
+            super("modificar Carrera");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,250));
         setResizable(false);
@@ -53,19 +53,13 @@ public class AgregarCarrera extends JFrame {
         formulario.add(nombre =new JLabel("nombre de la carrera:"),gc);
         
       
-        gc.gridx=0;
-        gc.gridy=1;
-        formulario.add(codigo =new JLabel("codigo de la carrera:"),gc);
-        
+       
         
         
         gc.gridx=1;
         gc.gridy=0;
         formulario.add(t_nombre=new JTextField(20),gc);
        
-        gc.gridx=1;
-        gc.gridy=1;
-        formulario.add(t_codigo=new JTextField(20),gc);
         
         
         gc.gridx=0;

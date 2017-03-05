@@ -54,6 +54,7 @@ public class VenOpcMatriculador extends JFrame{
 				central.add(agregar);
 				
 				modificar= new JButton("modificar Matriculador");
+                                modificar.addActionListener((ActionEvent e)->{modificar();});
 				central.add(modificar);
 				
 				consultar= new JButton("buscar Matriculador");
@@ -85,6 +86,12 @@ public class VenOpcMatriculador extends JFrame{
         vi.init();
         this.dispose();
     }
+     private void modificar()
+     {
+         ModificarMatriculador vi= new ModificarMatriculador();
+         vi.init();
+         this.dispose();
+     }
     private void salir()
     {
         VentanaAdministrador vi= new VentanaAdministrador();

@@ -57,6 +57,7 @@ public class VenOpcAdministra extends JFrame {
 				central.add(agregar);
 				
 				modificar= new JButton("modificar Administrador");
+                                modificar.addActionListener((ActionEvent e)->{modificar();});
 				central.add(modificar);
 				
 				consultar= new JButton("buscar Administrador");
@@ -87,7 +88,12 @@ public class VenOpcAdministra extends JFrame {
         vi.init();
         this.dispose();
     }
-    
+     private void modificar()
+     {
+         ModificarAdministrador vi= new ModificarAdministrador();
+         vi.init();
+         this.dispose();
+     }
     private void salir()
     {
         VentanaAdministrador vi= new VentanaAdministrador();

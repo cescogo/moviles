@@ -52,6 +52,7 @@ public class VenOpcCarrera extends JFrame{
 				central.add(agregar);
 				
 				modificar= new JButton("modificar carrera");
+                                modificar.addActionListener((ActionEvent e)->{modificar();});
 				central.add(modificar);
 				
 				consultar= new JButton("buscar carrera");
@@ -77,6 +78,12 @@ public class VenOpcCarrera extends JFrame{
        
     }
     
+     private void modificar()
+     {
+         ModificarCarrera vi= new ModificarCarrera();
+         vi.init();
+         this.dispose();
+     }
     private void agregar()
     {
     	AgregarCarrera vi=new AgregarCarrera();

@@ -55,6 +55,7 @@ public class VenOpcProfesor extends JFrame{
 				central.add(agregar);
 				
 				modificar= new JButton("modificar profesor");
+                                modificar.addActionListener((ActionEvent e)->{modificar();});
 				central.add(modificar);
 				
 				consultar= new JButton("buscar profesor");
@@ -81,7 +82,12 @@ public class VenOpcProfesor extends JFrame{
     public void init() {
         setVisible(true);
     }
-    
+     private void modificar()
+     {
+         ModificarProfesor vi= new ModificarProfesor();
+         vi.init();
+         this.dispose();
+     }
     private void agregar()
     {
     	AgregarProfesor vi=new AgregarProfesor();
