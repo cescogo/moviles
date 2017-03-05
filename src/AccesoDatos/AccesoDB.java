@@ -285,7 +285,7 @@ public class AccesoDB {
                 a.setNombre( bd.registro.getString("nombre"));
                 a.setCreditos( bd.registro.getInt("creditos"));
                 a.setHsemanales( bd.registro.getInt("h_semanales"));
-                a.setCarrera( bd.registro.getString("cod_caarrera"));
+                a.setCarrera( bd.registro.getString("COD_CARRERA"));
                 a.setNum_ciclo( bd.registro.getInt("num_ciclo"));
                 l.agregar(a);              
             }

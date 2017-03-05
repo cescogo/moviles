@@ -138,7 +138,7 @@ public class Control {
     private void AdminCurso() {
      int opc = 0;
         while(opc != 5){
-            inter.menuCarr();
+            inter.menuCurso();
             switch(inter.leerI()){    
                 case 1: 
                     crearCurso();
@@ -278,7 +278,7 @@ public class Control {
     }
 
     private void MostrarCursos() {
-          Curso C = new Curso();
+         Curso C = new Curso();
          Lista l = new Lista();
          accesoD.mostrar(C, l);
          System.out.println(l.toString());
