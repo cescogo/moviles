@@ -4,9 +4,35 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AccesoDB {
-    private String baseDatos = "matricula";
     
-    public void mostrar(Persona a, Lista l) {
+   public void validaUser(Persona a, String us, String pass){
+       try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM persona "
+                    + "WHERE CEDULA ="+us
+                    +" And PASS = "+pass;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                a.setCedula(bd.registro.getString("cedula"));
+                a.setClave(bd.registro.getString("pass"));
+                a.setEmail(bd.registro.getString("correo"));
+                a.setNombre(bd.registro.getString("nombre"));
+                a.setTelefono(bd.registro.getInt("telefono"));
+                a.setTipo(bd.registro.getInt("tipo"));
+                if(a instanceof Alumno)
+                    ((Alumno) a).setF_nac("F_NACIMIENTO");
+            }
+            
+            bd.closeCon();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+   } 
+    
+   public void mostrar(Persona a, Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -326,9 +352,5 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
-      
-    private static final String MANEJADOR_DB = "com.mysql.jdbc.Driver";
-    private static final String PROTOCOLO = "jdbc:mysql:";
-    private static final String SERVIDOR_POR_DEFECTO = "localhost";
-    
+ 
 }

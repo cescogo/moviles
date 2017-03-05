@@ -23,7 +23,6 @@ public class ConexionBD {
     
     Connection conexion = null;
     Statement comando = null;
-    PreparedStatement pstm = null;
     ResultSet registro;
     private String baseDatos = "matricula";
     private static final String MANEJADOR_DB = "com.mysql.jdbc.Driver";
@@ -55,7 +54,6 @@ public class ConexionBD {
         try {
             if(registro!= null){ registro.close();}
             if(comando!=null){comando.close();}
-            if(pstm!=null){pstm.close();}
             conexion.close();
         } catch (SQLException ex) {
             Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);

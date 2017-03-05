@@ -4,12 +4,44 @@ import java.util.Scanner;
 
 public class Interfaz {
 
-public String solicitaPass(){
+public void BienvInter(int t){
+switch(t){
+    case 1:System.out.println("Area de adinistrador");
+    break;
+    case 2: System.out.println("Area de Matriculador");
+    break;
+    case 3: System.out.println("Area de Profesor");
+    break;
+    case 4: System.out.println("Area de Alumno");
+    break;
+}
+}
+    
+public void init(){
+    int opc = 0;
+    while(opc !=2 ){
+        System.out.println("1--> ENTRAR");
+        System.out.println("2--> SALIR");
+        if(opc == 1){
+        menuLogin();
+        } 
+    }
+}
+    
+public void menuLogin(){
+    System.out.println("Bienvenido al programa de gestion academica");
+    System.out.println("---------LOGIN---------");
+    System.out.println("->salir escriba salir");
+}
+
+public void solicitaUsr(){
+    System.out.println("Introdusca Usuario: ");
+}
+public void errorLogin(){
+    System.out.println("Error Usuario o Contraseña incorrecta: ");
+}
+public void solicitaPass(){
     System.out.println("digite la contraseña:");
-    String pass = "";
-    Scanner entradaEscaner = new Scanner (System.in); 
-    pass = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-    return pass;
 }
 public String SolicitaNombres(){
     System.out.println("digite el nombre de la persona:");
@@ -46,7 +78,6 @@ public String SolicitaFec_Nac(){
     fecNac = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
     return fecNac;
 }
-
 public String SolicitaCodCarrera(){
     System.out.println("digite el codigo correrspondiente a la carrera:");
     String codcar = "";
@@ -61,7 +92,6 @@ public String SolicitaNomCarrera(){
     nomcar = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
     return nomcar;
 }
-
 public String SolicitaCodCurso(){
     System.out.println("digite el codigo correrspondiente a la carrera:");
     String codcur = "";
@@ -97,7 +127,6 @@ public int SolicitaCiclo(){
     niclo = entradaEscaner.nextInt(); //Invocamos un método sobre un objeto Scanner
     return niclo;
 }
-
 public String Solicitaidgrupo(){
     System.out.println("digite el id del grupo:");
     String idgr ="";
@@ -126,10 +155,16 @@ public String SolicitaHorario(){
     hgrp = entradaEscaner.nextLine(); //Invocamos un método sobre un objeto Scanner
     return hgrp;
 }
-
-
-
-
-
-    
+public int leerI() {
+    int datoI = 0;
+    Scanner entradaEscaner = new Scanner (System.in); 
+    datoI = entradaEscaner.nextInt(); 
+    return datoI;
+    }
+public String leerS(){
+    String datoS = "";
+    Scanner entradaEscaner = new Scanner (System.in); 
+    datoS = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+    return datoS;
+}
 }
