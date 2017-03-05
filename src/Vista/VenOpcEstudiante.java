@@ -61,6 +61,7 @@ public class VenOpcEstudiante extends JFrame {
 				central.add(consultar);
 				
 				eliminar= new JButton("eliminar estudiante");
+                                eliminar.addActionListener((ActionEvent e)->{eliminar();});
 				central.add(eliminar);
                                 
                                    salir= new JButton("salir");
@@ -81,6 +82,12 @@ public class VenOpcEstudiante extends JFrame {
     public void init() {
         setVisible(true);
        
+    }
+    private void eliminar()
+    {
+        EliminarEstudiante vi= new EliminarEstudiante();
+        vi.init();
+        this.dispose();
     }
      private void modificar()
      {
