@@ -52,6 +52,7 @@ public class VenOpcGrupo extends JFrame{
 				central.add(agregar);
 				
 				modificar= new JButton("modificar grupo");
+                                modificar.addActionListener((ActionEvent e)->{modificar();});
 				central.add(modificar);
 				
 				consultar= new JButton("buscar grupo");
@@ -79,7 +80,12 @@ public class VenOpcGrupo extends JFrame{
         setVisible(true);
        
     }
-    
+     private void modificar()
+     {
+         ModificarGrupo vi= new ModificarGrupo();
+         vi.init();
+         this.dispose();
+     }
   private void agregar()
     {
     	AgregarGrupo vi=new AgregarGrupo();

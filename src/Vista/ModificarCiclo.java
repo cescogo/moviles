@@ -24,11 +24,11 @@ import javax.swing.JTextField;
  *
  * @author ccg
  */
-public class AgregarCarrera extends JFrame {
-     public AgregarCarrera() {
-            super("agregar Carrera");
+public class ModificarCiclo extends JFrame {
+        public ModificarCiclo() {
+            super("modificar Ciclo");
         ajustarComponentes(getContentPane());   
-        setMinimumSize(new Dimension(500,250));
+        setMinimumSize(new Dimension(500,350));
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -49,31 +49,46 @@ public class AgregarCarrera extends JFrame {
        
         
         gc.gridx=0;
-        gc.gridy=0;
-        formulario.add(nombre =new JLabel("nombre de la carrera:"),gc);
+        gc.gridy=1;
+        formulario.add(anno =new JLabel("año del ciclo:"),gc);
         
       
         gc.gridx=0;
-        gc.gridy=1;
-        formulario.add(codigo =new JLabel("codigo de la carrera:"),gc);
+        gc.gridy=2;
+        formulario.add(num_ciclo =new JLabel("numero del ciclo:"),gc);
         
-        
-        
-        gc.gridx=1;
-        gc.gridy=0;
-        formulario.add(t_nombre=new JTextField(20),gc);
-       
-        gc.gridx=1;
-        gc.gridy=1;
-        formulario.add(t_codigo=new JTextField(20),gc);
-        
+         gc.gridx=0;
+        gc.gridy=3;
+        formulario.add( fe_inicio=new JLabel("fecha de inicio:"),gc);
         
         gc.gridx=0;
+        gc.gridy=4;
+        formulario.add(fe_final =new JLabel("fecha de finalizacion:"),gc);
+        
+     
+        
+        gc.gridx=1;
+        gc.gridy=1;
+        formulario.add(t_anno=new JTextField(20),gc);
+       
+        gc.gridx=1;
+        gc.gridy=2;
+        formulario.add(t_num_ciclo=new JTextField(20),gc);
+        
+        gc.gridx=1;
         gc.gridy=3;
+        formulario.add(t_fe_inicio=new JTextField(20),gc);
+        
+        gc.gridx=1;
+        gc.gridy=4;
+        formulario.add(t_fe_final=new JTextField(20),gc);
+        
+        gc.gridx=0;
+        gc.gridy=7;
         formulario.add(aceptar=new JButton("Aceptar"),gc);
         
         gc.gridx=1;
-        gc.gridy=3;
+        gc.gridy=7;
                
                 cancel=new JButton("cancelar");
                 cancel.addActionListener((ActionEvent e)->{salir();});
@@ -84,14 +99,12 @@ public class AgregarCarrera extends JFrame {
        c.add(principal,BorderLayout.CENTER);
         
     }
-    
      private void salir()
     {
-        VenOpcCarrera vi = new VenOpcCarrera();
+        VenOpcCiclo vi = new VenOpcCiclo();
         vi.init();
         this.dispose();
     }
-    
     public void init() {
         setVisible(true);
     }
@@ -99,12 +112,15 @@ public class AgregarCarrera extends JFrame {
     private JPanel formulario;
     private GridBagConstraints gc;
    
-    private JLabel nombre;
-    private JLabel codigo;
-    
-    private JTextField t_nombre;
-    private JTextField t_codigo;
-    
+    private JLabel anno;
+    private JLabel num_ciclo;
+    private JLabel fe_inicio;
+    private JLabel fe_final;
+    private JTextField t_id;
+    private JTextField t_anno;
+    private JTextField t_num_ciclo;
+    private JTextField t_fe_inicio;
+    private JTextField t_fe_final;
     private JButton aceptar;
     private JButton cancel;
 }

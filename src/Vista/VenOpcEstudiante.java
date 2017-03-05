@@ -54,6 +54,7 @@ public class VenOpcEstudiante extends JFrame {
 				central.add(agregar);
 				
 				modificar= new JButton("modificar estudiante");
+                                modificar.addActionListener((ActionEvent e)->{modificar();});
 				central.add(modificar);
 				
 				consultar= new JButton("buscar estudiente");
@@ -81,7 +82,12 @@ public class VenOpcEstudiante extends JFrame {
         setVisible(true);
        
     }
-    
+     private void modificar()
+     {
+         ModificarEstudiante vi= new ModificarEstudiante();
+         vi.init();
+         this.dispose();
+     }
     private void agregar()
     {
     	AgregarEstudiante vi=new AgregarEstudiante();
