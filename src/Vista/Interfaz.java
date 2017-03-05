@@ -100,8 +100,8 @@ public void BusqCurso(){
     
 }
 public void BusqCar(){
-    System.out.println("1--Nombre");
-    System.out.println("2--Codigo");
+    System.out.println("1--Codigo");
+    System.out.println("2--Nombre");
     System.out.println("3--salir");
     
 }

@@ -159,9 +159,8 @@ public class Control {
         }
     }
     private void MostrarCarreras() {
-         Carrera C = new Carrera();
          Lista l = new Lista();
-         accesoD.mostrar(C, l);
+         accesoD.mostrar(l);
          System.out.println(l.toString());
        }
     private void ActualizarCarrera() {

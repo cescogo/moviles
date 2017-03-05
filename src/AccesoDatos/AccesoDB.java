@@ -10,6 +10,7 @@ import java.sql.Statement;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import Modelo.*;
 
 public class AccesoDB {
     
@@ -47,7 +48,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM curso WHERE codigo ="+cod;
+            String comandoListar = "SELECT * FROM curso WHERE codigo='"+ cod+"'"; 
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                  a.setCodigo(bd.registro.getString("codigo"));
@@ -64,7 +65,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM curso WHERE nombre ="+nom;
+            String comandoListar = "SELECT * FROM curso WHERE nombre ='"+ nom+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                  a.setCodigo(bd.registro.getString("codigo"));
@@ -81,7 +82,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM curso WHERE carrera ="+carr;
+            String comandoListar = "SELECT * FROM curso WHERE carrera ='"+ carr+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                  a.setCodigo(bd.registro.getString("codigo"));
@@ -98,7 +99,7 @@ public class AccesoDB {
              ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM curso WHERE COD_CARRERA ="+carrera;
+            String comandoListar = "SELECT * FROM curso WHERE COD_CARRERA ='"+ carrera+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setNum_ciclo(bd.registro.getInt("Num_ciclo"));
@@ -120,7 +121,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM carrera WHERE codigo ="+cod;
+            String comandoListar = "SELECT * FROM carrera WHERE codigo ='"+ cod+"'";      
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                  a.setCodigo(bd.registro.getString("codigo"));
@@ -137,7 +138,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM carrera WHERE nombre ="+nom;
+            String comandoListar = "SELECT * FROM carrera WHERE nombre ='"+ nom+"'";         
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                  a.setCodigo(bd.registro.getString("codigo"));
@@ -154,7 +155,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM carrera WHERE CEDULA:"+id;
+            String comandoListar = "SELECT * FROM carrera WHERE CEDULA='"+ id+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setCedula(bd.registro.getString("cedula"));
@@ -178,7 +179,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM carrera WHERE nombre:"+nom;
+            String comandoListar = "SELECT * FROM carrera WHERE nombre='"+ nom+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setCedula(bd.registro.getString("cedula"));
@@ -202,7 +203,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM carrera WHERE carrera:"+carr;
+            String comandoListar = "SELECT * FROM carrera WHERE carrera='"+ carr+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setCedula(bd.registro.getString("cedula"));
@@ -244,14 +245,15 @@ public class AccesoDB {
         }
     }
     
-   public void mostrar(Carrera a, Lista l) {
+   public void mostrar(Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
             String comandoListar = "SELECT * FROM carrera";
             bd.registro = bd.comando.executeQuery(comandoListar);
-            while (bd.registro.next()) {                
+            while (bd.registro.next()) { 
+                Carrera a = new Carrera();
                 a.setCodigo(bd.registro.getString("CODIGO"));
                 a.setNombre(bd.registro.getString("NOMBRE"));
                 l.agregar(a);                
@@ -392,7 +394,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM grupo WHERE COD_CURSO ="+curso;
+            String comandoListar = "SELECT * FROM grupo WHERE COD_CURSO ='"+ curso+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setId(bd.registro.getString("ID_GRUPO"));
@@ -412,7 +414,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM grupo WHERE ID_PROF ="+profe;
+            String comandoListar = "SELECT * FROM grupo WHERE ID_PROF ='"+ profe+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setId(bd.registro.getString("ID_GRUPO"));
