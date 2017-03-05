@@ -49,7 +49,8 @@ public class VenOpcEstudiante extends JFrame {
         principal.add(central, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
     
-				agregar= new JButton("agregar estudiante");                               
+				agregar= new JButton("agregar estudiante");  
+                                agregar.addActionListener((ActionEvent e)->{agregar();});
 				central.add(agregar);
 				
 				modificar= new JButton("modificar estudiante");
@@ -81,9 +82,11 @@ public class VenOpcEstudiante extends JFrame {
        
     }
     
-    private void ventanaEstudiante()
+    private void agregar()
     {
-    		
+    	AgregarEstudiante vi=new AgregarEstudiante();
+        vi.init();
+        this.dispose();
     }
     
     private void salir()

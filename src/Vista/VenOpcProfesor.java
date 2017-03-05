@@ -50,7 +50,8 @@ public class VenOpcProfesor extends JFrame{
         principal.add(central, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
     
-				agregar= new JButton("agregar profesor");                               
+				agregar= new JButton("agregar profesor");   
+                                agregar.addActionListener((ActionEvent e)->{agregar();});
 				central.add(agregar);
 				
 				modificar= new JButton("modificar profesor");
@@ -81,9 +82,11 @@ public class VenOpcProfesor extends JFrame{
         setVisible(true);
     }
     
-    private void ventanaEstudiante()
+    private void agregar()
     {
-    		
+    	AgregarProfesor vi=new AgregarProfesor();
+        vi.init();
+        this.dispose();
     }
     
     private void salir()

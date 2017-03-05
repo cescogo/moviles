@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -89,12 +90,14 @@ public class AgregarProfesor extends JFrame {
         
         gc.gridx=0;
         gc.gridy=7;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+        aceptar=new JButton("Aceptar");
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=7;
-               
-        formulario.add(cancel=new JButton("cancelar"),gc);
+        cancel=new JButton("cancelar");
+        cancel.addActionListener((ActionEvent e)->{salir();});
+        formulario.add(cancel,gc);
         
        principal.add(formulario,BorderLayout.CENTER);
        
@@ -104,6 +107,13 @@ public class AgregarProfesor extends JFrame {
     
     public void init() {
         setVisible(true);
+    }
+    
+    private void salir()
+    {
+        VenOpcProfesor vi = new VenOpcProfesor();
+        vi.init();
+        this.dispose();
     }
       private JPanel principal;
     private JPanel formulario;

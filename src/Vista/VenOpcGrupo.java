@@ -16,22 +16,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
-import java.awt.event.ActionListener;
 
 /**
  *
  * @author ccg
  */
-public class VenOpcAdministra extends JFrame {
-
-
-    
-    public VenOpcAdministra() {
+public class VenOpcGrupo extends JFrame{
+     public VenOpcGrupo() {
         
-        super("Opciones de Administrador");
+        super("Opciones de Grupo");
         ajustarComponentes(getContentPane());
-       
-        setMinimumSize(new Dimension(500, 250));
+        setMinimumSize(new Dimension(440,250));
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -43,7 +38,7 @@ public class VenOpcAdministra extends JFrame {
         principal.setLayout(new BorderLayout());
         principal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         principal.setBackground(Color.WHITE);
-        
+
         JPanel central = new JPanel(new GridLayout(2,2,30,30) );
         central.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         central.setBackground(Color.WHITE);
@@ -52,38 +47,42 @@ public class VenOpcAdministra extends JFrame {
         principal.add(central, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
     
-				agregar= new JButton("agregar Administrador");  
+				agregar= new JButton("agregar grupo");
                                 agregar.addActionListener((ActionEvent e)->{agregar();});
 				central.add(agregar);
 				
-				modificar= new JButton("modificar Administrador");
+				modificar= new JButton("modificar grupo");
 				central.add(modificar);
 				
-				consultar= new JButton("buscar Administrador");
+				consultar= new JButton("buscar grupo");
 				central.add(consultar);
 				
-				eliminar= new JButton("eliminar Administrador");
+				eliminar= new JButton("eliminar grupo");
 				central.add(eliminar);
                                 
-                                salir= new JButton("salir");
+                                   salir= new JButton("salir");
                                 salir.addActionListener((ActionEvent e)->{salir();});
-                                cancelar =new JPanel(new BorderLayout());  
-                                cancelar.setBackground(Color.WHITE);
+                                cancelar =new JPanel(new BorderLayout());       
                                 cancelar.add(salir ,BorderLayout.EAST);
+                                cancelar.setBackground(Color.WHITE);
                                 
 				principal.add(cancelar,BorderLayout.SOUTH);
     
         }
 
-    
+    public void confiEventos() {
+    	//estudiante.addActionListener(ActionEvent e)->{ventanaEstudiante()}];
+
+    }
 
     public void init() {
         setVisible(true);
+       
     }
     
   private void agregar()
     {
-    	AgregarAdministrador vi=new AgregarAdministrador();
+    	AgregarGrupo vi=new AgregarGrupo();
         vi.init();
         this.dispose();
     }
@@ -101,8 +100,4 @@ public class VenOpcAdministra extends JFrame {
     private JButton eliminar;
     private JButton salir;
     private JPanel cancelar;
-    
 }
-
-    
-

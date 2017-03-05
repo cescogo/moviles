@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -96,14 +97,21 @@ public class AgregarGrupo extends JFrame {
         gc.gridx=1;
         gc.gridy=7;
                
-        formulario.add(cancel=new JButton("cancelar"),gc);
+                cancel=new JButton("cancelar");
+                cancel.addActionListener((ActionEvent e)->{salir();});
+        formulario.add(cancel,gc);
         
        principal.add(formulario,BorderLayout.CENTER);
        
        c.add(principal,BorderLayout.CENTER);
         
     }
-    
+     private void salir()
+    {
+        VenOpcGrupo vi = new VenOpcGrupo();
+        vi.init();
+        this.dispose();
+    }
     public void init() {
         setVisible(true);
     }

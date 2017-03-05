@@ -28,7 +28,7 @@ public class VenOpcMatriculador extends JFrame{
         
         super("Opciones de Matriculador");
         ajustarComponentes(getContentPane());
-        confiEventos();
+        
         setMinimumSize(new Dimension(470, 250));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -49,7 +49,8 @@ public class VenOpcMatriculador extends JFrame{
         principal.add(central, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
     
-				agregar= new JButton("agregar Matriculador");                               
+				agregar= new JButton("agregar Matriculador");  
+                                agregar.addActionListener((ActionEvent e)->{agregar();});
 				central.add(agregar);
 				
 				modificar= new JButton("modificar Matriculador");
@@ -72,18 +73,17 @@ public class VenOpcMatriculador extends JFrame{
     
         }
 
-    public void confiEventos() {
-    	//estudiante.addActionListener(ActionEvent e)->{ventanaEstudiante()}];
-
-    }
+    
 
     public void init() {
         setVisible(true);
     }
     
-    private void ventanaEstudiante()
+    private void agregar()
     {
-    		
+    	AgregarMatriculador vi=new AgregarMatriculador();
+        vi.init();
+        this.dispose();
     }
     private void salir()
     {

@@ -67,18 +67,23 @@ public class VentanaAdministrador extends JFrame  {
 				central.add(matriculador);
                                 
                                 curso= new JButton("menu de curso");
+                                curso.addActionListener((ActionEvent e)->{ventanaCurso();});
 				central.add(curso);
                                 
                                 ciclo= new JButton("menu de ciclo");
+                                ciclo.addActionListener((ActionEvent e)->{ventanaCiclo();});;
 				central.add(ciclo);
                                 
                                 grupo= new JButton("menu de grupo");
+                                grupo.addActionListener((ActionEvent e)->{ventanaGrupo();});
 				central.add(grupo);
                                 
                                 carrera=new JButton("menu de carrera");
+                                carrera.addActionListener((ActionEvent e)->{ventanaCarrera();});
                                 central.add(carrera);
                                 
-                                salir= new JButton("atras");
+                                salir= new JButton("logout");
+                                salir.addActionListener((ActionEvent e)->{salir();});
 				central.add(salir);
     
         }
@@ -123,7 +128,39 @@ public class VentanaAdministrador extends JFrame  {
                 this.dispose();
             
     }
-    
+       private void ventanaCurso()
+       {
+           VenOpcCurso vi= new VenOpcCurso();
+           vi.init();
+           this.dispose();
+       }
+       
+       private void ventanaGrupo()
+       {
+           VenOpcGrupo vi= new VenOpcGrupo();
+           vi.init();
+           this.dispose();
+       }
+       
+       private void ventanaCiclo()
+       {
+           VenOpcCiclo vi= new VenOpcCiclo();
+           vi.init();
+           this.dispose();
+       }
+       
+       private void ventanaCarrera()
+       {
+           VenOpcCarrera vi= new VenOpcCarrera();
+           vi.init();
+           this.dispose();
+       }
+       private void salir()
+       {
+           VentanaInicio vi = new VentanaInicio();
+           vi.init();
+           this.dispose();
+       }
     private JButton estudiante;
     private JButton profesor; 
     private JButton administrador;
@@ -136,27 +173,7 @@ public class VentanaAdministrador extends JFrame  {
   
     private GridBagConstraints gc;
 
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        String id=e.getActionCommand();
-//        if(e.getActionCommand().equals("menu de estudiante"))
-//        {
-//            ventanaEstudiante();
-//        }
-//        else
-//            
-//         if(e.getActionCommand().equals("menu de profesor"))
-//        {
-//            ventanaProfesor();
-//        }
-//        else
-//          if(e.getActionCommand().equals("menu de admonistrador"))
-//        {
-//            ventanaAdministrador();
-//        }
-//         
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+
 }
 
   

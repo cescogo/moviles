@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -60,10 +61,14 @@ public class VentanaInicio extends JFrame{
         formulario.add(t_clave=new JTextField(10),gc);
         gc.gridx=1;
         gc.gridy=2;
-        formulario.add(new JButton("Aceptar"),gc);
+        aceptar=new JButton("Aceptar");
         
-        cancelar =new JPanel(new BorderLayout());       
-        cancelar.add(new JButton("cancelar"),BorderLayout.EAST);
+        formulario.add(aceptar,gc);
+        
+        cancelar =new JPanel(new BorderLayout());  
+        cancel=new JButton("cancelar");
+        cancel.addActionListener((ActionEvent e)->{salir();});
+        cancelar.add(cancel,BorderLayout.EAST);
         
        principal.add(formulario,BorderLayout.CENTER);
        principal.add(cancelar,BorderLayout.SOUTH);
@@ -74,6 +79,11 @@ public class VentanaInicio extends JFrame{
     public void init() {
         setVisible(true);
     }
+    
+    private void salir()
+    {
+        this.dispose();
+    }
     // atributos
     private JPanel principal;
     private JPanel formulario;
@@ -83,4 +93,6 @@ public class VentanaInicio extends JFrame{
     private JLabel clave;
     private JTextField t_usuario;
     private JTextField t_clave;
+    private JButton cancel;
+    private JButton aceptar;
 }

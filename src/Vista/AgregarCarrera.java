@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -49,12 +50,12 @@ public class AgregarCarrera extends JFrame {
         
         gc.gridx=0;
         gc.gridy=0;
-        formulario.add(nombre =new JLabel("año del ciclo:"),gc);
+        formulario.add(nombre =new JLabel("año del carrera:"),gc);
         
       
         gc.gridx=0;
         gc.gridy=1;
-        formulario.add(codigo =new JLabel("numero del ciclo:"),gc);
+        formulario.add(codigo =new JLabel("numero del carrera:"),gc);
         
         
         
@@ -74,12 +75,21 @@ public class AgregarCarrera extends JFrame {
         gc.gridx=1;
         gc.gridy=3;
                
-        formulario.add(cancel=new JButton("cancelar"),gc);
+                cancel=new JButton("cancelar");
+                cancel.addActionListener((ActionEvent e)->{salir();});
+        formulario.add(cancel,gc);
         
        principal.add(formulario,BorderLayout.CENTER);
        
        c.add(principal,BorderLayout.CENTER);
         
+    }
+    
+     private void salir()
+    {
+        VenOpcCarrera vi = new VenOpcCarrera();
+        vi.init();
+        this.dispose();
     }
     
     public void init() {
