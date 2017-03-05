@@ -10,6 +10,15 @@ public class Carrera {
         this.codigo = codigo;
         
     }
+     @Override
+    public String toString() {
+        return "Carrera{" + "nombre=" + nombre + ", codigo=" + codigo + '}';
+    }
+
+    public Carrera() {
+        this.nombre = "";
+        this.codigo = "";
+    }
 
     public String getNombre() {
         return nombre;

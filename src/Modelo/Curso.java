@@ -17,6 +17,22 @@ public class Curso
         this.num_ciclo = num_ciclo;
     }
 
+     @Override
+    public String toString() {
+        return "nombre=" + nombre + ", codigo=" + codigo +
+                ", creditos=" + creditos +", hsemanales=" + hsemanales +
+                ", carrera=" + carrera +", num_ciclo=" + num_ciclo +'}';
+    }
+
+    public Curso() {
+        this.codigo = "";
+        this.nombre = "";
+        this.creditos = 0;
+        this.hsemanales = 0;
+        this.carrera = "";
+        this.num_ciclo = 0;
+    }
+
     public int getNum_ciclo() {
         return num_ciclo;
     }
