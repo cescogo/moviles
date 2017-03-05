@@ -160,7 +160,7 @@ public class Control {
     }
     private void MostrarCarreras() {
          Lista l = new Lista();
-         accesoD.mostrar(l);
+         accesoD.mostrarCAs(l);
          System.out.println(l.toString());
        }
     private void ActualizarCarrera() {
@@ -201,7 +201,7 @@ public class Control {
          inter.SolicitaHsemanal();int hsemanales = inter.leerI();
          inter.SolicitaCodCarrera();String carrera = inter.leerS(); 
          inter.SolicitaCiclo();int num_ciclo = inter.leerI();
-         Curso cur = new Curso();
+         Curso cur = new Curso(cod, nom, creditos, hsemanales, carrera, num_ciclo);
          accesoD.agrega(cur);         
     }
    private void BorrarCurso() {
@@ -215,25 +215,28 @@ public class Control {
             p = inter.leerI();
             switch(p){
                 case 1:
-                    inter.SolicitaCodCurso();
-                    accesoD.BuscarCursoCod(C, inter.leerS());
-                    break;
-                case 2:
                     inter.SolicitaNomCurso();
                     accesoD.BuscarCursoNom(C,inter.leerS());
+                    System.out.println(C.toString());
+                    break;
+                case 2:
+                    inter.SolicitaCodCurso();
+                    accesoD.BuscarCursoCod(C, inter.leerS());
+                    System.out.println(C.toString());
                     break;
                 case 3: 
-                    inter.SolicitaNomCarrera();
-                    accesoD.BuscarCursoCar(C, inter.leerS());
+                    Lista l = new Lista();
+                    inter.SolicitaCodCarrera();
+                    accesoD.BuscarCursoCar(l, inter.leerS());
+                    System.out.println(l.toString());
+                    break;
                 default: inter.ERROR();
             }
-            System.out.println(C.toString());
         }
     }
    private void MostrarCursos() {
-         Curso C = new Curso();
          Lista l = new Lista();
-         accesoD.mostrar(C, l);
+         accesoD.mostrarCUs(l);
          System.out.println(l.toString());
     }
    private void ActualizarCurso() {
