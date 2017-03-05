@@ -54,6 +54,7 @@ public class Control {
     private Persona user;
     private AccesoDB accesoD;
 
+   
     private void FuncAdministrativas() {
         inter.BienvInter(1);
         int opc = -1;
@@ -96,19 +97,8 @@ public class Control {
             }
         }
     }
-
-    private void FuncMatriculador() {
-        inter.BienvInter(2);
-    }
-
-    private void FuncProfesor() {
-        inter.BienvInter(3);
-    }
-
-    private void FuncAlumno() {
-        inter.BienvInter(4);
-    }
-
+    
+//<editor-fold desc="Metodos de Carrera">
     private void AdminCarrera() {
         int opc = 0;
         while(opc != 5){
@@ -134,8 +124,53 @@ public class Control {
         }
         }
     }
+    private void agregarCarrera(String nomcar, String codCAr) {
+        Carrera car = new Carrera(nomcar,codCAr);
+        accesoD.agrega(car);
+    }
+    private void crearCarrera() {
+        inter.SolicitaNomCarrera();
+        String nomcar = inter.leerS();
+        inter.SolicitaCodCarrera();
+        String codCAr = inter.leerS();
+        agregarCarrera(nomcar,codCAr);
+    }
+    private void BorrarCarrera() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    private void MostrarCarrera() {
+        int p = 0; 
+        Carrera C = new Carrera();
+        while(p!= 3){
+            inter.BusqCar();
+            p = inter.leerI();
+            switch(p){
+                case 1:
+                    inter.SolicitaCodCarrera();
+                    accesoD.BuscarCarreraCod(C, inter.leerS());
+                    break;
+                case 2:
+                    inter.SolicitaNomCarrera();
+                    accesoD.BuscarCarreraNom(C, inter.leerS());
+                    break;
+                default: inter.ERROR();
+            }
+            System.out.println(C.toString());
+        }
+    }
+    private void MostrarCarreras() {
+         Carrera C = new Carrera();
+         Lista l = new Lista();
+         accesoD.mostrar(C, l);
+         System.out.println(l.toString());
+       }
+    private void ActualizarCarrera() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+//</editor-fold>
 
-    private void AdminCurso() {
+//<editor-fold desc="Metodos de Curso">
+   private void AdminCurso() {
      int opc = 0;
         while(opc != 5){
             inter.menuCurso();
@@ -160,85 +195,7 @@ public class Control {
         }
     }
     }
-
-    private void AdminProfes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void AdminEst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void Adminciclo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void AdminOferta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void AdminMatricula() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void ConsultaHistorial() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void AgregarAcceso() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void agregarCarrera(String nomcar, String codCAr) {
-        Carrera car = new Carrera(nomcar,codCAr);
-        accesoD.agrega(car);
-    }
-
-    private void crearCarrera() {
-        inter.SolicitaNomCarrera();
-        String nomcar = inter.leerS();
-        inter.SolicitaCodCarrera();
-        String codCAr = inter.leerS();
-        agregarCarrera(nomcar,codCAr);
-    }
-
-    private void BorrarCarrera() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void MostrarCarrera() {
-        int p = 0; 
-        Carrera C = new Carrera();
-        while(p!= 3){
-            inter.BusqCar();
-            p = inter.leerI();
-            switch(p){
-                case 1:
-                    inter.SolicitaCodCarrera();
-                    accesoD.BuscarCarreraCod(C, inter.leerS());
-                    break;
-                case 2:
-                    inter.SolicitaNomCarrera();
-                    accesoD.BuscarCarreraNom(C, inter.leerS());
-                    break;
-                default: inter.ERROR();
-            }
-            System.out.println(C.toString());
-        }
-    }
-
-    private void MostrarCarreras() {
-         Carrera C = new Carrera();
-         Lista l = new Lista();
-         accesoD.mostrar(C, l);
-         System.out.println(l.toString());
-       }
-
-    private void ActualizarCarrera() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void crearCurso() {
+   private void crearCurso() {
          inter.SolicitaCodCurso();String cod = inter.leerS();
          inter.SolicitaNomCurso();String nom = inter.leerS();
          inter.SolicitaCreditos();int creditos = inter.leerI();
@@ -248,12 +205,10 @@ public class Control {
          Curso cur = new Curso();
          accesoD.agrega(cur);         
     }
-
-    private void BorrarCurso() {
+   private void BorrarCurso() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    private void MostrarCurso() {
+   private void MostrarCurso() {
           int p = 0; 
         Curso C = new Curso();
         while(p!= 4){
@@ -276,15 +231,63 @@ public class Control {
             System.out.println(C.toString());
         }
     }
-
-    private void MostrarCursos() {
+   private void MostrarCursos() {
          Curso C = new Curso();
          Lista l = new Lista();
          accesoD.mostrar(C, l);
          System.out.println(l.toString());
     }
-
-    private void ActualizarCurso() {
+   private void ActualizarCurso() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+   //</editor-fold>
+   
+//<editor-fold desc="Metodos de Profesores">
+    private void AdminProfes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    private void FuncProfesor() {
+        inter.BienvInter(3);
+    }
+
+   //</editor-fold>
+
+//<editor-fold desc="Metodos de Carrera"> 
+    private void AdminEst() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   //</editor-fold>
+   
+//<editor-fold desc="Metodos de Alumno">
+    private void FuncAlumno() {
+        inter.BienvInter(4);
+    }
+    private void ConsultaHistorial() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+   //</editor-fold>
+   
+    
+    private void Adminciclo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    private void AdminOferta() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    private void AgregarAcceso() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    private void FuncMatriculador() {
+        inter.BienvInter(2);
+    }
+    private void AdminMatricula() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+
+
+
+  
 }

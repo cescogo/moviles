@@ -1,7 +1,15 @@
 package AccesoDatos;
 import Modelo.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class AccesoDB {
     
@@ -31,6 +39,8 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
    } 
+     
+   //<editor-fold desc="Metodos de Busqueda">
     
    public void BuscarCursoCod(Curso a, String cod) {
         try {
@@ -416,7 +426,10 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
-
+ //</editor-fold>
+   
+  //<editor-fold desc="Metodos de Insercion">
+    
    public void agrega(Persona a){
           try {
             ConexionBD bd = new ConexionBD();
@@ -492,7 +505,10 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
-
+ //</editor-fold>
+   
+   //<editor-fold desc="Metodos de Actualizar">
+    
    public void Actualiza(Persona a){
           try {
             ConexionBD bd = new ConexionBD();
@@ -542,7 +558,7 @@ public class AccesoDB {
           try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
-             String sql = "update grupo set ID_PROF = '%s',  where ID_GRUPO = '%S'";
+             String sql = "update grupo set ID_PROF = '%s', NUMERO = '%i',  where ID_GRUPO = '%S'";
             sql=String.format(sql,a.getProfesor(), a.getNumero(),a.getId());
             Statement s = bd.conexion.createStatement();
             s.executeUpdate(sql);
@@ -552,5 +568,5 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
-      
+    //</editor-fold>  
 }
