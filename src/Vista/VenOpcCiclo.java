@@ -59,6 +59,7 @@ public class VenOpcCiclo extends JFrame {
 				central.add(consultar);
 				
 				eliminar= new JButton("eliminar ciclo");
+                                eliminar.addActionListener((ActionEvent e)->{eliminar();});
 				central.add(eliminar);
                                 
                                    salir= new JButton("salir");
@@ -71,9 +72,12 @@ public class VenOpcCiclo extends JFrame {
     
         }
 
-    public void confiEventos() {
-    	//estudiante.addActionListener(ActionEvent e)->{ventanaEstudiante()}];
-
+    
+    private void eliminar()
+    {
+        EliminarCiclo vi= new EliminarCiclo();
+        vi.init();
+        this.dispose();
     }
 
     public void init() {

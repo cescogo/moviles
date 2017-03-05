@@ -64,6 +64,7 @@ public class VenOpcAdministra extends JFrame {
 				central.add(consultar);
 				
 				eliminar= new JButton("eliminar Administrador");
+                                eliminar.addActionListener((ActionEvent e)->{eliminar();});
 				central.add(eliminar);
                                 
                                 salir= new JButton("salir");
@@ -82,6 +83,12 @@ public class VenOpcAdministra extends JFrame {
         setVisible(true);
     }
     
+    private void eliminar()
+    {
+        EliminarAdministrador vi= new EliminarAdministrador();
+        vi.init();
+        this.dispose();
+    }
   private void agregar()
     {
     	AgregarAdministrador vi=new AgregarAdministrador();

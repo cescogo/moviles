@@ -59,6 +59,7 @@ public class VenOpcCarrera extends JFrame{
 				central.add(consultar);
 				
 				eliminar= new JButton("eliminar carrera");
+                                eliminar.addActionListener((ActionEvent e)->{eliminar();});
 				central.add(eliminar);
                                 
                                    salir= new JButton("salir");
@@ -77,7 +78,12 @@ public class VenOpcCarrera extends JFrame{
         setVisible(true);
        
     }
-    
+    private void eliminar()
+    {
+        EliminarCarrera vi= new EliminarCarrera();
+        vi.init();
+        this.dispose();
+    }
      private void modificar()
      {
          ModificarCarrera vi= new ModificarCarrera();

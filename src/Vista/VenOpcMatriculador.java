@@ -61,6 +61,7 @@ public class VenOpcMatriculador extends JFrame{
 				central.add(consultar);
 				
 				eliminar= new JButton("eliminar Matriculador");
+                                eliminar.addActionListener((ActionEvent e)->{eliminar();});
 				central.add(eliminar);
                                 
                                   salir= new JButton("salir");
@@ -80,6 +81,12 @@ public class VenOpcMatriculador extends JFrame{
         setVisible(true);
     }
     
+    private void eliminar()
+    {
+        EliminarMatriculador vi= new EliminarMatriculador();
+        vi.init();
+        this.dispose();
+    }
     private void agregar()
     {
     	AgregarMatriculador vi=new AgregarMatriculador();

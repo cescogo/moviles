@@ -59,6 +59,7 @@ public class VenOpcGrupo extends JFrame{
 				central.add(consultar);
 				
 				eliminar= new JButton("eliminar grupo");
+                                eliminar.addActionListener((ActionEvent e)->{eliminar();});
 				central.add(eliminar);
                                 
                                    salir= new JButton("salir");
@@ -71,9 +72,12 @@ public class VenOpcGrupo extends JFrame{
     
         }
 
-    public void confiEventos() {
-    	//estudiante.addActionListener(ActionEvent e)->{ventanaEstudiante()}];
-
+   
+    private void eliminar()
+    {
+        EliminarGrupo vi= new EliminarGrupo();
+        vi.init();
+        this.dispose();
     }
 
     public void init() {
