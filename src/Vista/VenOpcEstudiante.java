@@ -11,6 +11,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,7 +28,6 @@ public class VenOpcEstudiante extends JFrame {
         
         super("Opciones de Estudiante");
         ajustarComponentes(getContentPane());
-        confiEventos();
         setMinimumSize(new Dimension(440,250));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -62,7 +62,7 @@ public class VenOpcEstudiante extends JFrame {
 				central.add(eliminar);
                                 
                                    salir= new JButton("salir");
-                                
+                                salir.addActionListener((ActionEvent e)->{salir();});
                                 cancelar =new JPanel(new BorderLayout());       
                                 cancelar.add(salir ,BorderLayout.EAST);
                                 cancelar.setBackground(Color.WHITE);
@@ -78,11 +78,19 @@ public class VenOpcEstudiante extends JFrame {
 
     public void init() {
         setVisible(true);
+       
     }
     
     private void ventanaEstudiante()
     {
     		
+    }
+    
+    private void salir()
+    {
+        VentanaAdministrador vi= new VentanaAdministrador();
+        vi.init();
+        this.dispose();
     }
     
     private JButton agregar;

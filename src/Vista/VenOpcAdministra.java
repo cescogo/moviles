@@ -10,11 +10,13 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JPanel;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -50,7 +52,8 @@ public class VenOpcAdministra extends JFrame {
         principal.add(central, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
     
-				agregar= new JButton("agregar Administrador");                               
+				agregar= new JButton("agregar Administrador");  
+                                
 				central.add(agregar);
 				
 				modificar= new JButton("modificar Administrador");
@@ -63,7 +66,7 @@ public class VenOpcAdministra extends JFrame {
 				central.add(eliminar);
                                 
                                 salir= new JButton("salir");
-                                
+                                salir.addActionListener((ActionEvent e)->{salir();});
                                 cancelar =new JPanel(new BorderLayout());  
                                 cancelar.setBackground(Color.WHITE);
                                 cancelar.add(salir ,BorderLayout.EAST);
@@ -84,6 +87,13 @@ public class VenOpcAdministra extends JFrame {
     private void ventanaEstudiante()
     {
     		
+    }
+    
+    private void salir()
+    {
+        VentanaAdministrador vi= new VentanaAdministrador();
+        vi.init();
+        this.dispose();
     }
     
     private JButton agregar;

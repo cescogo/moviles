@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -61,6 +62,7 @@ public class VenOpcMatriculador extends JFrame{
 				central.add(eliminar);
                                 
                                   salir= new JButton("salir");
+                                salir.addActionListener((ActionEvent e)->{salir();});
                                 
                                 cancelar =new JPanel(new BorderLayout());  
                                 cancelar.setBackground(Color.WHITE);
@@ -83,7 +85,12 @@ public class VenOpcMatriculador extends JFrame{
     {
     		
     }
-    
+    private void salir()
+    {
+        VentanaAdministrador vi= new VentanaAdministrador();
+        vi.init();
+        this.dispose();
+    }
     private JButton agregar;
     private JButton consultar; 
     private JButton modificar;

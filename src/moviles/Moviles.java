@@ -38,11 +38,11 @@ public class Moviles {
 //         Lista p= new Lista();
 //         ACD.Buscar(aux, "51");
 //         System.out.println(aux.toString());
-//        VenOpcMatriculador va= new  VenOpcMatriculador();
-//        va.init();
+        VentanaAdministrador va= new  VentanaAdministrador();
+        va.init();
 //        Control
-           Control ctrl  = new Control();
-           ctrl.init();
+//           Control ctrl  = new Control();
+//           ctrl.init();
            
     }
     
