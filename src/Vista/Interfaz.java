@@ -43,6 +43,68 @@ public void errorLogin(){
 public void solicitaPass(){
     System.out.println("digite la contraseña:");
 }
+
+public void ERROR(){
+    System.out.println("ERROR....");
+}
+public void MenuAdministrador(){
+    System.out.println("-----Menu Adminstrador-----");
+    System.out.println("1--> Admisntrar Carreras");
+    System.out.println("2--> Admisntrar cursos");
+    System.out.println("3--> Admisntrar profesores");    
+    System.out.println("4--> Admisntrar Alumnos");
+    System.out.println("5--> Admisntrar Ciclo");
+    System.out.println("6--> Admisntrar Oferta Academica");
+    System.out.println("7--> Admisntrar Matricula");
+    System.out.println("8--> Admisntrar Consultar Historial");
+    System.out.println("9--> Administrar Acceso de Seguridad");
+    System.out.println("");
+    System.out.println("10-> SALIR");    
+}
+
+public void MenuProfesor(){
+    System.out.println("-----Menu Profesor-----");
+}
+
+public void MenuAlumno(){
+    System.out.println("-----Menu Alumno-----");
+}
+
+public void MenuMatriculador(){
+    System.out.println("-----Menu Matriculador-----");
+}
+public void menuCarr(){
+    System.out.println("-----Menu Carrera-----");
+    System.out.println("1--> agregar Carreras");
+    System.out.println("2--> Borrar Carreras");
+    System.out.println("3--> mostrar Carrera");    
+    System.out.println("4--> mostrar Carreras");   
+    System.out.println("5--> actualizar Carreras");
+    System.out.println("6--> SALIR");    
+
+}
+public void menuCurso(){
+    System.out.println("-----Menu Curso-----");
+    System.out.println("1--> agregar Curso");
+    System.out.println("2--> Borrar Curso");
+    System.out.println("3--> mostrar Curso");    
+    System.out.println("4--> mostrar Curso");   
+    System.out.println("5--> actualizar Curso");
+    System.out.println("6--> SALIR");    
+}
+public void BusqCurso(){
+    System.out.println("1--Nombre");
+    System.out.println("2--Codigo");
+    System.out.println("3--Carrera");
+    System.out.println("4--salir");
+    
+}
+public void BusqCar(){
+    System.out.println("1--Nombre");
+    System.out.println("2--Codigo");
+    System.out.println("3--salir");
+    
+}
 public String SolicitaNombres(){
     System.out.println("digite el nombre de la persona:");
     String nombre = "";
@@ -78,20 +140,13 @@ public String SolicitaFec_Nac(){
     fecNac = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
     return fecNac;
 }
-public String SolicitaCodCarrera(){
+public void SolicitaCodCarrera(){
     System.out.println("digite el codigo correrspondiente a la carrera:");
-    String codcar = "";
-    Scanner entradaEscaner = new Scanner (System.in); 
-    codcar = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-    return codcar;
 }
-public String SolicitaNomCarrera(){
+public void SolicitaNomCarrera(){
     System.out.println("digite el nombre correrspondiente a la carrera:");
-    String nomcar = "";
-    Scanner entradaEscaner = new Scanner (System.in); 
-    nomcar = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-    return nomcar;
 }
+
 public String SolicitaCodCurso(){
     System.out.println("digite el codigo correrspondiente a la carrera:");
     String codcur = "";

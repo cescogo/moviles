@@ -32,6 +32,185 @@ public class AccesoDB {
         }
    } 
     
+   public void BuscarCursoCod(Curso a, String cod) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM curso WHERE codigo ="+cod;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                 a.setCodigo(bd.registro.getString("codigo"));
+                 a.setNombre(bd.registro.getString("nombre"));    
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+   
+   public void BuscarCursoNom(Curso a, String nom) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM curso WHERE nombre ="+nom;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                 a.setCodigo(bd.registro.getString("codigo"));
+                 a.setNombre(bd.registro.getString("nombre"));    
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+      
+   public void BuscarCursoCar(Curso a, String carr) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM curso WHERE carrera ="+carr;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                 a.setCodigo(bd.registro.getString("codigo"));
+                 a.setNombre(bd.registro.getString("nombre"));    
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+         
+   public void BuscarCursosCar(Curso a, String carrera, Lista l) {
+        try {
+             ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM curso WHERE COD_CARRERA ="+carrera;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                a.setNum_ciclo(bd.registro.getInt("Num_ciclo"));
+                a.setNombre(bd.registro.getString("nombre"));                               
+                a.setCreditos(bd.registro.getInt("creditos"));
+                a.setHsemanales(bd.registro.getInt("H_SEMANALES"));
+                a.setCodigo(bd.registro.getString("codigo"));
+                a.setNum_ciclo(bd.registro.getInt("NUM_CICLO"));
+                l.agregar(a);
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+ 
+   public void BuscarCarreraCod(Carrera a, String cod) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM carrera WHERE codigo ="+cod;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                 a.setCodigo(bd.registro.getString("codigo"));
+                 a.setNombre(bd.registro.getString("nombre"));    
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+   public void BuscarCarreraNom(Carrera a, String nom) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM carrera WHERE nombre ="+nom;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                 a.setCodigo(bd.registro.getString("codigo"));
+                 a.setNombre(bd.registro.getString("nombre"));    
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+   public void BuscarPersonaId(Persona a, String id) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM carrera WHERE CEDULA:"+id;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                a.setCedula(bd.registro.getString("cedula"));
+                a.setClave(bd.registro.getString("pass"));
+                a.setEmail(bd.registro.getString("correo"));
+                a.setNombre(bd.registro.getString("nombre"));
+                a.setTelefono(bd.registro.getInt("telefono"));
+                a.setTipo(bd.registro.getInt("tipo"));
+                if(a instanceof Alumno)
+                    ((Alumno) a).setF_nac("F_NACIMIENTO");
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+   public void BuscarPersonaNombre(Persona a, String nom) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM carrera WHERE nombre:"+nom;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                a.setCedula(bd.registro.getString("cedula"));
+                a.setClave(bd.registro.getString("pass"));
+                a.setEmail(bd.registro.getString("correo"));
+                a.setNombre(bd.registro.getString("nombre"));
+                a.setTelefono(bd.registro.getInt("telefono"));
+                a.setTipo(bd.registro.getInt("tipo"));
+                if(a instanceof Alumno)
+                    ((Alumno) a).setF_nac("F_NACIMIENTO");
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+   public void BuscarPersonaCarrera(Persona a, String carr) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM carrera WHERE carrera:"+carr;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                a.setCedula(bd.registro.getString("cedula"));
+                a.setClave(bd.registro.getString("pass"));
+                a.setEmail(bd.registro.getString("correo"));
+                a.setNombre(bd.registro.getString("nombre"));
+                a.setTelefono(bd.registro.getInt("telefono"));
+                a.setTipo(bd.registro.getInt("tipo"));
+                if(a instanceof Alumno)
+                    ((Alumno) a).setF_nac("F_NACIMIENTO");
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
    public void mostrar(Persona a, Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
@@ -106,7 +285,7 @@ public class AccesoDB {
                 a.setNombre( bd.registro.getString("nombre"));
                 a.setCreditos( bd.registro.getInt("creditos"));
                 a.setHsemanales( bd.registro.getInt("h_semanales"));
-                a.setCarrera( bd.registro.getString("cod_caarrera"));
+                a.setCarrera( bd.registro.getString("COD_CARRERA"));
                 a.setNum_ciclo( bd.registro.getInt("num_ciclo"));
                 l.agregar(a);              
             }
@@ -116,7 +295,7 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
-   
+ 
    public void mostrar(Grupo a, Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
@@ -167,23 +346,6 @@ public class AccesoDB {
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
             String comandoListar = "SELECT * FROM carrera WHERE codigo ="+cod;
-            bd.registro = bd.comando.executeQuery(comandoListar);
-            while (bd.registro.next()) {                
-                 a.setCodigo(bd.registro.getString("codigo"));
-                 a.setNombre(bd.registro.getString("nombre"));    
-            }
-            bd.closeCon();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
-   public void Buscar(Curso a, String cod) {
-        try {
-            ConexionBD bd = new ConexionBD();
-            bd.Connect();
-            bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM curso WHERE codigo ="+cod;
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                  a.setCodigo(bd.registro.getString("codigo"));
@@ -254,29 +416,7 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
-   
-   public void BuscarCrsCar(Curso a, String carrera, Lista l) {
-        try {
-             ConexionBD bd = new ConexionBD();
-            bd.Connect();
-            bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM curso WHERE COD_CARRERA ="+carrera;
-            bd.registro = bd.comando.executeQuery(comandoListar);
-            while (bd.registro.next()) {                
-                a.setNum_ciclo(bd.registro.getInt("Num_ciclo"));
-                a.setNombre(bd.registro.getString("nombre"));                               
-                a.setCreditos(bd.registro.getInt("creditos"));
-                a.setHsemanales(bd.registro.getInt("H_SEMANALES"));
-                a.setCodigo(bd.registro.getString("codigo"));
-                a.setNum_ciclo(bd.registro.getInt("NUM_CICLO"));
-                l.agregar(a);
-            }
-            bd.closeCon();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
- 
+
    public void agrega(Persona a){
           try {
             ConexionBD bd = new ConexionBD();
@@ -352,5 +492,65 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
- 
+
+   public void Actualiza(Persona a){
+          try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            Statement s = bd.conexion.createStatement();
+            String sql = "update persona set PASS = '%s' ,NOMBRE = '%s' ,CORREO = '%s' ,TELEFONO = '%s',"
+                    + " where CEDULA = '%S'";
+            sql=String.format(sql, a.getClave(), a.getNombre(), a.getEmail(),a.getTelefono());
+            s.executeUpdate(sql);
+            bd.closeCon();
+       
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+   public void Actualiza(Carrera a){
+          try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            String sql = "update Carrera set NOMBRE = '%s' where Codigo = '%s'";
+            sql=String.format(sql, a.getNombre(),a.getCodigo());
+            Statement s = bd.conexion.createStatement();
+            s.executeUpdate(sql);
+            bd.closeCon();                     
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    
+   public void Actualiza(Curso a){
+          try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            String sql = "update curso set NOMBRE = '%s' ,CREDITOS = '%i' ,NUM_CICLO = '%i',"
+                    + " where Codigo = '%S'";
+            sql=String.format(sql, a.getNombre(), a.getCreditos(),a.getNum_ciclo(),a.getCodigo());
+            Statement s = bd.conexion.createStatement();
+            s.executeUpdate(sql);
+            bd.closeCon();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+     
+   public void Actualiza(Grupo a){
+          try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+             String sql = "update grupo set ID_PROF = '%s',  where ID_GRUPO = '%S'";
+            sql=String.format(sql,a.getProfesor(), a.getNumero(),a.getId());
+            Statement s = bd.conexion.createStatement();
+            s.executeUpdate(sql);
+            bd.closeCon();
+            }
+          catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+      
 }
