@@ -19,8 +19,7 @@ public class Curso
 
      @Override
     public String toString() {
-        return "nombre=" + nombre + ", codigo=" + codigo +
-                ", creditos=" + creditos +", hsemanales=" + hsemanales +
+        return "nombre=" + nombre + ", codigo=" + codigo +", creditos=" + creditos +", hsemanales=" + hsemanales +
                 ", carrera=" + carrera +", num_ciclo=" + num_ciclo +'}';
     }
 

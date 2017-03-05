@@ -64,6 +64,11 @@ public void MenuAdministrador(){
 
 public void MenuProfesor(){
     System.out.println("-----Menu Profesor-----");
+    System.out.println("1--> agregar Profesor");
+    System.out.println("2--> Borrar Profesor");
+    System.out.println("3--> mostrar Profesor");   
+    System.out.println("4--> mostrar Profesor");   
+    System.out.println("5--> actualizar Profesor");
 }
 
 public void MenuAlumno(){
@@ -97,6 +102,12 @@ public void BusqCurso(){
     System.out.println("2--Codigo");
     System.out.println("3--Carrera");
     System.out.println("4--salir");
+    
+}
+public void BusqProf(){
+    System.out.println("1--Cedula");
+    System.out.println("2--Nombre");
+    System.out.println("3--salir");
     
 }
 public void BusqCar(){
@@ -147,47 +158,23 @@ public void SolicitaNomCarrera(){
     System.out.println("digite el nombre correrspondiente a la carrera:");
 }
 
-public String SolicitaCodCurso(){
-    System.out.println("digite el codigo correrspondiente a la carrera:");
-    String codcur = "";
-    Scanner entradaEscaner = new Scanner (System.in); 
-    codcur = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-    return codcur;
+public void SolicitaCodCurso(){
+    System.out.println("digite el codigo correrspondiente al curso:");
 }
-public String SolicitaNomCurso(){
-    System.out.println("digite el nombre de la carrera:");
-    String nomcur = "";
-    Scanner entradaEscaner = new Scanner (System.in); 
-    nomcur = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
-    return nomcur;
+public void SolicitaNomCurso(){
+    System.out.println("digite el nombre del curso:");
 }
-public int SolicitaCreditos(){
+public void SolicitaCreditos(){
     System.out.println("digite  el numero de creditos del curso:");
-    int crecur =0;
-    Scanner entradaEscaner = new Scanner (System.in); 
-    crecur = entradaEscaner.nextInt(); //Invocamos un método sobre un objeto Scanner
-    return crecur;
 }
-public int SolicitaHsemanal(){
+public void SolicitaHsemanal(){
     System.out.println("digite  el numero de horas semanales:");
-    int Hcur =0;
-    Scanner entradaEscaner = new Scanner (System.in); 
-    Hcur = entradaEscaner.nextInt(); //Invocamos un método sobre un objeto Scanner
-    return Hcur;
 }
-public int SolicitaCiclo(){
+public void SolicitaCiclo(){
     System.out.println("digite el numero de ciclo en que impartera el curso:");
-    int niclo =0;
-    Scanner entradaEscaner = new Scanner (System.in); 
-    niclo = entradaEscaner.nextInt(); //Invocamos un método sobre un objeto Scanner
-    return niclo;
 }
-public String Solicitaidgrupo(){
+public void Solicitaidgrupo(){
     System.out.println("digite el id del grupo:");
-    String idgr ="";
-    Scanner entradaEscaner = new Scanner (System.in); 
-    idgr = entradaEscaner.nextLine(); //Invocamos un método sobre un objeto Scanner
-    return idgr;
 }
 public int Solicitaiciclogrupo(){
     System.out.println("digite el ciclo para grupo:");
