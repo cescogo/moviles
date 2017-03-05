@@ -18,12 +18,12 @@ public class Persona{
         this.clave = clave;
     }
 
-    public Persona() {
+    public Persona(int t) {
          telefono = 0;
         email = "";
         nombre = "";
         cedula = "";
-        tipo = 0;
+        tipo = t;
         clave = "";
     }
     

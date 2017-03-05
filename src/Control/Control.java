@@ -7,7 +7,7 @@ import Modelo.*;
 public class Control {
 
     public Control() {
-        this.user = new Persona();
+        this.user = new Persona(0);
         this.accesoD = new AccesoDB();
         this.inter = new Interfaz();
     }
@@ -246,24 +246,100 @@ public class Control {
    
 //<editor-fold desc="Metodos de Profesores">
     private void AdminProfes() {
+        int opc = 0;
+        while(opc != 5){
+            inter.MenuProfesor();
+            switch(inter.leerI()){    
+                case 1: 
+                    crearProfe();
+                    break;
+                case 2:
+                    BorrarProfe();
+                    break;
+                case 3:
+                    MostrarProfe();
+                    break;
+                case 4:
+                    MostrarProfes();
+                    break;
+                case 5:
+                    ActualizarProfe();
+                     break;
+                case 6: opc = 5;
+                break;
+        }
+    }
+  }
+    private void crearProfe() {
+        int tel = inter.SolicitaTelefono();
+        String mail = inter.SolicitaEmail();
+        String nom = inter.SolicitaNombres();
+        String id = inter.SolicitaCedulas();
+        inter.solicitaPass();String pass = inter.leerS();
+        Profesor p = new Profesor(tel, mail, nom, id, pass);
+        agregar(p);   
+    }
+
+    private void BorrarProfe() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    private void FuncProfesor() {
-        inter.BienvInter(3);
+
+    private void MostrarProfe() {
+    int p = 0; 
+    Profesor per = new Profesor();
+    
+    while(p!= 3){
+            inter.BusqProf();
+            p = inter.leerI();
+            switch(p){
+                case 1:
+                    mostrarCed(per,inter.SolicitaCedulas());
+                    break;
+                case 2:
+                    mostrarNom(inter.SolicitaNombres());
+                    break;
+                default: inter.ERROR();
+            }
+        }
     }
 
-   //</editor-fold>
+    private void MostrarProfes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-//<editor-fold desc="Metodos de Carrera"> 
+    private void ActualizarProfe() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+   
+//</editor-fold>
+    
+//<editor-fold desc="Metodos de Persona">
+     public void agregar(Persona a){
+         accesoD.agrega(a);
+     }
+     public void borrar(Persona a){
+         //accesoD.eliminar(a);
+     }
+     public void mostrarNom(String nom){
+//     Persona a  = new Persona();
+//     accesoD.BuscarPersonaNombre(a, nom);
+//     System.out.println(a.toString());
+     }
+     public void mostrarCed(Persona a ,String ced){
+     accesoD.BuscarPersonaId(a, ced);
+     System.out.println(a.toString());
+     }
+     public void mostrarCar(String carr){
+         Alumno a = new Alumno();
+         accesoD.BuscarPersonaCarrera(a, carr);
+     }
+     
+
+//</editor-fold>
+
+//<editor-fold desc="Metodos de Alumno">
     private void AdminEst() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-   //</editor-fold>
-   
-//<editor-fold desc="Metodos de Alumno">
-    private void FuncAlumno() {
-        inter.BienvInter(4);
     }
     private void ConsultaHistorial() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -280,12 +356,22 @@ public class Control {
     private void AgregarAcceso() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    private void FuncMatriculador() {
-        inter.BienvInter(2);
-    }
     private void AdminMatricula() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    private void FuncMatriculador() {
+        inter.BienvInter(2);
+    }
+    private void FuncAlumno() {
+        inter.BienvInter(4);
+    }
+    private void FuncProfesor() {
+        inter.BienvInter(3);
+   
+    }
+
+
 
    
 

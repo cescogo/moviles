@@ -169,8 +169,9 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM carrera WHERE CEDULA='"+ id+"'";
+            String comandoListar = "SELECT * FROM persona WHERE CEDULA='"+ id+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
+            
             while (bd.registro.next()) {                
                 a.setCedula(bd.registro.getString("cedula"));
                 a.setClave(bd.registro.getString("pass"));
@@ -193,7 +194,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM carrera WHERE nombre='"+ nom+"'";
+            String comandoListar = "SELECT * FROM persona WHERE nombre='"+ nom+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setCedula(bd.registro.getString("cedula"));
@@ -217,7 +218,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM carrera WHERE carrera='"+ carr+"'";
+            String comandoListar = "SELECT * FROM persona WHERE carrera='"+ carr+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setCedula(bd.registro.getString("cedula"));

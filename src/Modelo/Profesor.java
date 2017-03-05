@@ -6,7 +6,10 @@ public class Profesor extends Persona  {
         super(telefono, email, nombre, cedula,3, clave);
     }
 
-    
+    public Profesor() {
+        super(3);
+    }
+  
 
     
 }

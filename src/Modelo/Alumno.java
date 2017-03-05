@@ -7,6 +7,11 @@ public class Alumno extends Persona{
         this.F_nac=F_nac;
     }
 
+    public Alumno() {
+        super(4);
+        this.F_nac="";
+    }
+
     public String getF_nac() {
         return F_nac;
     }

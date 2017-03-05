@@ -64,6 +64,11 @@ public void MenuAdministrador(){
 
 public void MenuProfesor(){
     System.out.println("-----Menu Profesor-----");
+    System.out.println("1--> agregar Profesor");
+    System.out.println("2--> Borrar Profesor");
+    System.out.println("3--> mostrar Profesor");   
+    System.out.println("4--> mostrar Profesor");   
+    System.out.println("5--> actualizar Profesor");
 }
 
 public void MenuAlumno(){
@@ -97,6 +102,12 @@ public void BusqCurso(){
     System.out.println("2--Codigo");
     System.out.println("3--Carrera");
     System.out.println("4--salir");
+    
+}
+public void BusqProf(){
+    System.out.println("1--Cedula");
+    System.out.println("2--Nombre");
+    System.out.println("3--salir");
     
 }
 public void BusqCar(){
