@@ -86,6 +86,10 @@ public class ControlVis {
         Administrador p= new Administrador(tel, email, nombre, cedula, clave);
         accesoD.agrega(p);
     }
+          public void eliminarPersona(String id)
+          {
+              accesoD.eliminar(id);
+          }
      private VentanaInicio inter;
      private AccesoDB accesoD;
 }
