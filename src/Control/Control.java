@@ -300,7 +300,6 @@ public class Control {
         if(borrar(ced))inter.SucceDel();
         else inter.ErrorDel();
     }
-
     private void MostrarProfe() {
         int p = 0;
         Profesor per = new Profesor();
@@ -321,7 +320,6 @@ public class Control {
             }
         }
     }
-
     private void ActualizarProfe() {
         Profesor pro = new Profesor();
         mostrarCed(pro, inter.SolicitaCedulas());
@@ -358,8 +356,109 @@ public class Control {
         }
         actualiza(pro);
     }
-
 //</editor-fold>
+    
+//<editor-fold desc="Metodos de Alumno">
+    private void AdminEst() {
+      int opc = 0;
+        while (opc != 5) {
+            inter.MenuProfesor();
+            switch (opc = inter.leerI()) {
+                case 1:
+                    crearEst();
+                    break;
+                case 2:
+                    BorrarEst();
+                    break;
+                case 3:
+                    MostrarEst();
+                    break;
+                case 4:
+                    ActualizarEst();
+                    break;
+                default: inter.ERROR();
+                    break;
+            }
+        }
+    }
+    private void crearEst() {
+        String nom = inter.SolicitaNombres();
+        String id = inter.SolicitaCedulas();
+        String FN = inter.SolicitaFec_Nac();
+        int tel = inter.SolicitaTelefono();
+        String mail = inter.SolicitaEmail();
+        String pass = inter.solicitaPass();
+        Alumno almn = new Alumno(tel, mail, nom, id, FN, pass);
+        agregar(almn);
+    }
+    private void BorrarEst() {
+        String ced = inter.SolicitaCedulas();
+        if(borrar(ced))inter.SucceDel();
+        else inter.ErrorDel();
+    }
+    private void MostrarEst() {
+        int p = 0;
+        Alumno al = new Alumno();
+        while (p != 4) {
+            inter.BusqAlmn();
+            
+            switch (p = inter.leerI()) {
+                case 1:
+                    mostrarCed(al, inter.SolicitaCedulas());
+                    System.out.println(al.toString());
+                    break;
+                case 2:
+                    mostrarNom(inter.SolicitaNombres());
+                    break;
+                case 3:
+                    //buscar carrera
+                    break;
+                default:
+                    inter.ERROR();
+            }
+        }
+    }
+    private void ActualizarEst() {
+        Alumno al= new Alumno();
+        mostrarCed(al, inter.SolicitaCedulas());
+
+        if (al.getCedula() != "") {
+            int p = 0;
+            while (p != 5) {
+                p = inter.ModifAlmn();
+                switch (p) {
+                    case 1://nombre
+                        String nom = inter.SolicitaNombres();
+                        if(nom != "")
+                            al.setNombre(nom);
+                        break;
+                    case 2://pass
+                        String pass = inter.solicitaPass();
+                        if(pass != "")al.setClave(pass);
+                        break;
+                    case 3://correo
+                         String correo = inter.SolicitaEmail();
+                        if(correo != "")al.setEmail(correo);
+                        break;
+                    case 4://telefono
+                        int tel = inter.SolicitaTelefono();
+                        if(tel != 0)al.setTelefono(tel);
+                        break;
+                    default:
+                        inter.ERROR();
+                }
+            }
+        }
+        else{ inter.ERROR();
+                return;
+        }
+        actualiza(al);
+    }
+//</editor-fold>
+    
+    private void ConsultaHistorial() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 //<editor-fold desc="Metodos de Persona">
     public void agregar(Persona a) {
         accesoD.agrega(a);
@@ -389,15 +488,6 @@ public class Control {
     }
 
 //</editor-fold>
-//<editor-fold desc="Metodos de Alumno">
-    private void AdminEst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void ConsultaHistorial() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    //</editor-fold>
 
     private void Adminciclo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

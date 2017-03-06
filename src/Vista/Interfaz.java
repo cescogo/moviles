@@ -123,7 +123,21 @@ public void BusqProf(){
     System.out.println("2--Nombre");
     System.out.println("3--salir");    
 }
+public void BusqAlmn(){
+    System.out.println("1--Cedula");
+    System.out.println("2--Nombre");
+    System.out.println("3--Carrera");
+    System.out.println("4--salir");    
+}
 public int ModifProf(){
+    System.out.println("1--Nombre");
+    System.out.println("2--Contraseña");
+    System.out.println("3--correo");
+    System.out.println("4--telefono");
+    System.out.println("5--salir");
+return leerI();    
+}
+public int ModifAlmn(){
     System.out.println("1--Nombre");
     System.out.println("2--Contraseña");
     System.out.println("3--correo");
