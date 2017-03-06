@@ -186,15 +186,25 @@ public String SolicitaFec_Nac(){
     fecNac = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
     return fecNac;
 }
-public void SolicitaCodCarrera(){
+public String SolicitaCodCarrera(){
     System.out.println("digite el codigo correrspondiente a la carrera:");
+    return leerS();
 }
-public void SolicitaNomCarrera(){
+public String SolicitaNomCarrera(){
     System.out.println("digite el nombre correrspondiente a la carrera:");
+        String pass = "";
+    Scanner entradaEscaner = new Scanner (System.in); 
+    pass = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+    return pass;
 }
-
-public void SolicitaCodCurso(){
+public int Oferta(){
+    System.out.println("1--> ingrese Codigo para ver grupos");
+    System.out.println("2--> salir");
+    return leerI();
+}
+public String SolicitaCodCurso(){
     System.out.println("digite el codigo correrspondiente al curso:");
+    return leerS();
 }
 public void SolicitaNomCurso(){
     System.out.println("digite el nombre del curso:");
@@ -205,8 +215,9 @@ public void SolicitaCreditos(){
 public void SolicitaHsemanal(){
     System.out.println("digite  el numero de horas semanales:");
 }
-public void SolicitaCiclo(){
+public int SolicitaCiclo(){
     System.out.println("digite el numero de ciclo en que impartera el curso:");
+    return leerI();
 }
 public void Solicitaidgrupo(){
     System.out.println("digite el id del grupo:");

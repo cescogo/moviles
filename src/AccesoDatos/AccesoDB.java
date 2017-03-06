@@ -405,14 +405,15 @@ public class AccesoDB {
         }
     }
    
-   public void BuscarGrpCrs(Grupo a, String curso, Lista l) {
+   public void BuscarGrpCrs(String curso, Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
             String comandoListar = "SELECT * FROM grupo WHERE COD_CURSO ='"+ curso+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
-            while (bd.registro.next()) {                
+            while (bd.registro.next()) { 
+                Grupo a = new Grupo();
                 a.setId(bd.registro.getString("ID_GRUPO"));
                 a.setNumero(bd.registro.getInt("NUMERO"));
                 a.setProfesor(bd.registro.getString("ID_PROF"));
@@ -444,6 +445,26 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
+   
+   public void Historial(String a,Lista l) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT Curso FROM NOTA WHERE NOTA != 0 AND ESTUDIANTE="+a;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {   
+                 String aux = bd.registro.getString("Curso");
+                 l.agregar(aux);              
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+ 
+   
  //</editor-fold>
    
   //<editor-fold desc="Metodos de Insercion">
@@ -606,4 +627,29 @@ public class AccesoDB {
         return false;
       
    }
+
+    public void ofertaAcd(String Carrera, int ciclo, Lista l) {
+      try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT CODIGO FROM CURSO WHERE COD_CARRERA ="+Carrera+""
+                    + "AND NUM_CICLO="+ciclo;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {
+                Curso a = new Curso();
+                a.setNum_ciclo(bd.registro.getInt("Num_ciclo"));
+                a.setNombre(bd.registro.getString("nombre"));                               
+                a.setCreditos(bd.registro.getInt("creditos"));
+                a.setHsemanales(bd.registro.getInt("H_SEMANALES"));
+                a.setCodigo(bd.registro.getString("codigo"));
+                a.setNum_ciclo(bd.registro.getInt("NUM_CICLO"));
+                l.agregar(a);         
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
 }

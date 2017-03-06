@@ -129,10 +129,8 @@ public class Control {
     }
 
     private void crearCarrera() {
-        inter.SolicitaNomCarrera();
-        String nomcar = inter.leerS();
-        inter.SolicitaCodCarrera();
-        String codCAr = inter.leerS();
+        String nomcar =inter.SolicitaNomCarrera();
+        String codCAr =inter.SolicitaCodCarrera();
         agregarCarrera(nomcar, codCAr);
     }
 
@@ -152,8 +150,7 @@ public class Control {
                     accesoD.BuscarCarreraCod(C, inter.leerS());
                     break;
                 case 2:
-                    inter.SolicitaNomCarrera();
-                    accesoD.BuscarCarreraNom(C, inter.leerS());
+                    accesoD.BuscarCarreraNom(C, inter.SolicitaNomCarrera());
                     break;
                 default:
                     inter.ERROR();
@@ -202,8 +199,7 @@ public class Control {
     }
 
     private void crearCurso() {
-        inter.SolicitaCodCurso();
-        String cod = inter.leerS();
+        String cod  =inter.SolicitaCodCurso();
         inter.SolicitaNomCurso();
         String nom = inter.leerS();
         inter.SolicitaCreditos();
@@ -235,8 +231,7 @@ public class Control {
                     System.out.println(C.toString());
                     break;
                 case 2:
-                    inter.SolicitaCodCurso();
-                    accesoD.BuscarCursoCod(C, inter.leerS());
+                    accesoD.BuscarCursoCod(C, inter.SolicitaCodCurso());
                     System.out.println(C.toString());
                     break;
                 case 3:
@@ -456,10 +451,7 @@ public class Control {
     }
 //</editor-fold>
     
-    private void ConsultaHistorial() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-//<editor-fold desc="Metodos de Persona">
+   //<editor-fold desc="Metodos de Persona">
     public void agregar(Persona a) {
         accesoD.agrega(a);
     }
@@ -494,7 +486,21 @@ public class Control {
     }
 
     private void AdminOferta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int opc = 0;
+        String Carrera =  inter.SolicitaNomCarrera();
+        int ciclo =  inter.SolicitaCiclo();
+        Lista cursos =  new Lista();
+        accesoD.ofertaAcd(Carrera,ciclo,cursos);
+        System.out.println(cursos.toString());
+        opc = inter.Oferta();
+        if(opc == 1){
+            String curso = inter.SolicitaCodCurso();
+            Lista grupos = new Lista();
+            accesoD.BuscarGrpCrs(curso, grupos);
+            
+            
+        }
+        
     }
 
     private void AgregarAcceso() {
@@ -502,7 +508,11 @@ public class Control {
     }
 
     private void AdminMatricula() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String ced =  inter.SolicitaCedulas();
+        Alumno al = new Alumno();
+        mostrarCed(al, ced);
+        
+        
     }
 
     private void FuncMatriculador() {
@@ -511,7 +521,19 @@ public class Control {
 
     private void FuncAlumno() {
         inter.BienvInter(4);
+        int opc = 0 ;
+        while((opc = inter.leerI())!= 2)
+            if(opc ==1)
+                ConsultaHistorial();
     }
+     private void ConsultaHistorial() {
+         Lista l =  new Lista();
+         if(user.getTipo() == 1)
+            accesoD.Historial(inter.SolicitaCedulas(),l);
+         else
+             accesoD.Historial(user.getCedula(), l);
+         System.out.println(l.toString());    
+     }
 
     private void FuncProfesor() {
         inter.BienvInter(3);

@@ -93,7 +93,7 @@ public class VentanaInicio extends JFrame{
         }
         else
         {
-            JOptionPane.showConfirmDialog(null, "usuario no existe", "error", JOptionPane.ERROR);
+            JOptionPane.showMessageDialog(null, "usuario no existe");
         }
         
     }
