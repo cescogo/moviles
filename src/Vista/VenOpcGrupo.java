@@ -22,9 +22,10 @@ import javax.swing.JPanel;
  * @author ccg
  */
 public class VenOpcGrupo extends JFrame{
-     public VenOpcGrupo() {
+     public VenOpcGrupo(ControlVis c) {
         
         super("Opciones de Grupo");
+        gestor=c;
         ajustarComponentes(getContentPane());
         setMinimumSize(new Dimension(440,250));
         setResizable(false);
@@ -75,7 +76,7 @@ public class VenOpcGrupo extends JFrame{
    
     private void eliminar()
     {
-        EliminarGrupo vi= new EliminarGrupo();
+        EliminarGrupo vi= new EliminarGrupo(gestor);
         vi.init();
         this.dispose();
     }
@@ -86,20 +87,20 @@ public class VenOpcGrupo extends JFrame{
     }
      private void modificar()
      {
-         ModificarGrupo vi= new ModificarGrupo();
+         ModificarGrupo vi= new ModificarGrupo(gestor);
          vi.init();
          this.dispose();
      }
   private void agregar()
     {
-    	AgregarGrupo vi=new AgregarGrupo();
+    	AgregarGrupo vi=new AgregarGrupo(gestor);
         vi.init();
         this.dispose();
     }
     
     private void salir()
     {
-        VentanaAdministrador vi= new VentanaAdministrador();
+        VentanaAdministrador vi= new VentanaAdministrador(gestor);
         vi.init();
         this.dispose();
     }
@@ -109,5 +110,6 @@ public class VenOpcGrupo extends JFrame{
     private JButton modificar;
     private JButton eliminar;
     private JButton salir;
+    private ControlVis gestor;
     private JPanel cancelar;
 }

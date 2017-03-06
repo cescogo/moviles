@@ -25,8 +25,9 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarCurso extends JFrame{
-     public ModificarCurso() {
+     public ModificarCurso(ControlVis c) {
             super("modificar Curso");
+            gestor=c;
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
@@ -104,7 +105,7 @@ public class ModificarCurso extends JFrame{
     }
      private void salir()
     {
-        VenOpcCurso vi = new VenOpcCurso();
+        VenOpcCurso vi = new VenOpcCurso(gestor);
         vi.init();
         this.dispose();
     }
@@ -128,4 +129,5 @@ public class ModificarCurso extends JFrame{
     private JTextField t_num_ciclo;
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
 }

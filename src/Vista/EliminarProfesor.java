@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,8 +26,9 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarProfesor extends JFrame {
-     public EliminarProfesor() {
+     public EliminarProfesor(ControlVis c) {
             super("eliminar Profesor");
+            gestor=c;
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,150));
         setResizable(false);
@@ -58,7 +60,9 @@ public class EliminarProfesor extends JFrame {
       
         gc.gridx=0;
         gc.gridy=2;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{eliminar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=2;
@@ -74,19 +78,42 @@ public class EliminarProfesor extends JFrame {
     }
      private void salir()
     {
-        VenOpcProfesor vi = new VenOpcProfesor();
+        VenOpcProfesor vi = new VenOpcProfesor(gestor);
         vi.init();
         this.dispose();
     }
     public void init() {
         setVisible(true);
     }
+     private boolean blanco()
+    {
+        if(t_cedula.getText()=="")
+        {
+            return true;
+        }
+        else 
+            return false;
+    }
+       private void eliminar()
+     {
+         if(blanco())
+         {
+               JOptionPane.showMessageDialog(null, "Campo vacio","Error",JOptionPane.ERROR_MESSAGE);
+           
+         }
+         else 
+         {
+             gestor.eliminarPersona( t_cedula.getText());
+             salir();
+         }
+     }
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;  
     private JLabel cedula;
     private JTextField t_cedula;    
     private JButton aceptar;
+    private ControlVis gestor;
     private JButton cancel;
     
 }

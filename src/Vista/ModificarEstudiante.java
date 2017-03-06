@@ -25,9 +25,10 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarEstudiante extends JFrame{
-     public ModificarEstudiante() {
+     public ModificarEstudiante(ControlVis c) {
             super("modificar Estudiante");
-        ajustarComponentes(getContentPane());   
+        ajustarComponentes(getContentPane()); 
+        gestor=c;
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -106,7 +107,7 @@ public class ModificarEstudiante extends JFrame{
     }
      private void salir()
     {
-        VenOpcEstudiante vi = new VenOpcEstudiante();
+        VenOpcEstudiante vi = new VenOpcEstudiante(gestor);
         vi.init();
         this.dispose();
     }
@@ -130,5 +131,6 @@ public class ModificarEstudiante extends JFrame{
     private JTextField t_Fe_nac;
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
     
 }

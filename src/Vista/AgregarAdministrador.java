@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -28,9 +29,10 @@ import javax.swing.JTextField;
  */
 public class AgregarAdministrador extends JFrame {
     
-     public AgregarAdministrador() {
+     public AgregarAdministrador(ControlVis c) {
             super("agregar administrador");
         ajustarComponentes(getContentPane());   
+        gestor=c;
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -93,7 +95,9 @@ public class AgregarAdministrador extends JFrame {
         
         gc.gridx=0;
         gc.gridy=7;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{Agregar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=7;
@@ -109,13 +113,39 @@ public class AgregarAdministrador extends JFrame {
     }
      private void salir()
     {
-        VenOpcAdministra vi = new VenOpcAdministra();
+        VenOpcAdministra vi = new VenOpcAdministra(gestor);
         vi.init();
         this.dispose();
     }
     public void init() {
         setVisible(true);
     }
+     private boolean blanco()
+    {
+        if(t_nombre.getText()==""||
+           t_clave.getText()==""||
+           t_email.getText()==""||
+           t_telefono.getText()==""||
+           t_cedula.getText()=="")
+        {
+            return true;
+        }
+        else 
+            return false;
+    }
+       private void Agregar()
+     {
+         if(blanco())
+         {
+               JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+           
+         }
+         else 
+         {
+             gestor.agregarAdministrador(t_nombre.getText(), t_cedula.getText(), t_telefono.getText(), t_email.getText(), t_clave.getText());
+             salir();
+         }
+     }
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;
@@ -131,4 +161,5 @@ public class AgregarAdministrador extends JFrame {
     private JTextField t_cedula;
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
 }

@@ -22,10 +22,11 @@ import javax.swing.JPanel;
  * @author ccg
  */
 public class VenOpcCarrera extends JFrame{
-     public VenOpcCarrera() {
+     public VenOpcCarrera(ControlVis c) {
         
         super("Opciones de Carrera");
         ajustarComponentes(getContentPane());
+        gestor=c;
         setMinimumSize(new Dimension(440,250));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -80,26 +81,26 @@ public class VenOpcCarrera extends JFrame{
     }
     private void eliminar()
     {
-        EliminarCarrera vi= new EliminarCarrera();
+        EliminarCarrera vi= new EliminarCarrera(gestor);
         vi.init();
         this.dispose();
     }
      private void modificar()
      {
-         ModificarCarrera vi= new ModificarCarrera();
+         ModificarCarrera vi= new ModificarCarrera(gestor);
          vi.init();
          this.dispose();
      }
     private void agregar()
     {
-    	AgregarCarrera vi=new AgregarCarrera();
+    	AgregarCarrera vi=new AgregarCarrera(gestor);
         vi.init();
         this.dispose();
     }
     
     private void salir()
     {
-        VentanaAdministrador vi= new VentanaAdministrador();
+        VentanaAdministrador vi= new VentanaAdministrador(gestor);
         vi.init();
         this.dispose();
     }
@@ -110,4 +111,5 @@ public class VenOpcCarrera extends JFrame{
     private JButton eliminar;
     private JButton salir;
     private JPanel cancelar;
+    private ControlVis gestor;
 }

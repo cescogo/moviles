@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -26,9 +27,10 @@ import javax.swing.JTextField;
  */
 public class AgregarEstudiante extends JFrame {
     
-    public AgregarEstudiante() {
+    public AgregarEstudiante(ControlVis c) {
             super("agregar Estudiante");
         ajustarComponentes(getContentPane());   
+        gestor=c;
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -99,7 +101,9 @@ public class AgregarEstudiante extends JFrame {
         
         gc.gridx=0;
         gc.gridy=8;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                JButton aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{Agregar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=8;
@@ -115,14 +119,44 @@ public class AgregarEstudiante extends JFrame {
     }
      private void salir()
     {
-        VenOpcEstudiante vi = new VenOpcEstudiante();
+        VenOpcEstudiante vi = new VenOpcEstudiante(gestor);
         vi.init();
         this.dispose();
     }
+     
+     private void Agregar()
+     {
+         if(blanco())
+         {
+               JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+           
+         }
+         else 
+         {
+             gestor.agregarAlumno(t_nombre.getText(), t_cedula.getText(), t_Fe_nac.getText(), t_telefono.getText(), t_email.getText(), t_clave.getText());
+             salir();
+         }
+     }
     public void init() {
         setVisible(true);
     }
+    
+    private boolean blanco()
+    {
+        if(t_nombre.getText()==""||
+           t_clave.getText()==""||
+           t_email.getText()==""||
+           t_telefono.getText()==""||
+           t_cedula.getText()==""||
+           t_Fe_nac.getText()=="")
+        {
+            return true;
+        }
+        else 
+            return false;
+    }
       private JPanel principal;
+      private ControlVis gestor;
     private JPanel formulario;
     private GridBagConstraints gc;
     private JLabel nombre;

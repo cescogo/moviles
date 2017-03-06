@@ -617,7 +617,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             Statement s = bd.conexion.createStatement();
-            String sql = "delete * from persona WHERE CEDULA='"+ id+"'";            
+            String sql = "delete from persona WHERE CEDULA='"+ id+"'";            
             s.executeUpdate(sql);
             bd.closeCon();
         } catch (SQLException e) {

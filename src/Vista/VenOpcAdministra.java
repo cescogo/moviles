@@ -26,11 +26,11 @@ public class VenOpcAdministra extends JFrame {
 
 
     
-    public VenOpcAdministra() {
+    public VenOpcAdministra(ControlVis c) {
         
         super("Opciones de Administrador");
         ajustarComponentes(getContentPane());
-       
+       gestor=c;
         setMinimumSize(new Dimension(500, 250));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -85,25 +85,25 @@ public class VenOpcAdministra extends JFrame {
     
     private void eliminar()
     {
-        EliminarAdministrador vi= new EliminarAdministrador();
+        EliminarAdministrador vi= new EliminarAdministrador(gestor);
         vi.init();
         this.dispose();
     }
   private void agregar()
     {
-    	AgregarAdministrador vi=new AgregarAdministrador();
+    	AgregarAdministrador vi=new AgregarAdministrador(gestor);
         vi.init();
         this.dispose();
     }
      private void modificar()
      {
-         ModificarAdministrador vi= new ModificarAdministrador();
+         ModificarAdministrador vi= new ModificarAdministrador(gestor);
          vi.init();
          this.dispose();
      }
     private void salir()
     {
-        VentanaAdministrador vi= new VentanaAdministrador();
+        VentanaAdministrador vi= new VentanaAdministrador(gestor);
         vi.init();
         this.dispose();
     }
@@ -113,6 +113,7 @@ public class VenOpcAdministra extends JFrame {
     private JButton modificar;
     private JButton eliminar;
     private JButton salir;
+    private ControlVis gestor;
     private JPanel cancelar;
     
 }

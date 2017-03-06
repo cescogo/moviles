@@ -28,8 +28,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class VentanaAdministrador extends JFrame  {
 
-    public VentanaAdministrador() {
+    public VentanaAdministrador(ControlVis c) {
+        
         super("Administrador");
+        gestor=c;
         ajustarComponentes(getContentPane());
         
         setMinimumSize(new Dimension(650, 300));
@@ -99,7 +101,7 @@ public class VentanaAdministrador extends JFrame  {
     
     private void ventanaEstudiante()
     {
-    		VenOpcEstudiante ve= new VenOpcEstudiante();
+    		VenOpcEstudiante ve= new VenOpcEstudiante(gestor);
                 ve.init();
                 this.dispose();
             
@@ -107,7 +109,7 @@ public class VentanaAdministrador extends JFrame  {
     
      private void ventanaProfesor()
     {
-    		VenOpcProfesor ve= new VenOpcProfesor();
+    		VenOpcProfesor ve= new VenOpcProfesor(gestor);
                 ve.init();
                 this.dispose();
             
@@ -115,7 +117,7 @@ public class VentanaAdministrador extends JFrame  {
     
       private void ventanaAdministrador()
     {
-    		VenOpcAdministra ve= new VenOpcAdministra();
+    		VenOpcAdministra ve= new VenOpcAdministra(gestor);
                 ve.init();
                 this.dispose();
             
@@ -123,43 +125,43 @@ public class VentanaAdministrador extends JFrame  {
       
        private void ventanaMatriculador()
     {
-    		VenOpcMatriculador ve= new VenOpcMatriculador();
+    		VenOpcMatriculador ve= new VenOpcMatriculador(gestor);
                 ve.init();
                 this.dispose();
             
     }
        private void ventanaCurso()
        {
-           VenOpcCurso vi= new VenOpcCurso();
+           VenOpcCurso vi= new VenOpcCurso(gestor);
            vi.init();
            this.dispose();
        }
        
        private void ventanaGrupo()
        {
-           VenOpcGrupo vi= new VenOpcGrupo();
+           VenOpcGrupo vi= new VenOpcGrupo(gestor);
            vi.init();
            this.dispose();
        }
        
        private void ventanaCiclo()
        {
-           VenOpcCiclo vi= new VenOpcCiclo();
+           VenOpcCiclo vi= new VenOpcCiclo(gestor);
            vi.init();
            this.dispose();
        }
        
        private void ventanaCarrera()
        {
-           VenOpcCarrera vi= new VenOpcCarrera();
+           VenOpcCarrera vi= new VenOpcCarrera(gestor);
            vi.init();
            this.dispose();
        }
        private void salir()
        {
-//           VentanaInicio vi = new VentanaInicio();
-//           vi.init();
-//           this.dispose();
+           VentanaInicio vi = new VentanaInicio(gestor);
+           vi.init();
+           this.dispose();
        }
     private JButton estudiante;
     private JButton profesor; 
@@ -170,7 +172,7 @@ public class VentanaAdministrador extends JFrame  {
     private JButton ciclo;
     private JButton carrera;
     private JButton salir;
-  
+    private ControlVis gestor;
     private GridBagConstraints gc;
 
 

@@ -25,10 +25,11 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class AgregarCiclo extends JFrame{
-        public AgregarCiclo() {
+        public AgregarCiclo(ControlVis c) {
             super("agregar Ciclo");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,350));
+        gestor=c;
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -101,7 +102,7 @@ public class AgregarCiclo extends JFrame{
     }
      private void salir()
     {
-        VenOpcCiclo vi = new VenOpcCiclo();
+        VenOpcCiclo vi = new VenOpcCiclo(gestor);
         vi.init();
         this.dispose();
     }
@@ -111,7 +112,7 @@ public class AgregarCiclo extends JFrame{
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;
-   
+   private ControlVis gestor;
     private JLabel anno;
     private JLabel num_ciclo;
     private JLabel fe_inicio;

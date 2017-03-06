@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,11 +26,12 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class AgregarProfesor extends JFrame {
-    public AgregarProfesor() {
+    public AgregarProfesor(ControlVis c) {
             super("agregar Profesor");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
+        gestor=c;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -91,6 +93,7 @@ public class AgregarProfesor extends JFrame {
         gc.gridx=0;
         gc.gridy=7;
         aceptar=new JButton("Aceptar");
+        aceptar.addActionListener((ActionEvent e)->{Agregar();});
         formulario.add(aceptar,gc);
         
         gc.gridx=1;
@@ -111,10 +114,36 @@ public class AgregarProfesor extends JFrame {
     
     private void salir()
     {
-        VenOpcProfesor vi = new VenOpcProfesor();
+        VenOpcProfesor vi = new VenOpcProfesor(gestor);
         vi.init();
         this.dispose();
     }
+      private boolean blanco()
+    {
+        if(t_nombre.getText()==""||
+           t_clave.getText()==""||
+           t_email.getText()==""||
+           t_telefono.getText()==""||
+           t_cedula.getText()=="")
+        {
+            return true;
+        }
+        else 
+            return false;
+    }
+       private void Agregar()
+     {
+         if(blanco())
+         {
+               JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+           
+         }
+         else 
+         {
+             gestor.agregarProfesor(t_nombre.getText(), t_cedula.getText(), t_telefono.getText(), t_email.getText(), t_clave.getText());
+             salir();
+         }
+     }
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;
@@ -130,4 +159,5 @@ public class AgregarProfesor extends JFrame {
     private JTextField t_cedula;
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
 }

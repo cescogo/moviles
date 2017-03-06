@@ -25,8 +25,9 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarGrupo extends JFrame{
-      public ModificarGrupo() {
+      public ModificarGrupo(ControlVis c) {
             super("modificar Grupo");
+            gestor=c;
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
@@ -108,7 +109,7 @@ public class ModificarGrupo extends JFrame{
     }
      private void salir()
     {
-        VenOpcGrupo vi = new VenOpcGrupo();
+        VenOpcGrupo vi = new VenOpcGrupo(gestor);
         vi.init();
         this.dispose();
     }
@@ -129,7 +130,7 @@ public class ModificarGrupo extends JFrame{
     private JTextField t_horario;
     private JTextField t_profesor;
     private JTextField t_curso;
-    
+    private ControlVis gestor;
     private JButton aceptar;
     private JButton cancel;
 }

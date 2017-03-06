@@ -87,14 +87,21 @@ public class VentanaInicio extends JFrame{
         int aux= gestor.login(t_usuario.getText(),t_clave.getText());
         if(aux==1)
         {
-            VentanaAdministrador vi= new VentanaAdministrador();
+            VentanaAdministrador vi= new VentanaAdministrador(gestor);
             vi.init();
             this.dispose();
         }
         else
         {
+<<<<<<< HEAD
             JOptionPane.showMessageDialog(null, "usuario no existe");
+=======
+            JOptionPane.showMessageDialog(null, "usuario no existe","Error",JOptionPane.ERROR_MESSAGE);
+            t_usuario.setText("");
+            t_clave.setText("");
+>>>>>>> origin/master
         }
+        
         
     }
     private void salir()

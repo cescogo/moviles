@@ -22,9 +22,10 @@ import javax.swing.JPanel;
  * @author ccg
  */
 public class VenOpcCiclo extends JFrame {
-     public VenOpcCiclo() {
+     public VenOpcCiclo(ControlVis c) {
         
         super("Opciones de Ciclo");
+        gestor=c;
         ajustarComponentes(getContentPane());
         setMinimumSize(new Dimension(440,250));
         setResizable(false);
@@ -75,7 +76,7 @@ public class VenOpcCiclo extends JFrame {
     
     private void eliminar()
     {
-        EliminarCiclo vi= new EliminarCiclo();
+        EliminarCiclo vi= new EliminarCiclo(gestor);
         vi.init();
         this.dispose();
     }
@@ -86,19 +87,19 @@ public class VenOpcCiclo extends JFrame {
     }
      private void modificar()
      {
-         ModificarCiclo vi= new ModificarCiclo();
+         ModificarCiclo vi= new ModificarCiclo(gestor);
          vi.init();
          this.dispose();
      }
     private void agregar()
     {
-    	AgregarCiclo vi=new AgregarCiclo();
+    	AgregarCiclo vi=new AgregarCiclo(gestor);
         vi.init();
         this.dispose();
     }
     private void salir()
     {
-        VentanaAdministrador vi= new VentanaAdministrador();
+        VentanaAdministrador vi= new VentanaAdministrador(gestor);
         vi.init();
         this.dispose();
     }
@@ -109,4 +110,5 @@ public class VenOpcCiclo extends JFrame {
     private JButton eliminar;
     private JButton salir;
     private JPanel cancelar;
+    private ControlVis gestor;
 }

@@ -25,9 +25,10 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarCarrera extends JFrame{
-      public EliminarCarrera() {
+      public EliminarCarrera(ControlVis c) {
             super("eliminar Carrera");
-        ajustarComponentes(getContentPane());   
+        ajustarComponentes(getContentPane());  
+        gestor=c;
         setMinimumSize(new Dimension(500,150));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -74,7 +75,7 @@ public class EliminarCarrera extends JFrame{
     }
      private void salir()
     {
-        VenOpcCarrera vi = new VenOpcCarrera();
+        VenOpcCarrera vi = new VenOpcCarrera(gestor);
         vi.init();
         this.dispose();
     }
@@ -88,5 +89,6 @@ public class EliminarCarrera extends JFrame{
     private JTextField t_cedula;    
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
     
 }

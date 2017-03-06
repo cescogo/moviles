@@ -25,9 +25,10 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarMatriculador extends JFrame {
-     public ModificarMatriculador() {
+     public ModificarMatriculador(ControlVis c) {
             super("modificar Matriculador");
-        ajustarComponentes(getContentPane());   
+        ajustarComponentes(getContentPane());
+        gestor=c;
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -102,7 +103,7 @@ public class ModificarMatriculador extends JFrame {
     }
      private void salir()
     {
-        VenOpcMatriculador vi = new VenOpcMatriculador();
+        VenOpcMatriculador vi = new VenOpcMatriculador(gestor);
         vi.init();
         this.dispose();
     }
@@ -124,4 +125,5 @@ public class ModificarMatriculador extends JFrame {
     private JTextField t_cedula;
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
 }

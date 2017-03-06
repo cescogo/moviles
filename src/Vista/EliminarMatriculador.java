@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,8 +26,9 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarMatriculador extends JFrame {
-     public EliminarMatriculador() {
+     public EliminarMatriculador(ControlVis c) {
             super("eliminar Matriculador");
+            gestor=c;
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,150));
         setResizable(false);
@@ -58,7 +60,9 @@ public class EliminarMatriculador extends JFrame {
       
         gc.gridx=0;
         gc.gridy=2;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{eliminar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=2;
@@ -74,13 +78,35 @@ public class EliminarMatriculador extends JFrame {
     }
      private void salir()
     {
-        VenOpcMatriculador vi = new VenOpcMatriculador();
+        VenOpcMatriculador vi = new VenOpcMatriculador(gestor);
         vi.init();
         this.dispose();
     }
     public void init() {
         setVisible(true);
     }
+     private boolean blanco()
+    {
+        if(t_cedula.getText()=="")
+        {
+            return true;
+        }
+        else 
+            return false;
+    }
+       private void eliminar()
+     {
+         if(blanco())
+         {
+               JOptionPane.showMessageDialog(null, "Campo vacio","Error",JOptionPane.ERROR_MESSAGE);
+           
+         }
+         else 
+         {
+             gestor.eliminarPersona( t_cedula.getText());
+             salir();
+         }
+     }
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;  
@@ -88,6 +114,7 @@ public class EliminarMatriculador extends JFrame {
     private JTextField t_cedula;    
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
     
     
 }

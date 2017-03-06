@@ -24,11 +24,11 @@ import javax.swing.JPanel;
 public class VenOpcMatriculador extends JFrame{
     
     
-    public VenOpcMatriculador() {
+    public VenOpcMatriculador(ControlVis c) {
         
         super("Opciones de Matriculador");
         ajustarComponentes(getContentPane());
-        
+        gestor=c;
         setMinimumSize(new Dimension(470, 250));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -83,25 +83,25 @@ public class VenOpcMatriculador extends JFrame{
     
     private void eliminar()
     {
-        EliminarMatriculador vi= new EliminarMatriculador();
+        EliminarMatriculador vi= new EliminarMatriculador(gestor);
         vi.init();
         this.dispose();
     }
     private void agregar()
     {
-    	AgregarMatriculador vi=new AgregarMatriculador();
+    	AgregarMatriculador vi=new AgregarMatriculador(gestor);
         vi.init();
         this.dispose();
     }
      private void modificar()
      {
-         ModificarMatriculador vi= new ModificarMatriculador();
+         ModificarMatriculador vi= new ModificarMatriculador(gestor);
          vi.init();
          this.dispose();
      }
     private void salir()
     {
-        VentanaAdministrador vi= new VentanaAdministrador();
+        VentanaAdministrador vi= new VentanaAdministrador(gestor);
         vi.init();
         this.dispose();
     }
@@ -110,6 +110,7 @@ public class VenOpcMatriculador extends JFrame{
     private JButton modificar;
     private JButton eliminar;
     private JButton salir;
+    private ControlVis gestor;
     private JPanel cancelar;
     
 }
