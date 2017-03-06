@@ -25,10 +25,11 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class AgregarCarrera extends JFrame {
-     public AgregarCarrera() {
+     public AgregarCarrera(ControlVis c) {
             super("agregar Carrera");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,250));
+        gestor=c;
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -87,7 +88,7 @@ public class AgregarCarrera extends JFrame {
     
      private void salir()
     {
-        VenOpcCarrera vi = new VenOpcCarrera();
+        VenOpcCarrera vi = new VenOpcCarrera(gestor);
         vi.init();
         this.dispose();
     }
@@ -98,7 +99,7 @@ public class AgregarCarrera extends JFrame {
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;
-   
+   private ControlVis gestor;
     private JLabel nombre;
     private JLabel codigo;
     

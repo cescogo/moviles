@@ -25,11 +25,12 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class AgregarGrupo extends JFrame {
-          public AgregarGrupo() {
+          public AgregarGrupo(ControlVis c) {
             super("agregar Grupo");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
+        gestor=c;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -108,7 +109,7 @@ public class AgregarGrupo extends JFrame {
     }
      private void salir()
     {
-        VenOpcGrupo vi = new VenOpcGrupo();
+        VenOpcGrupo vi = new VenOpcGrupo(gestor);
         vi.init();
         this.dispose();
     }
@@ -123,7 +124,7 @@ public class AgregarGrupo extends JFrame {
     private JLabel horario;
     private JLabel profesor;
     private JLabel curso;
-    
+    private ControlVis gestor;
     private JTextField t_ciclo;
     private JTextField t_numero;
     private JTextField t_horario;

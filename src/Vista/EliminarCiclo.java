@@ -25,9 +25,10 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarCiclo extends JFrame{
-      public EliminarCiclo() {
+      public EliminarCiclo(ControlVis c) {
             super("eliminar Ciclo");
-        ajustarComponentes(getContentPane());   
+        ajustarComponentes(getContentPane());
+        gestor=c;
         setMinimumSize(new Dimension(500,250));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -83,7 +84,7 @@ public class EliminarCiclo extends JFrame{
     
      private void salir()
     {
-        VenOpcCiclo vi = new VenOpcCiclo();
+        VenOpcCiclo vi = new VenOpcCiclo(gestor);
         vi.init();
         this.dispose();
     }
@@ -98,6 +99,7 @@ public class EliminarCiclo extends JFrame{
     private JTextField t_num_ciclo;
     private JTextField t_cedula;    
     private JButton aceptar;
+    private ControlVis gestor;
     private JButton cancel;
     
 }

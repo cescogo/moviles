@@ -25,9 +25,10 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarGrupo extends JFrame{
-      public EliminarGrupo() {
+      public EliminarGrupo(ControlVis c) {
             super("eliminar Grupo");
-        ajustarComponentes(getContentPane());   
+        ajustarComponentes(getContentPane()); 
+        gestor=c;
         setMinimumSize(new Dimension(500,250));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -81,7 +82,7 @@ public class EliminarGrupo extends JFrame{
     }
      private void salir()
     {
-        VenOpcGrupo vi = new VenOpcGrupo();
+        VenOpcGrupo vi = new VenOpcGrupo(gestor);
         vi.init();
         this.dispose();
     }
@@ -96,5 +97,6 @@ public class EliminarGrupo extends JFrame{
     private JTextField t_num_ciclo;
     private JTextField t_cedula;    
     private JButton aceptar;
+    private ControlVis gestor;
     private JButton cancel;
 }

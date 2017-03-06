@@ -25,8 +25,9 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarCiclo extends JFrame {
-        public ModificarCiclo() {
+        public ModificarCiclo(ControlVis c) {
             super("modificar Ciclo");
+            gestor=c;
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
@@ -101,7 +102,7 @@ public class ModificarCiclo extends JFrame {
     }
      private void salir()
     {
-        VenOpcCiclo vi = new VenOpcCiclo();
+        VenOpcCiclo vi = new VenOpcCiclo(gestor);
         vi.init();
         this.dispose();
     }
@@ -123,4 +124,5 @@ public class ModificarCiclo extends JFrame {
     private JTextField t_fe_final;
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
 }

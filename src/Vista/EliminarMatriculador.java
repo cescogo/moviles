@@ -25,8 +25,9 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarMatriculador extends JFrame {
-     public EliminarMatriculador() {
+     public EliminarMatriculador(ControlVis c) {
             super("eliminar Matriculador");
+            gestor=c;
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,150));
         setResizable(false);
@@ -74,7 +75,7 @@ public class EliminarMatriculador extends JFrame {
     }
      private void salir()
     {
-        VenOpcMatriculador vi = new VenOpcMatriculador();
+        VenOpcMatriculador vi = new VenOpcMatriculador(gestor);
         vi.init();
         this.dispose();
     }
@@ -88,6 +89,7 @@ public class EliminarMatriculador extends JFrame {
     private JTextField t_cedula;    
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
     
     
 }

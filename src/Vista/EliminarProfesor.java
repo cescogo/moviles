@@ -25,8 +25,9 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarProfesor extends JFrame {
-     public EliminarProfesor() {
+     public EliminarProfesor(ControlVis c) {
             super("eliminar Profesor");
+            gestor=c;
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,150));
         setResizable(false);
@@ -74,7 +75,7 @@ public class EliminarProfesor extends JFrame {
     }
      private void salir()
     {
-        VenOpcProfesor vi = new VenOpcProfesor();
+        VenOpcProfesor vi = new VenOpcProfesor(gestor);
         vi.init();
         this.dispose();
     }
@@ -87,6 +88,7 @@ public class EliminarProfesor extends JFrame {
     private JLabel cedula;
     private JTextField t_cedula;    
     private JButton aceptar;
+    private ControlVis gestor;
     private JButton cancel;
     
 }

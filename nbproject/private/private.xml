@@ -3,14 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Movil/moviles/src/Modelo/Persona.java</file>
-            <file>file:/F:/Movil/moviles/src/Modelo/Alumno.java</file>
-            <file>file:/F:/Movil/moviles/src/Vista/Interfaz.java</file>
-            <file>file:/F:/Movil/moviles/src/Modelo/Curso.java</file>
-            <file>file:/F:/Movil/moviles/src/Control/Control.java</file>
-            <file>file:/F:/Movil/moviles/src/Modelo/Profesor.java</file>
-            <file>file:/F:/Movil/moviles/src/moviles/Moviles.java</file>
-            <file>file:/F:/Movil/moviles/src/AccesoDatos/AccesoDB.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VenOpcCarrera.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VenOpcAdministra.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VenOpcProfesor.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VenOpcCiclo.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VenOpcEstudiante.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VenOpcGrupo.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VenOpcMatriculador.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VenOpcCurso.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VentanaInicio.java</file>
         </group>
     </open-files>
 </project-private>

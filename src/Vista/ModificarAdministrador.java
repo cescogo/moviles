@@ -25,9 +25,10 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarAdministrador extends JFrame{
-     public ModificarAdministrador() {
+     public ModificarAdministrador(ControlVis c) {
             super("modificar administrador");
         ajustarComponentes(getContentPane());   
+        gestor=c;
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -101,7 +102,7 @@ public class ModificarAdministrador extends JFrame{
     }
      private void salir()
     {
-        VenOpcAdministra vi = new VenOpcAdministra();
+        VenOpcAdministra vi = new VenOpcAdministra(gestor);
         vi.init();
         this.dispose();
     }
@@ -121,6 +122,7 @@ public class ModificarAdministrador extends JFrame{
     private JTextField t_email;
     private JTextField t_telefono;
     private JTextField t_cedula;
+    private ControlVis gestor;
     private JButton aceptar;
     private JButton cancel;
 }

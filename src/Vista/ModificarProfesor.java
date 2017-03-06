@@ -25,9 +25,10 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarProfesor extends JFrame{
-    public ModificarProfesor() {
+    public ModificarProfesor(ControlVis c) {
             super("modificar Profesor");
         ajustarComponentes(getContentPane());   
+        gestor=c;
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -107,7 +108,7 @@ public class ModificarProfesor extends JFrame{
     
     private void salir()
     {
-        VenOpcProfesor vi = new VenOpcProfesor();
+        VenOpcProfesor vi = new VenOpcProfesor(gestor);
         vi.init();
         this.dispose();
     }
@@ -126,4 +127,5 @@ public class ModificarProfesor extends JFrame{
     private JTextField t_cedula;
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
 }

@@ -22,11 +22,12 @@ import javax.swing.JPanel;
  * @author ccg
  */
 public class VenOpcCurso extends JFrame{
-     public VenOpcCurso() {
+     public VenOpcCurso(ControlVis c) {
         
         super("Opciones de Curso");
         ajustarComponentes(getContentPane());
         setMinimumSize(new Dimension(440,250));
+        gestor=c;
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -74,20 +75,20 @@ public class VenOpcCurso extends JFrame{
 
    private void agregar()
     {
-    	AgregarCurso vi=new AgregarCurso();
+    	AgregarCurso vi=new AgregarCurso(gestor);
         vi.init();
         this.dispose();
     }
    
 private void eliminar()
     {
-        EliminarCurso vi= new EliminarCurso();
+        EliminarCurso vi= new EliminarCurso(gestor);
         vi.init();
         this.dispose();
     }
     private void modificar()
      {
-         ModificarCurso vi= new ModificarCurso();
+         ModificarCurso vi= new ModificarCurso(gestor);
          vi.init();
          this.dispose();
      }
@@ -100,7 +101,7 @@ private void eliminar()
     
     private void salir()
     {
-        VentanaAdministrador vi= new VentanaAdministrador();
+        VentanaAdministrador vi= new VentanaAdministrador(gestor);
         vi.init();
         this.dispose();
     }
@@ -111,4 +112,5 @@ private void eliminar()
     private JButton eliminar;
     private JButton salir;
     private JPanel cancelar;
+    private ControlVis gestor;
 }

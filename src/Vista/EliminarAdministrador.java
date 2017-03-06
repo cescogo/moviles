@@ -25,8 +25,9 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarAdministrador extends JFrame{
-     public EliminarAdministrador() {
+     public EliminarAdministrador(ControlVis c) {
             super("eliminar Administrador");
+            gestor=c;
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,150));
         setResizable(false);
@@ -74,7 +75,7 @@ public class EliminarAdministrador extends JFrame{
     }
      private void salir()
     {
-        VenOpcAdministra vi = new VenOpcAdministra();
+        VenOpcAdministra vi = new VenOpcAdministra(gestor);
         vi.init();
         this.dispose();
     }
@@ -88,5 +89,6 @@ public class EliminarAdministrador extends JFrame{
     private JTextField t_cedula;    
     private JButton aceptar;
     private JButton cancel;
+    private ControlVis gestor;
     
 }

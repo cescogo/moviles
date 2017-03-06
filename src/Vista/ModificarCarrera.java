@@ -25,8 +25,9 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarCarrera extends JFrame {
-    public ModificarCarrera() {
+    public ModificarCarrera(ControlVis c) {
             super("modificar Carrera");
+            gestor=c;
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,250));
         setResizable(false);
@@ -81,7 +82,7 @@ public class ModificarCarrera extends JFrame {
     
      private void salir()
     {
-        VenOpcCarrera vi = new VenOpcCarrera();
+        VenOpcCarrera vi = new VenOpcCarrera(gestor);
         vi.init();
         this.dispose();
     }
@@ -92,7 +93,7 @@ public class ModificarCarrera extends JFrame {
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;
-   
+   private ControlVis gestor;
     private JLabel nombre;
     private JLabel codigo;
     

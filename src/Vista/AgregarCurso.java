@@ -26,11 +26,12 @@ import javax.swing.JTextField;
  */
 public class AgregarCurso extends JFrame {
     
-        public AgregarCurso() {
+        public AgregarCurso(ControlVis c) {
             super("agregar Curso");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,350));
         setResizable(false);
+        gestor=c;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -115,7 +116,7 @@ public class AgregarCurso extends JFrame {
     }
      private void salir()
     {
-        VenOpcCurso vi = new VenOpcCurso();
+        VenOpcCurso vi = new VenOpcCurso(gestor);
         vi.init();
         this.dispose();
     }
@@ -123,6 +124,7 @@ public class AgregarCurso extends JFrame {
         setVisible(true);
     }
       private JPanel principal;
+      private ControlVis gestor;
     private JPanel formulario;
     private GridBagConstraints gc;
     private JLabel nombre;
