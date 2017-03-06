@@ -70,7 +70,12 @@ public void MenuAdministrador(){
     System.out.println("");
     System.out.println("10-> SALIR");    
 }
-
+public void ErrorDel(){
+    System.out.println("Problemas en la eliminacion");
+}
+public void SucceDel(){
+            System.out.println("Eliminacion Correcta");
+}
 public void MenuProfesor(){
     System.out.println("-----Menu Profesor-----");
     System.out.println("1--> agregar Profesor");

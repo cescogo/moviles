@@ -590,4 +590,20 @@ public class AccesoDB {
         }
     }
     //</editor-fold>  
+   
+   public boolean eliminar(String id){
+         try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            Statement s = bd.conexion.createStatement();
+            String sql = "delete * from persona WHERE CEDULA='"+ id+"'";            
+            s.executeUpdate(sql);
+            bd.closeCon();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+           
+        }
+        return false;
+      
+   }
 }

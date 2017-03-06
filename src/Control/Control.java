@@ -285,7 +285,6 @@ public class Control {
             }
         }
     }
-
     private void crearProfe() {
         int tel = inter.SolicitaTelefono();
         String mail = inter.SolicitaEmail();
@@ -296,9 +295,10 @@ public class Control {
         Profesor p = new Profesor(tel, mail, nom, id, pass);
         agregar(p);
     }
-
     private void BorrarProfe() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String ced = inter.SolicitaCedulas();
+        if(borrar(ced))inter.SucceDel();
+        else inter.ErrorDel();
     }
 
     private void MostrarProfe() {
@@ -365,8 +365,9 @@ public class Control {
         accesoD.agrega(a);
     }
 
-    public void borrar(Persona a) {
-        //accesoD.eliminar(a);
+    public boolean borrar(String id) {
+        if(accesoD.eliminar(id))return true;
+        return false;
     }
 
     public void mostrarNom(String nom) {
