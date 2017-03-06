@@ -532,11 +532,14 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             Statement s = bd.conexion.createStatement();
-            String sql = "update persona set PASS = '%s' ,NOMBRE = '%s' ,CORREO = '%s' ,TELEFONO = '%s',"
-                    + " where CEDULA = '%S'";
-            sql=String.format(sql, a.getClave(), a.getNombre(), a.getEmail(),a.getTelefono());
+          //  s.execute("SET SQL_SAFE_UPDATES = 0");
+            String sql = 
+"update persona set PASS = '"+a.getClave()+"', NOMBRE = '"+a.getNombre()+"', CORREO = '"+a.getEmail()+"',TELEFONO ="+ a.getTelefono()
+                    +" WHERE CEDULA = '"+  a.getCedula()        +"'";
+            
             s.executeUpdate(sql);
             bd.closeCon();
+            
        
         } catch (SQLException e) {
             System.err.println(e.getMessage());

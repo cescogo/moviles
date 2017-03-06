@@ -34,14 +34,23 @@ public void menuLogin(){
     System.out.println("->salir escriba salir");
 }
 
-public void solicitaUsr(){
+public String solicitaUsr(){
     System.out.println("Introdusca Usuario: ");
+    String pass = "";
+    Scanner entradaEscaner = new Scanner (System.in); 
+    pass = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+    return pass;
+    
 }
 public void errorLogin(){
     System.out.println("Error Usuario o Contraseña incorrecta: ");
 }
-public void solicitaPass(){
+public String solicitaPass(){
     System.out.println("digite la contraseña:");
+    String pass = "";
+    Scanner entradaEscaner = new Scanner (System.in); 
+    pass = entradaEscaner.nextLine (); //Invocamos un método sobre un objeto Scanner
+    return pass;
 }
 
 public void ERROR(){
@@ -67,8 +76,8 @@ public void MenuProfesor(){
     System.out.println("1--> agregar Profesor");
     System.out.println("2--> Borrar Profesor");
     System.out.println("3--> mostrar Profesor");   
-    System.out.println("4--> mostrar Profesor");   
-    System.out.println("5--> actualizar Profesor");
+    System.out.println("4--> actualizar Profesor");
+    System.out.println("5-->SALIR");
 }
 
 public void MenuAlumno(){
@@ -107,8 +116,15 @@ public void BusqCurso(){
 public void BusqProf(){
     System.out.println("1--Cedula");
     System.out.println("2--Nombre");
-    System.out.println("3--salir");
-    
+    System.out.println("3--salir");    
+}
+public int ModifProf(){
+    System.out.println("1--Nombre");
+    System.out.println("2--Contraseña");
+    System.out.println("3--correo");
+    System.out.println("4--telefono");
+    System.out.println("5--salir");
+return leerI();    
 }
 public void BusqCar(){
     System.out.println("1--Codigo");
