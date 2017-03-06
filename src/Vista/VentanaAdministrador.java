@@ -157,9 +157,9 @@ public class VentanaAdministrador extends JFrame  {
        }
        private void salir()
        {
-           VentanaInicio vi = new VentanaInicio();
-           vi.init();
-           this.dispose();
+//           VentanaInicio vi = new VentanaInicio();
+//           vi.init();
+//           this.dispose();
        }
     private JButton estudiante;
     private JButton profesor; 

@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -26,13 +27,14 @@ import javax.swing.JTextField;
  */
 public class VentanaInicio extends JFrame{
 
-    public VentanaInicio() {
+    public VentanaInicio(ControlVis c) {
             super("Login");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(400,250));
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        gestor=c;
     }
     
     public void ajustarComponentes(Container c)
@@ -62,7 +64,7 @@ public class VentanaInicio extends JFrame{
         gc.gridx=1;
         gc.gridy=2;
         aceptar=new JButton("Aceptar");
-        
+        aceptar.addActionListener((ActionEvent e)->{login();});
         formulario.add(aceptar,gc);
         
         cancelar =new JPanel(new BorderLayout());  
@@ -80,6 +82,21 @@ public class VentanaInicio extends JFrame{
         setVisible(true);
     }
     
+    private void login()
+    {
+        int aux= gestor.login(t_usuario.getText(),t_clave.getText());
+        if(aux==1)
+        {
+            VentanaAdministrador vi= new VentanaAdministrador();
+            vi.init();
+            this.dispose();
+        }
+        else
+        {
+            JOptionPane.showConfirmDialog(null, "usuario no existe", "error", JOptionPane.ERROR);
+        }
+        
+    }
     private void salir()
     {
         this.dispose();
@@ -95,4 +112,5 @@ public class VentanaInicio extends JFrame{
     private JTextField t_clave;
     private JButton cancel;
     private JButton aceptar;
+    private ControlVis gestor;
 }

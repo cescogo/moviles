@@ -17,6 +17,7 @@ public class Persona{
         this.tipo = tipo;
         this.clave = clave;
     }
+    
 
     public Persona(int t) {
          telefono = 0;
