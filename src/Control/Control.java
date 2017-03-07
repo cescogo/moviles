@@ -207,11 +207,9 @@ public class Control {
 
     public void agregarGrupo( int numero, String horario, String profesor, String curso) {
         String id = curso + '-' + String.valueOf(numero);
-<<<<<<< HEAD
+
         Grupo p = new Grupo(id, numero, horario, profesor, curso);
-=======
-        Grupo p = new Grupo(id, ciclo, numero, horario, profesor, curso);
->>>>>>> origin/master
+
         accesoD.agrega(p);
     }
 
