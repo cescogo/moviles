@@ -205,10 +205,10 @@ public class Control {
     }
     //</editor-fold>
 
-    public void agregarGrupo(char ciclo, int numero, String horario, String profesor, String curso) {
+    public void agregarGrupo( int numero, String horario, String profesor, String curso) {
         String id = curso + '-' + String.valueOf(numero);
-        Grupo p = new Grupo(id, ciclo, numero, horario, profesor, curso);
-        //llamar al met de acceso de datos para ingresar a la base de datos
+        Grupo p = new Grupo(id, numero, horario, profesor, curso);
+        accesoD.agrega(p);
     }
 
     public void Bcgrupo(String id_g, int ngrp, Grupo p) {

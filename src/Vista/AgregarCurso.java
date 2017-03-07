@@ -6,6 +6,7 @@
 package Vista;
 
 import Control.Control;
+import Modelo.*;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -18,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -101,7 +103,9 @@ public class AgregarCurso extends JFrame {
         
         gc.gridx=0;
         gc.gridy=7;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{agregar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=7;
@@ -115,13 +119,67 @@ public class AgregarCurso extends JFrame {
        c.add(principal,BorderLayout.CENTER);
         
     }
+    
+    private boolean blanco()
+    {
+        if( t_nombre.getText().isEmpty()||
+            t_codigo.getText().isEmpty()||
+            t_creditos.getText().isEmpty()||
+            t_h_semanales.getText().isEmpty()||
+            t_carrera.getText().isEmpty()||
+            t_num_ciclo.getText().isEmpty())
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+    
+    private boolean existe(String cod)
+    {
+        Carrera c= new Carrera();
+        gestor.MostrarCarreraC(c, cod);
+        if(c.getCodigo()=="")
+        {
+            return false;
+        }
+        return true;
+    }
+    private void agregar()
+    {
+        if(blanco())
+        {
+            JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            if(!existe(t_carrera.getText()))
+            {
+                JOptionPane.showMessageDialog(null, "Carrera no existe agreguela por favor","Error",JOptionPane.ERROR_MESSAGE);
+                salirCar();
+            }
+            else
+            {
+                gestor.agregarCurso(t_codigo.getText(),  t_nombre.getText(), Integer.parseInt(t_creditos.getText()), Integer.parseInt( t_h_semanales.getText()), t_carrera.getText(), Integer.parseInt(t_num_ciclo.getText()));
+               salir();   
+            }
+        }
+    }
+    
      private void salir()
     {
         VenOpcCurso vi = new VenOpcCurso(gestor);
         vi.init();
         this.dispose();
     }
-    public void init() {
+     
+      private void salirCar()
+    {
+        AgregarCarrera vi = new AgregarCarrera(gestor);
+        vi.init();
+        this.dispose();
+    }
+     public void init() {
         setVisible(true);
     }
       private JPanel principal;

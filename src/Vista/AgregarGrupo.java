@@ -6,6 +6,7 @@
 package Vista;
 
 import Control.Control;
+import Modelo.*;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -18,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -48,10 +50,7 @@ public class AgregarGrupo extends JFrame {
         
         gc.insets=new Insets(4,4,4,4);
         
-        gc.gridx=0;
-        gc.gridy=0;        
-        ciclo= new JLabel("Numero de ciclo");
-        formulario.add(ciclo,gc);
+       
         
         gc.gridx=0;
         gc.gridy=1;
@@ -71,9 +70,7 @@ public class AgregarGrupo extends JFrame {
         formulario.add(curso =new JLabel("codigo del curso:"),gc);
         
       
-        gc.gridx=1;
-        gc.gridy=0;
-        formulario.add(t_ciclo=new JTextField(20),gc);
+        
         
         gc.gridx=1;
         gc.gridy=1;
@@ -94,7 +91,9 @@ public class AgregarGrupo extends JFrame {
         
         gc.gridx=0;
         gc.gridy=7;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{agregar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=7;
@@ -108,25 +107,106 @@ public class AgregarGrupo extends JFrame {
        c.add(principal,BorderLayout.CENTER);
         
     }
+    
+    private boolean blanco()
+    {
+        if(  
+     t_numero.getText().isEmpty()||
+     t_horario.getText().isEmpty()||
+     t_profesor.getText().isEmpty()||
+     t_curso.getText().isEmpty())
+        {
+            return true;
+        }
+        else
+             return false; 
+    }
+    
+    private boolean existe()
+    {
+        Curso c = new Curso();
+        gestor.MostrarCurso(c, t_curso.getText(), 2);
+        if(c.getCodigo()=="")
+        {
+            return false;
+        }
+        else 
+            return true;
+    }
+    
+    private boolean existePro()
+    {
+        Persona c = new Persona(0);
+        gestor.buscarPer(c, t_profesor.getText());
+        if(c.getTipo()!= 3)
+        {
+            return false;
+        }
+        else 
+            return true;
+    }
+    
+    private void agregar()
+    {
+        if(blanco())
+        {
+            JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            if(!existe())
+            {
+                JOptionPane.showMessageDialog(null, "Curso no existe agreguelo por favor","Error",JOptionPane.ERROR_MESSAGE);
+                salirCur();
+            }else
+                if(!existePro())
+                {
+                    JOptionPane.showMessageDialog(null, "Profesor no existe agreguelo por favor","Error",JOptionPane.ERROR_MESSAGE);
+                    salirPro();
+                }
+            
+            else
+            {
+                gestor.agregarGrupo(Integer.parseInt(t_numero.getText()), t_horario.getText(), t_profesor.getText(),  t_curso.getText());
+                salir();
+                
+            }
+        }
+    }
+    
      private void salir()
     {
         VenOpcGrupo vi = new VenOpcGrupo(gestor);
         vi.init();
         this.dispose();
     }
+     
+     private void salirCur()
+     {
+         AgregarCurso vi = new AgregarCurso(gestor);
+        vi.init();
+        this.dispose();
+     }
+     
+     private void salirPro()
+     {
+         AgregarProfesor vi = new AgregarProfesor(gestor);
+        vi.init();
+        this.dispose();
+     }
     public void init() {
         setVisible(true);
     }
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;
-    private JLabel ciclo;
+    
     private JLabel numero;
     private JLabel horario;
     private JLabel profesor;
     private JLabel curso;
     private Control gestor;
-    private JTextField t_ciclo;
+    
     private JTextField t_numero;
     private JTextField t_horario;
     private JTextField t_profesor;

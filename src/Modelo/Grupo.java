@@ -2,15 +2,14 @@ package Modelo;
 
 public class Grupo {
     private String id;
-    private char ciclo;
+    
     private int numero;
     private String horario;
     private String  profesor;
     private String curso;
 
-    public Grupo(String id, char ciclo, int numero, String horario, String profesor, String curso) {
+    public Grupo(String id, int numero, String horario, String profesor, String curso) {
         this.id = id;
-        this.ciclo = ciclo;
         this.numero = numero;
         this.horario = horario;
         this.profesor = profesor;
@@ -31,13 +30,6 @@ public class Grupo {
 
    
 
-    public char getCiclo() {
-        return ciclo;
-    }
-
-    public void setCiclo(char ciclo) {
-        this.ciclo = ciclo;
-    }
 
     public int getNumero() {
         return numero;
