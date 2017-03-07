@@ -93,13 +93,10 @@ public class VentanaInicio extends JFrame{
         }
         else
         {
-<<<<<<< HEAD
             JOptionPane.showMessageDialog(null, "usuario no existe");
-=======
             JOptionPane.showMessageDialog(null, "usuario no existe","Error",JOptionPane.ERROR_MESSAGE);
             t_usuario.setText("");
             t_clave.setText("");
->>>>>>> origin/master
         }
         
         

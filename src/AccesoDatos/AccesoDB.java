@@ -164,7 +164,7 @@ public class AccesoDB {
         }
     }
 
-   public void BuscarPersonaId(Persona a, String id) {
+   public void BuscarEStId(Persona a, String id) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -189,7 +189,7 @@ public class AccesoDB {
         }
     }
 
-   public void BuscarPersonaNombre(Persona a, String nom) {
+   public void BuscarEstNom(Persona a, String nom) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -213,7 +213,7 @@ public class AccesoDB {
         }
     }
 
-   public void BuscarPersonaCarrera(Persona a, String carr) {
+   public void BuscarEstCarr(Persona a, String carr) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -237,6 +237,55 @@ public class AccesoDB {
         }
     }
 
+   public void BuscarPrfId(Persona a, String id) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM persona WHERE CEDULA='"+ id+"'";
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            
+            while (bd.registro.next()) {                
+                a.setCedula(bd.registro.getString("cedula"));
+                a.setClave(bd.registro.getString("pass"));
+                a.setEmail(bd.registro.getString("correo"));
+                a.setNombre(bd.registro.getString("nombre"));
+                a.setTelefono(bd.registro.getInt("telefono"));
+                a.setTipo(bd.registro.getInt("tipo"));
+                if(a instanceof Alumno)
+                    ((Alumno) a).setF_nac("F_NACIMIENTO");
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+   public void BuscarPrfNombre(String nom, Lista l) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM persona WHERE nombre='"+ nom+"'";
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {  
+                Profesor a = new Profesor();
+                a.setCedula(bd.registro.getString("cedula"));
+                a.setClave(bd.registro.getString("pass"));
+                a.setEmail(bd.registro.getString("correo"));
+                a.setNombre(bd.registro.getString("nombre"));
+                a.setTelefono(bd.registro.getInt("telefono"));
+                a.setTipo(bd.registro.getInt("tipo"));
+                l.agregar(a);
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+   
    public void mostrar(Persona a, Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
@@ -300,7 +349,7 @@ public class AccesoDB {
         }
     }
    
-   public void mostrarCUs(Lista l) {
+   public void mostrarCUs(Lista l, String cod) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -620,6 +669,7 @@ public class AccesoDB {
             String sql = "delete from persona WHERE CEDULA='"+ id+"'";            
             s.executeUpdate(sql);
             bd.closeCon();
+            return true;
         } catch (SQLException e) {
             System.err.println(e.getMessage());
            
@@ -628,6 +678,22 @@ public class AccesoDB {
       
    }
 
+   public boolean eliminarCurso(String id){
+         try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            Statement s = bd.conexion.createStatement();
+            String sql = "delete from curso WHERE CODIGO='"+ id+"'";            
+            s.executeUpdate(sql);
+            bd.closeCon();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+           
+        }
+        return false;
+      
+   }
     public void ofertaAcd(String Carrera, int ciclo, Lista l) {
       try {
             ConexionBD bd = new ConexionBD();
