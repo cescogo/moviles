@@ -215,14 +215,25 @@ public class Control {
         accesoD.Buscar(p, id_g, ngrp);
     }
     
-    public void MAtricula(String cod, Alumno a){
+    public boolean MAtricula(String cod, Alumno a){
         Curso c = new Curso();
         accesoD.CMatri(c, a.getCarrera(), cod);
-        if(!c.getCodigo().isEmpty()){
-                    
-        }
-        
-        
+        if(!c.getCodigo().isEmpty())
+           if(!accesoD.estaECurso(a.getCedula(), cod)){
+                Nota n =  new Nota(0, cod, a.getCedula());
+                accesoD.matricula(n);          
+                return true;
+           }       
+        return false;
+    }
+
+     
+    public boolean DesMAtricula(String cod, Alumno a){
+        if(!accesoD.pasoCurso(a.getCedula(), cod).isEmpty()){
+                accesoD.Desmatricula(a.getCedula(),cod);          
+                return true;
+           }       
+        return false;
     }
 
     private Persona user;

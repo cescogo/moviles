@@ -53,7 +53,9 @@ public class Interfaz {
                 FuncAdministrativas();
                 break;
             case 2:
-                //FuncMatriculador();
+                int opc = 0;
+                while((opc = nuevamatricula())!= 2)
+                    if(opc==1)AdminMatricula();
                 break;
             case 3:
                 //FuncProfesor();
@@ -1095,9 +1097,14 @@ public class Interfaz {
             while(op!=3){
             op=opcMA();
             if(op == 1){
-                //matricula
-            }
+                if(ctrl.MAtricula(SolicitaNomCurso(), a))
+                    System.out.println("Matriculado");
+                else System.out.println("no Matriculado");
+           }
             if(op == 2){
+                if(ctrl.DesMAtricula(SolicitaNomCurso(), a))
+                    System.out.println("DesMatriculado");
+                else System.out.println("no puede desmatricular");                
                 //dematricula
             }
             }
@@ -1105,6 +1112,12 @@ public class Interfaz {
             
         }
     }
+    public int nuevamatricula(){
+        System.out.println("1--> nueva matricula");
+        System.out.println("2--> salir");
+        return leerI();
+    }
+    
 public int opcMA(){
     System.out.println("Agregar");
     System.out.println("eliminar");
