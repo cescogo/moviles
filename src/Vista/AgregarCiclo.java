@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -87,7 +88,9 @@ public class AgregarCiclo extends JFrame{
         
         gc.gridx=0;
         gc.gridy=7;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{agregar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=7;
@@ -101,6 +104,32 @@ public class AgregarCiclo extends JFrame{
        c.add(principal,BorderLayout.CENTER);
         
     }
+    private boolean blanco()
+    {
+        if(
+     t_anno.getText().isEmpty()||
+     t_num_ciclo.getText().isEmpty()||
+    t_fe_inicio.getText().isEmpty()||
+     t_fe_final.getText().isEmpty())
+        {
+            return true;
+        }
+        else
+            return false;
+    }
+    private void agregar()
+    {
+        if(blanco())
+        {
+             JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            gestor.agregarCiclo(Integer.parseInt(t_anno.getText()),Integer.parseInt(t_num_ciclo.getText()), t_fe_inicio.getText(), t_fe_final.getText());
+            salir();
+        }
+    }
+    
      private void salir()
     {
         VenOpcCiclo vi = new VenOpcCiclo(gestor);
@@ -118,7 +147,6 @@ public class AgregarCiclo extends JFrame{
     private JLabel num_ciclo;
     private JLabel fe_inicio;
     private JLabel fe_final;
-    private JTextField t_id;
     private JTextField t_anno;
     private JTextField t_num_ciclo;
     private JTextField t_fe_inicio;

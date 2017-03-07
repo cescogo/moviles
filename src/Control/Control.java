@@ -81,6 +81,20 @@ public class Control {
 
 //</editor-fold>
 //<editor-fold desc="Metodos de Persona">
+    public void agregarAlumno(String nombre, String cedula, String Fec_Nac, int telefono, String email, String clave) {
+        Alumno p = new Alumno(telefono, email, nombre, cedula, Fec_Nac, clave);
+        accesoD.agrega(p);
+    }
+
+    public void agregarMatriculador(int telefono, String email, String nombre, String cedula, String clave) {
+        Matriculador p = new Matriculador(telefono, email, nombre, cedula, clave);
+        accesoD.agrega(p);
+    }
+
+    public void agregarAdministrador(String nombre, String cedula, int telefono, String email, String clave) {
+        Administrador p = new Administrador(telefono, email, nombre, cedula, clave);
+        accesoD.agrega(p);
+    }
     public void agregarP(Persona a) {
         accesoD.agrega(a);
     }
@@ -176,26 +190,24 @@ public void BuscarGrpCrs(String curso,Lista grupos) {
 //
 //    }
 //    
-    public void agregarAlumno(String nombre, String cedula, String Fec_Nac, int telefono, String email, String clave) {
-        Alumno p = new Alumno(telefono, email, nombre, cedula, Fec_Nac, clave);
-        accesoD.agrega(p);
-    }
-
-    public void agregarMatriculador(int telefono, String email, String nombre, String cedula, String clave) {
-        Matriculador p = new Matriculador(telefono, email, nombre, cedula, clave);
-        accesoD.agrega(p);
-    }
-
-    public void agregarAdministrador(String nombre, String cedula, int telefono, String email, String clave) {
-        Administrador p = new Administrador(telefono, email, nombre, cedula, clave);
-        accesoD.agrega(p);
-    }
-
+    
+//<editor-fold desc="Metodos de Ciclo">
     public void agregarCiclo(int anno, int nciclo, String Finicio, String Ffinal) {
         String id = String.valueOf(anno) + String.valueOf(nciclo);
         Ciclo p = new Ciclo(id, anno, nciclo, Finicio, Ffinal);
-        //llamar al met de acceso de datos para ingresar a la base de datos
+        accesoD.agrega(p);
     }
+    
+    public void buscar(Ciclo c,String id)
+    {
+        accesoD.Buscar(c, id);
+    }
+    
+    public void actualizar(Ciclo c,String id)
+    {
+        accesoD.Actualiza(c, id);
+    }
+    //</editor-fold>
 
     public void agregarGrupo(char ciclo, int numero, String horario, String profesor, String curso) {
         String id = curso + '-' + String.valueOf(numero);
@@ -203,9 +215,7 @@ public void BuscarGrpCrs(String curso,Lista grupos) {
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
 
-    public void eliminarPersona(String id) {
-        accesoD.eliminar(id);
-    }
+  
     public void Bcgrupo(String id_g,int ngrp, Grupo p){
         accesoD.Buscar(p, id_g, ngrp);
     }

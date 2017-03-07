@@ -15,6 +15,15 @@ public class Ciclo {
         this.Ffinal = Ffinal;
     }
 
+   public Ciclo()
+   {
+       this.id = "";
+        this.anno = 0;
+        this.nciclo = 0;
+        this.Finicio = "";
+        this.Ffinal = "";
+   }
+   
     public String getId() {
         return id;
     }

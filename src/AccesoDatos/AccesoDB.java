@@ -527,6 +527,28 @@ public class AccesoDB {
         }
     }
    
+     
+   public void Buscar(Ciclo a, String cod) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM ciclo WHERE id ="+cod;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                a.setId(bd.registro.getString("id"));
+                a.setAnno(bd.registro.getInt("anno"));
+                a.setNciclo(bd.registro.getInt("num_ciclo"));
+                a.setFfinal(bd.registro.getString("fecha_final"));
+                a.setFinicio(bd.registro.getString("fecha_inicio"));
+                
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+   
    public void BuscarGrpCrs(String curso, Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
@@ -683,7 +705,7 @@ public class AccesoDB {
             bd.Connect();
             String fec ="";
             Statement s = bd.conexion.createStatement();
-            s.executeUpdate("INSERT INTO CURSO VALUES('" + a.getId() + "','" + a.getAnno()+ "','"
+            s.executeUpdate("INSERT INTO Ciclo VALUES('" + a.getId() + "','" + a.getAnno()+ "','"
                                                          + a.getNciclo()+ "','" + a.getFinicio() +"','"
                                                          + a.getFfinal()+ "')");
             bd.closeCon();
@@ -742,7 +764,22 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
-     
+       public void Actualiza(Ciclo a ,String id){
+          try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+                  String sql = "update curso set id = '%s' ,anno = '%i' ,NUM_CICLO = '%i', fecha_inicio ='%s', fecha_final = '%s',"
+                    + " where id = '%S'";
+            sql=String.format(sql, a.getId(), a.getAnno(),a.getNciclo(),a.getFinicio(),a.getFfinal(),id);
+           
+            Statement s = bd.conexion.createStatement();
+            s.executeUpdate(sql);
+            bd.closeCon();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+       
    public void Actualiza(Grupo a){
           try {
             ConexionBD bd = new ConexionBD();
