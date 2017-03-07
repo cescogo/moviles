@@ -59,9 +59,22 @@ public class Interfaz {
                 //FuncProfesor();
                 break;
             case 4:
-            //FuncAlumno();
+                FuncAlumno();
         }
 
+    }
+    public int solicitaAlopc(){
+        System.out.println("1->historial");
+        System.out.println("2->salir");
+        return leerI();
+    }
+    
+        private void FuncAlumno() {
+        BienvInter(4);
+        int opc = 0 ;
+        while((opc = solicitaAlopc())!= 2)
+            if(opc ==1)
+                ConsultaHistorial();
     }
 
     public String solicitaUsr() {
@@ -109,7 +122,7 @@ public class Interfaz {
                     //AdminMatricula();
                     break;
                 case 8:
-                    ConsultaHistorial(1);
+                    ConsultaHistorial();
                     break;
                 case 9:
                     AgregarAcceso();
@@ -774,12 +787,9 @@ public class Interfaz {
         System.out.println("2--> atras");
         return leerI();
     }
-     private void ConsultaHistorial(int t) {
+     private void ConsultaHistorial() {
          Lista l =  new Lista();
-         if(t == 1)
-             ctrl.ConsultaHistorial(SolicitaCedulas(),l);
-         else
-             ctrl.ConsultaHistorial(SolicitaCedulas(),l);
+         ctrl.ConsultaHistorial(SolicitaCedulas(),l);
          System.out.println(l.toString());    
    
      }
