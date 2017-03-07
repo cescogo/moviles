@@ -852,13 +852,31 @@ public class AccesoDB {
         }
    }
 
+   public boolean Desmatricula(String id, String cod){
+         try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            Statement s = bd.conexion.createStatement();
+            String sql = "delete from Nota WHERE CODIGO='"+ cod+"' AND ESTUDIANTE ='"+id+"'";            
+            s.executeUpdate(sql);
+            bd.closeCon();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+           
+        }
+        return false;
+      
+   }
+   
+   
    public boolean estaECurso(String ced,String curs){
     
        try {
            ConexionBD bd = new ConexionBD();
             bd.Connect();
            Statement s = bd.conexion.createStatement();
-           String comandoListar = "SELECT Curso FROM NOTA WHERE CURSO ='"+curs+"' AND ESTUDIANTE="+ced;
+           String comandoListar = "SELECT Curso FROM NOTA WHERE CURSO ='"+curs+"' AND ESTUDIANTE='"+ced+"'";
            bd.registro = bd.comando.executeQuery(comandoListar);
             if(bd.registro.next()){
             return true;
@@ -869,6 +887,26 @@ public class AccesoDB {
        }
             return false;
    }
+   
+   public String pasoCurso(String ced,String curs){
+    
+       try {
+           ConexionBD bd = new ConexionBD();
+            bd.Connect();
+           Statement s = bd.conexion.createStatement();
+           String comandoListar = "SELECT Curso FROM NOTA WHERE CURSO ='"+curs+"' AND ESTUDIANTE='"+ced+
+                   "' AND Nota != 0";
+           bd.registro = bd.comando.executeQuery(comandoListar);
+            if(bd.registro.next()){
+            return curs;
+            }
+            bd.closeCon();
+       } catch (SQLException ex) {
+             System.err.println(ex.getMessage());
+       }
+            return "";
+   }
+   
    public boolean eliminarCurso(String id){
          try {
             ConexionBD bd = new ConexionBD();
