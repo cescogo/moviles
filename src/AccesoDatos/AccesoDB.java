@@ -507,7 +507,7 @@ public class AccesoDB {
         }
     }
    
-   public void Buscar(Grupo a, String cod, String num) {
+   public void Buscar(Grupo a, String cod, int num) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -586,6 +586,31 @@ public class AccesoDB {
         }
     }
  
+   public void Matriculados(String w,Lista l) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM NOTA WHERE NOTA = 0 AND ESTUDIANTE="+w;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {   
+                Curso a = new Curso();
+                  a.setNum_ciclo(bd.registro.getInt("Num_ciclo"));
+                a.setNombre(bd.registro.getString("nombre"));                               
+                a.setCreditos(bd.registro.getInt("creditos"));
+                a.setHsemanales(bd.registro.getInt("H_SEMANALES"));
+                a.setCodigo(bd.registro.getString("codigo"));
+                a.setNum_ciclo(bd.registro.getInt("NUM_CICLO"));
+                l.agregar(a);           
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+ 
+   
    
  //</editor-fold>
    
@@ -791,7 +816,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT CODIGO FROM CURSO WHERE COD_CARRERA ="+Carrera+""
+            String comandoListar = "SELECT * FROM CURSO WHERE COD_CARRERA ="+Carrera+""
                     + "AND NUM_CICLO="+ciclo;
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {

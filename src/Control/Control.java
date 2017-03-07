@@ -128,27 +128,17 @@ public class Control {
     }
 
 //</editor-fold>
+    
+public void ofertaAcd(String Carrera, int ciclo, Lista cursos) {
+    accesoD.ofertaAcd(Carrera, ciclo, cursos);
+    }
+public void BuscarGrpCrs(String curso,Lista grupos) {
+    accesoD.BuscarGrpCrs( curso, grupos);
+    }
 //    private void Adminciclo() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
 //
-//    private void AdminOferta() {
-//        int opc = 0;
-//        String Carrera =  inter.SolicitaNomCarrera();
-//        int ciclo =  inter.SolicitaCiclo();
-//        Lista cursos =  new Lista();
-//        accesoD.ofertaAcd(Carrera,ciclo,cursos);
-//        System.out.println(cursos.toString());
-//        opc = inter.Oferta();
-//        if(opc == 1){
-//            String curso = inter.SolicitaCodCurso();
-//            Lista grupos = new Lista();
-//            accesoD.BuscarGrpCrs(curso, grupos);
-//            
-//            
-//        }
-//        
-//    }
 //
 //    private void AgregarAcceso() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -173,14 +163,13 @@ public class Control {
 //            if(opc ==1)
 //                ConsultaHistorial();
 //    }
-//     private void ConsultaHistorial() {
-//         Lista l =  new Lista();
-//         if(user.getTipo() == 1)
-//            accesoD.Historial(inter.SolicitaCedulas(),l);
-//         else
-//             accesoD.Historial(user.getCedula(), l);
-//         System.out.println(l.toString());    
-//     }
+     public void ConsultaHistorial(String ced, Lista l) {
+             accesoD.Historial( ced, l);
+         }
+     
+     public void matriculados(String ced, Lista l){
+            accesoD.Matriculados(ced, l);
+     }
 //
 //    private void FuncProfesor() {
 //        inter.BienvInter(3);
@@ -214,7 +203,16 @@ public class Control {
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
 
+<<<<<<< HEAD
     
+=======
+    public void eliminarPersona(String id) {
+        accesoD.eliminar(id);
+    }
+    public void Bcgrupo(String id_g,int ngrp, Grupo p){
+        accesoD.Buscar(p, id_g, ngrp);
+    }
+>>>>>>> origin/master
 
      private Persona user;
     private AccesoDB accesoD;
