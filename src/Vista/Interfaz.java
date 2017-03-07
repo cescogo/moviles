@@ -198,7 +198,8 @@ public class Interfaz {
     }
 
     public void ActualizarCarrera() {
-        ctrl.ActualizarCarrera(SolicitaCodCarrera(), SolicitaNomCarrera());
+        Carrera a = new Carrera(SolicitaCodCarrera(), SolicitaNomCarrera());
+        ctrl.ActualizarCarrera(a);
     }
 
     public void errorLogin() {

@@ -203,16 +203,12 @@ public void BuscarGrpCrs(String curso,Lista grupos) {
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
 
-<<<<<<< HEAD
-    
-=======
     public void eliminarPersona(String id) {
         accesoD.eliminar(id);
     }
     public void Bcgrupo(String id_g,int ngrp, Grupo p){
         accesoD.Buscar(p, id_g, ngrp);
     }
->>>>>>> origin/master
 
      private Persona user;
     private AccesoDB accesoD;
