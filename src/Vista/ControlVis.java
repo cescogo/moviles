@@ -47,10 +47,10 @@ public class ControlVis {
         accesoD.agrega(p);
     }
     
-    public void agregarAlumno(String nombre, String cedula,String Fec_Nac, String telefono, String email, String clave)
+    public void agregarAlumno(String nombre, String cedula,String Fec_Nac, String telefono, String email, String clave, String CodC)
     {
         int tel=Integer.parseInt(telefono);
-        Alumno p= new Alumno(tel,  email, nombre, cedula, Fec_Nac, clave);
+        Alumno p= new Alumno(tel,  email, nombre, cedula, Fec_Nac, clave,CodC);
         accesoD.agrega(p);
     }
     

@@ -18,9 +18,9 @@ public class Control {
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
     
-    private void agregarAlumno(String nombre, String cedula,String Fec_Nac, int telefono, String email, String clave)
+    private void agregarAlumno(String nombre, String cedula,String Fec_Nac, int telefono, String email, String clave,String carr)
     {
-        Alumno p= new Alumno(telefono,  email, nombre, cedula, Fec_Nac, clave);
+        Alumno p= new Alumno(telefono,  email, nombre, cedula, Fec_Nac, clave,carr);
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
     

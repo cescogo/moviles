@@ -33,11 +33,11 @@ public class Interfaz {
     public void initB() {
         int opc = 0;
         while (opc != 1) {
-            opc = leerI();
             System.out.println("1--> ENTRAR");
             System.out.println("2--> SALIR");
+            opc = leerI();
             if (opc == 1) {
-                //menuLogin();
+                init();
             }
         }
     }
@@ -417,7 +417,7 @@ public class Interfaz {
     private void AdminEst() {
         int opc = 0;
         while (opc != 5) {
-            MenuProfesor();
+            MenuAlumno();
             switch (opc = leerI()) {
                 case 1:
                     crearEst();
@@ -439,7 +439,7 @@ public class Interfaz {
     }
 
     private void crearEst() {
-        ctrl.agregarAlumno(SolicitaNombres(), SolicitaCedulas(), SolicitaFec_Nac(), SolicitaTelefono(), SolicitaEmail(), solicitaPass());
+        ctrl.agregarAlumno(SolicitaNombres(), SolicitaCedulas(), SolicitaFec_Nac(), SolicitaTelefono(), SolicitaEmail(), solicitaPass(),SolicitaCodCarrera());
     }
 
     private void BorrarEst() {
@@ -452,9 +452,9 @@ public class Interfaz {
 
     private void MostrarEst() {
         int p = 0;
-        Profesor per = new Profesor();
-        while (p != 3) {
-            BusqProf();
+        Alumno per = new Alumno();
+        while (p != 4) {
+            BusqAlmn();
             switch (p = leerI()) {
                 case 1:
                     ctrl.mostrarPCed(per, SolicitaCedulas());
@@ -469,6 +469,7 @@ public class Interfaz {
                     // buscar carrera
                     Lista w = new Lista();
                     ctrl.mostrarPCar(SolicitaCodCarrera(), w);
+                    System.out.println(w.toString());
                     break;
                 default:
                     ERROR();
@@ -522,13 +523,23 @@ public class Interfaz {
     }
 
     private void AgregarAcceso() {
+        int opc =0 ;
+       
+        while(opc!=2){
+            System.out.println("2__agregar accesos");
+            System.out.println("1__salir");
+                opc = leerI();
+            if(opc==1)
+                AddAcceso();
+            else ERROR();        
+        }
 
     }
 
     private void AdminAdmin() {
         int opc = 0;
         while (opc != 5) {
-            MenuProfesor();
+            MenuAdmisn();
             switch (opc = leerI()) {
                 case 1:
                     crearAdm();
@@ -542,14 +553,15 @@ public class Interfaz {
                 case 4:
                     ActualizarAdm();
                     break;
+                case 5:
+                    break;                    
                 default:
                     ERROR();
                     break;
             }
         }
     }
-
-    private void crearAdm() {
+     private void crearAdm() {
         ctrl.agregarAdministrador(SolicitaNombres(), SolicitaCedulas(), SolicitaTelefono(), SolicitaEmail(), solicitaPass());
     }
 
@@ -625,7 +637,7 @@ public class Interfaz {
     private void AdminMatr() {
         int opc = 0;
         while (opc != 5) {
-            MenuProfesor();
+            MenuMatriculador();
             switch (opc = leerI()) {
                 case 1:
                     crearMatr();
@@ -796,17 +808,20 @@ public class Interfaz {
      }
 
     public void AddAcceso() {
+       
+        int opc = 0;
+        while (opc != 3) {
         System.out.println("1-> Administrador");
         System.out.println("2-> Matriculador");
         System.out.println("3->Salir");
-        int opc = 0;
-        while (opc != 3) {
             switch (opc = leerI()) {
                 case 1:
                     AdminAdmin();
                     break;
                 case 2:
                     AdminMatr();
+                    break;
+                default:ERROR();
             }
         }
     }
@@ -845,10 +860,28 @@ public class Interfaz {
 
     public void MenuAlumno() {
         System.out.println("-----Menu Alumno-----");
+        System.out.println("1--> agregar Alumno");
+        System.out.println("2--> Borrar Alumno");
+        System.out.println("3--> mostrar Alumno");
+        System.out.println("4--> actualizar Alumno");
+        System.out.println("5-->SALIR");
     }
 
     public void MenuMatriculador() {
         System.out.println("-----Menu Matriculador-----");
+           System.out.println("1--> agregar Matriculador");
+        System.out.println("2--> Borrar Matriculador");
+        System.out.println("3--> mostrar Matriculador");
+        System.out.println("4--> actualizar Matriculador");
+        System.out.println("5-->SALIR");
+    }
+      public void MenuAdmisn() {
+        System.out.println("-----Menu Administrador-----");
+           System.out.println("1--> agregar Administrador");
+        System.out.println("2--> Borrar Administrador");
+        System.out.println("3--> mostrar Administrador");
+        System.out.println("4--> actualizar Administrador");
+        System.out.println("5-->SALIR");
     }
 
     public void menuCarr() {

@@ -6,7 +6,7 @@ import Modelo.*;
 public class Control {
 
     public Control() {
-        this.user=new Persona(0);
+        this.user = new Persona(0);
         this.accesoD = new AccesoDB();
 
     }
@@ -16,8 +16,6 @@ public class Control {
         return user.getTipo();
     }
 
-   
-
 //<editor-fold desc="Metodos de Carrera">
     public void agregarCarrera(String nomcar, String codCAr) {
         Carrera car = new Carrera(nomcar, codCAr);
@@ -25,7 +23,7 @@ public class Control {
     }
 
     public void BorrarCarrera(String c) {
-            accesoD.eliminarCarrera(c);
+        accesoD.eliminarCarrera(c);
     }
 
     public void MostrarCarreraC(Carrera C, String c) {
@@ -81,8 +79,8 @@ public class Control {
 
 //</editor-fold>
 //<editor-fold desc="Metodos de Persona">
-    public void agregarAlumno(String nombre, String cedula, String Fec_Nac, int telefono, String email, String clave) {
-        Alumno p = new Alumno(telefono, email, nombre, cedula, Fec_Nac, clave);
+    public void agregarAlumno(String nombre, String cedula, String Fec_Nac, int telefono, String email, String clave,String codCarr) {
+        Alumno p = new Alumno(telefono, email, nombre, cedula, Fec_Nac, clave,codCarr);
         accesoD.agrega(p);
     }
 
@@ -95,16 +93,16 @@ public class Control {
         Administrador p = new Administrador(telefono, email, nombre, cedula, clave);
         accesoD.agrega(p);
     }
+
     public void agregarP(Persona a) {
         accesoD.agrega(a);
     }
 
     public boolean borrarP(String id) {
-        return accesoD.eliminar(id) ;
-       
+        return accesoD.eliminar(id);
+
     }
 
-  
     public void mostrarProNom(String nom, Lista l) {
         accesoD.BuscarPrfNombre(nom, l);
     }
@@ -120,19 +118,18 @@ public class Control {
         if (a instanceof Alumno) {
             accesoD.BuscarEStId(a, ced);
         }
-         if (a instanceof Administrador) {
+        if (a instanceof Administrador) {
             accesoD.BuscarAdmId(a, ced);
         }
-         if (a instanceof Matriculador) {
+        if (a instanceof Matriculador) {
             accesoD.BuscarMtr(a, ced);
         }
     }
 
-        public void buscarPer(Persona a, String ced)
-        {
-            accesoD.Buscar(a, ced);            
-        }
-        
+    public void buscarPer(Persona a, String ced) {
+        accesoD.Buscar(a, ced);
+    }
+
     public void mostrarPCar(String carr, Lista l) {
         accesoD.BuscarEstCarr(carr, l);
     }
@@ -142,12 +139,12 @@ public class Control {
     }
 
 //</editor-fold>
-    
-public void ofertaAcd(String Carrera, int ciclo, Lista cursos) {
-    accesoD.ofertaAcd(Carrera, ciclo, cursos);
+    public void ofertaAcd(String Carrera, int ciclo, Lista cursos) {
+        accesoD.ofertaAcd(Carrera, ciclo, cursos);
     }
-public void BuscarGrpCrs(String curso,Lista grupos) {
-    accesoD.BuscarGrpCrs( curso, grupos);
+
+    public void BuscarGrpCrs(String curso, Lista grupos) {
+        accesoD.BuscarGrpCrs(curso, grupos);
     }
 //    private void Adminciclo() {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -177,34 +174,33 @@ public void BuscarGrpCrs(String curso,Lista grupos) {
 //            if(opc ==1)
 //                ConsultaHistorial();
 //    }
-     public void ConsultaHistorial(String ced, Lista l) {
-             accesoD.Historial( ced, l);
-         }
-     
-     public void matriculados(String ced, Lista l){
-            accesoD.Matriculados(ced, l);
-     }
+
+    public void ConsultaHistorial(String ced, Lista l) {
+        accesoD.Historial(ced, l);
+    }
+
+    public void matriculados(String ced, Lista l) {
+        accesoD.Matriculados(ced, l);
+    }
 //
 //    private void FuncProfesor() {
 //        inter.BienvInter(3);
 //
 //    }
 //    
-    
+
 //<editor-fold desc="Metodos de Ciclo">
     public void agregarCiclo(int anno, int nciclo, String Finicio, String Ffinal) {
         String id = String.valueOf(anno) + String.valueOf(nciclo);
         Ciclo p = new Ciclo(id, anno, nciclo, Finicio, Ffinal);
         accesoD.agrega(p);
     }
-    
-    public void buscar(Ciclo c,String id)
-    {
+
+    public void buscar(Ciclo c, String id) {
         accesoD.Buscar(c, id);
     }
-    
-    public void actualizar(Ciclo c,String id)
-    {
+
+    public void actualizar(Ciclo c, String id) {
         accesoD.Actualiza(c, id);
     }
     //</editor-fold>
@@ -215,11 +211,10 @@ public void BuscarGrpCrs(String curso,Lista grupos) {
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
 
-  
-    public void Bcgrupo(String id_g,int ngrp, Grupo p){
+    public void Bcgrupo(String id_g, int ngrp, Grupo p) {
         accesoD.Buscar(p, id_g, ngrp);
     }
 
-     private Persona user;
+    private Persona user;
     private AccesoDB accesoD;
 }

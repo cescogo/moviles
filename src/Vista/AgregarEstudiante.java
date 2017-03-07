@@ -75,6 +75,11 @@ public class AgregarEstudiante extends JFrame {
         gc.gridx=0;
         gc.gridy=5;
         formulario.add(fe_nac =new JLabel("fecha de nacimiento:"),gc);
+       
+        gc.gridx=0;
+        gc.gridy=6;
+        formulario.add(fe_nac =new JLabel("Codigo de carrera:"),gc);
+        
         
         gc.gridx=1;
         gc.gridy=0;
@@ -100,6 +105,10 @@ public class AgregarEstudiante extends JFrame {
         gc.gridy=5;
         formulario.add(t_Fe_nac =new JTextField(20),gc);
         
+        gc.gridx=1;
+        gc.gridy=6;
+        formulario.add(t_codcarr=new JTextField(20),gc);
+                
         gc.gridx=0;
         gc.gridy=8;
                 JButton aceptar=new JButton("Aceptar");
@@ -135,7 +144,7 @@ public class AgregarEstudiante extends JFrame {
          else 
          {
              int aux=Integer.parseInt(t_telefono.getText());
-             gestor.agregarAlumno(t_nombre.getText(), t_cedula.getText(), t_Fe_nac.getText(), aux, t_email.getText(), t_clave.getText());
+             gestor.agregarAlumno(t_nombre.getText(), t_cedula.getText(), t_Fe_nac.getText(), aux, t_email.getText(), t_clave.getText(),t_codcarr.getText());
              salir();
          }
      }
@@ -168,6 +177,7 @@ public class AgregarEstudiante extends JFrame {
     private JLabel cedula;
     private JLabel fe_nac;
     private JTextField t_nombre;
+    private JTextField t_codcarr;
     private JTextField t_clave;
     private JTextField t_email;
     private JTextField t_telefono;

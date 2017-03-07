@@ -38,11 +38,11 @@ public class Moviles {
 //         Lista p= new Lista();
 //         ACD.Buscar(aux, "51");
 //         System.out.println(aux.toString());
-       VentanaInicio vi= new VentanaInicio();
+      VentanaInicio vi= new VentanaInicio();
        vi.init();
-//        Control
-//       Control ctrl  = new Control();
-//           ctrl.init();
+       Control ctrl  = new Control();
+       Interfaz in = new Interfaz(ctrl);
+           in.initB();
 //           
     }
     

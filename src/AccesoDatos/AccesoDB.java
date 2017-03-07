@@ -648,7 +648,8 @@ public class AccesoDB {
                 fec = alu.getF_nac(); 
             }
             Statement s = bd.conexion.createStatement();
-            s.executeUpdate("INSERT INTO Persona  VALUES('" + a.getCedula() + "','"+ a.getClave() +"','"+ a.getTipo() +"','"+ a.getNombre() +"','"+ fec +"','"+ a.getEmail() +"','"+ a.getTelefono() +"')");
+            String car = (a instanceof Alumno)?((Alumno)a).getCarrera():"";
+            s.executeUpdate("INSERT INTO Persona  VALUES('" + a.getCedula() + "','"+ a.getClave() +"','"+ a.getTipo() +"','"+ a.getNombre() +"','"+ fec +"','"+ a.getEmail() +"','"+ a.getTelefono() +"','"+car+"')");
             bd.closeCon();
                   
         } catch (SQLException e) {
