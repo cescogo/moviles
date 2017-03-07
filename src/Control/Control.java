@@ -163,6 +163,10 @@ public void BuscarGrpCrs(String curso,Lista grupos) {
      public void ConsultaHistorial(String ced, Lista l) {
              accesoD.Historial( ced, l);
          }
+     
+     public void matriculados(String ced, Lista l){
+            accesoD.Matriculados(ced, l);
+     }
 //
 //    private void FuncProfesor() {
 //        inter.BienvInter(3);

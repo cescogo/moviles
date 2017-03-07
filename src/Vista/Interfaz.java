@@ -119,7 +119,7 @@ public class Interfaz {
                     Oferta();
                     break;
                 case 7:
-                    //AdminMatricula();
+                    AdminMatricula();
                     break;
                 case 8:
                     ConsultaHistorial();
@@ -1047,4 +1047,30 @@ public class Interfaz {
         return datoS;
     }
 
+    private void AdminMatricula() {
+        Alumno a = new Alumno();
+        ctrl.mostrarPCed(a, SolicitaCedulas());
+        if(!a.getCedula().isEmpty()){
+            Lista l = new Lista();
+            ctrl.matriculados(a.getCedula(), l);
+            System.out.println(l.toString());
+            int op = 0;
+            while(op!=3){
+            op=opcMA();
+            if(op == 1){
+                //matricula
+            }
+            if(op == 2){
+                //dematricula
+            }
+            }
+            
+            
+        }
+    }
+public int opcMA(){
+    System.out.println("Agregar");
+    System.out.println("eliminar");
+    return leerI();
+}
 }
