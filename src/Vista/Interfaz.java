@@ -283,8 +283,8 @@ public class Interfaz {
         if (s.getCodigo() != "") {
             int p = 0;
             while (p != 5) {
-                ModifProf();
-                switch (p = leerI()) {
+                
+                switch (p = ModifProf()) {
                     case 1://nombre
                         String nom = SolicitaNomCurso();
                         if (nom != "") {
@@ -748,7 +748,7 @@ public class Interfaz {
     }
 
     private void AgregarGrupo(String car) {
-        ctrl.agregarGrupo((char) SolicitaCiclo(), SolicitaNgrupo(), SolicitaHorario(), SolicitaCedulas(), car);
+        ctrl.agregarGrupo(SolicitaNgrupo(), SolicitaHorario(), SolicitaCedulas(), car);
     }
 
     public void Oferta() {

@@ -40,9 +40,9 @@ public class Moviles {
 //         System.out.println(aux.toString());
       VentanaInicio vi= new VentanaInicio();
        vi.init();
-//       Control ctrl  = new Control();
-//       Interfaz in = new Interfaz(ctrl);
-//           in.initB();
+       Control ctrl  = new Control();
+       Interfaz in = new Interfaz(ctrl);
+           in.initB();
 //           
     }
     

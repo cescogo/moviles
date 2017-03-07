@@ -780,9 +780,9 @@ public class AccesoDB {
           try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
-            String sql = "update curso set NOMBRE = '%s' ,CREDITOS = '%i' ,NUM_CICLO = '%i'"
-                    + " where Codigo = '%S'";
-            sql=String.format(sql, a.getNombre(), a.getCreditos(),a.getNum_ciclo(),a.getCodigo());
+            String sql = "update curso set NOMBRE = '"+a.getNombre()
+                    +"' ,CREDITOS = "+a.getCreditos()+" ,NUM_CICLO = "+a.getNum_ciclo()
+                    + " where Codigo = '"+a.getCodigo()+"'";
             Statement s = bd.conexion.createStatement();
             s.executeUpdate(sql);
             bd.closeCon();
@@ -794,7 +794,8 @@ public class AccesoDB {
           try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
-                  String sql = "update curso set id = '%s' ,anno = %i ,NUM_CICLO = %i, fecha_inicio ='%s', fecha_final = '%s'"
+                  String sql = "update curso set id = '%s' ,anno = %i ,NUM_CICLO = %i, "
+                          + "fecha_inicio ='%s', fecha_final = '%s'"
                     + " where id = '%S'";
             sql=String.format(sql, a.getId(), a.getAnno(),a.getNciclo(),a.getFinicio(),a.getFfinal(),id);
            
@@ -810,7 +811,7 @@ public class AccesoDB {
           try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
-             String sql = "update grupo set ID_PROF = '%s', NUMERO = '%i',  where ID_GRUPO = '%S'";
+             String sql = "update grupo set ID_PROF = '%s', NUMERO = '%i' where ID_GRUPO = '%S'";
             sql=String.format(sql,a.getProfesor(), a.getNumero(),a.getId());
             Statement s = bd.conexion.createStatement();
             s.executeUpdate(sql);
