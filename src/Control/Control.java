@@ -214,6 +214,16 @@ public class Control {
     public void Bcgrupo(String id_g, int ngrp, Grupo p) {
         accesoD.Buscar(p, id_g, ngrp);
     }
+    
+    public void MAtricula(String cod, Alumno a){
+        Curso c = new Curso();
+        accesoD.CMatri(c, a.getCarrera(), cod);
+        if(!c.getCodigo().isEmpty()){
+                    
+        }
+        
+        
+    }
 
     private Persona user;
     private AccesoDB accesoD;
