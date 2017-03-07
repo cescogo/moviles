@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -17,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,7 +27,7 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarCarrera extends JFrame{
-      public EliminarCarrera(ControlVis c) {
+      public EliminarCarrera(Control c) {
             super("eliminar Carrera");
         ajustarComponentes(getContentPane());  
         gestor=c;
@@ -59,7 +61,9 @@ public class EliminarCarrera extends JFrame{
       
         gc.gridx=0;
         gc.gridy=2;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{eliminar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=2;
@@ -79,6 +83,33 @@ public class EliminarCarrera extends JFrame{
         vi.init();
         this.dispose();
     }
+      private boolean blanco()
+    {
+        if(t_cedula.getText().isEmpty())
+        {
+            return true;
+        }
+        else 
+            return false;
+    }
+      
+    private void eliminar()
+    {
+          
+     
+         if(blanco())
+         {
+               JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+           
+         }
+         else 
+         {
+             
+             gestor.BorrarCarrera(t_cedula.getText());
+             salir();
+         }
+     
+    }
     public void init() {
         setVisible(true);
     }
@@ -89,6 +120,6 @@ public class EliminarCarrera extends JFrame{
     private JTextField t_cedula;    
     private JButton aceptar;
     private JButton cancel;
-    private ControlVis gestor;
+    private Control gestor;
     
 }

@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
  * @author ccg
  */
 public class VenOpcCurso extends JFrame{
-     public VenOpcCurso(ControlVis c) {
+     public VenOpcCurso(Control c) {
         
         super("Opciones de Curso");
         ajustarComponentes(getContentPane());
@@ -112,5 +113,5 @@ private void eliminar()
     private JButton eliminar;
     private JButton salir;
     private JPanel cancelar;
-    private ControlVis gestor;
+    private Control gestor;
 }

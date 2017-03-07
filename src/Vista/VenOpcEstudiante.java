@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -24,12 +25,12 @@ import javax.swing.JPanel;
  */
 public class VenOpcEstudiante extends JFrame {
     
-    public VenOpcEstudiante(ControlVis c) {
+    public VenOpcEstudiante(Control c) {
         
-        super("Opciones de Estudiante");
+        super("Opciones de Persona");
         ajustarComponentes(getContentPane());
         gestor=c;
-        setMinimumSize(new Dimension(440,250));
+        setMinimumSize(new Dimension(660,300));
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -42,7 +43,7 @@ public class VenOpcEstudiante extends JFrame {
         principal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         principal.setBackground(Color.WHITE);
 
-        JPanel central = new JPanel(new GridLayout(2,2,30,30) );
+        JPanel central = new JPanel(new GridLayout(3,3,30,30) );
         central.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
         central.setBackground(Color.WHITE);
         
@@ -53,15 +54,29 @@ public class VenOpcEstudiante extends JFrame {
 				agregar= new JButton("agregar estudiante");  
                                 agregar.addActionListener((ActionEvent e)->{agregar();});
 				central.add(agregar);
+                                
+                                agregarAd= new JButton("agregar Administrador");  
+                                agregarAd.addActionListener((ActionEvent e)->{agregar(1);});
+				central.add(agregarAd);
+                                
+                                agregarPro= new JButton("agregar Profesor");  
+                                agregarPro.addActionListener((ActionEvent e)->{agregar(2);});
+				central.add(agregarPro);
+                                
+                                agregarMat= new JButton("agregar Matriculador");  
+                                agregarMat.addActionListener((ActionEvent e)->{agregar(3);});
+				central.add(agregarMat);
 				
-				modificar= new JButton("modificar estudiante");
+				modificar= new JButton("modificar Persona");
                                 modificar.addActionListener((ActionEvent e)->{modificar();});
 				central.add(modificar);
+                                
+                               
 				
-				consultar= new JButton("buscar estudiente");
+				consultar= new JButton("buscar Persona");
 				central.add(consultar);
 				
-				eliminar= new JButton("eliminar estudiante");
+				eliminar= new JButton("eliminar Persona");
                                 eliminar.addActionListener((ActionEvent e)->{eliminar();});
 				central.add(eliminar);
                                 
@@ -96,6 +111,8 @@ public class VenOpcEstudiante extends JFrame {
          vi.init();
          this.dispose();
      }
+     
+     
     private void agregar()
     {
     	AgregarEstudiante vi=new AgregarEstudiante(gestor);
@@ -103,6 +120,30 @@ public class VenOpcEstudiante extends JFrame {
         this.dispose();
     }
     
+    private void agregar(int x)
+    {
+        if(x==1)
+        {
+            AgregarAdministrador vi=new AgregarAdministrador(gestor);
+         vi.init();
+        }
+        else
+            if(x==2)
+        {
+            AgregarProfesor vi=new AgregarProfesor(gestor);
+             vi.init();
+        }
+            else if(x==3)
+            {
+                AgregarMatriculador vi=new AgregarMatriculador(gestor);
+                 vi.init();
+            }
+       
+        this.dispose();
+    }
+    
+     
+     
     private void salir()
     {
         VentanaAdministrador vi= new VentanaAdministrador(gestor);
@@ -111,11 +152,14 @@ public class VenOpcEstudiante extends JFrame {
     }
     
     private JButton agregar;
+    private JButton agregarAd;
+    private JButton agregarPro;
+    private JButton agregarMat;
     private JButton consultar; 
     private JButton modificar;
     private JButton eliminar;
     private JButton salir;
     private JPanel cancelar;
-    private ControlVis gestor;
+    private Control gestor;
     
 }

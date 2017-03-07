@@ -1,6 +1,7 @@
 package Vista;
 
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -29,7 +30,7 @@ import javax.swing.JTextField;
  */
 public class AgregarAdministrador extends JFrame {
     
-     public AgregarAdministrador(ControlVis c) {
+     public AgregarAdministrador(Control c) {
             super("agregar administrador");
         ajustarComponentes(getContentPane());   
         gestor=c;
@@ -113,7 +114,7 @@ public class AgregarAdministrador extends JFrame {
     }
      private void salir()
     {
-        VenOpcAdministra vi = new VenOpcAdministra(gestor);
+        VenOpcEstudiante vi = new VenOpcEstudiante(gestor);
         vi.init();
         this.dispose();
     }
@@ -142,7 +143,8 @@ public class AgregarAdministrador extends JFrame {
          }
          else 
          {
-             gestor.agregarAdministrador(t_nombre.getText(), t_cedula.getText(), t_telefono.getText(), t_email.getText(), t_clave.getText());
+             int aux=Integer.parseInt(t_telefono.getText());
+             gestor.agregarAdministrador(t_nombre.getText(), t_cedula.getText(), aux, t_email.getText(), t_clave.getText());
              salir();
          }
      }
@@ -161,5 +163,5 @@ public class AgregarAdministrador extends JFrame {
     private JTextField t_cedula;
     private JButton aceptar;
     private JButton cancel;
-    private ControlVis gestor;
+    private Control gestor;
 }

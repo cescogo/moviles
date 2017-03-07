@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,7 +26,7 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarCurso extends JFrame{
-      public EliminarCurso(ControlVis c) {
+      public EliminarCurso(Control c) {
             super("eliminar Curso");
         ajustarComponentes(getContentPane());  
         gestor=c;
@@ -88,7 +89,7 @@ public class EliminarCurso extends JFrame{
     private JLabel cedula;
     private JTextField t_cedula;    
     private JButton aceptar;
-    private ControlVis gestor;
+    private Control gestor;
     private JButton cancel;
     
 }

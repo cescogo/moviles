@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -27,7 +28,7 @@ import javax.swing.JTextField;
  */
 public class AgregarEstudiante extends JFrame {
     
-    public AgregarEstudiante(ControlVis c) {
+    public AgregarEstudiante(Control c) {
             super("agregar Estudiante");
         ajustarComponentes(getContentPane());   
         gestor=c;
@@ -133,7 +134,8 @@ public class AgregarEstudiante extends JFrame {
          }
          else 
          {
-             gestor.agregarAlumno(t_nombre.getText(), t_cedula.getText(), t_Fe_nac.getText(), t_telefono.getText(), t_email.getText(), t_clave.getText());
+             int aux=Integer.parseInt(t_telefono.getText());
+             gestor.agregarAlumno(t_nombre.getText(), t_cedula.getText(), t_Fe_nac.getText(), aux, t_email.getText(), t_clave.getText());
              salir();
          }
      }
@@ -156,7 +158,7 @@ public class AgregarEstudiante extends JFrame {
             return false;
     }
       private JPanel principal;
-      private ControlVis gestor;
+      private Control gestor;
     private JPanel formulario;
     private GridBagConstraints gc;
     private JLabel nombre;

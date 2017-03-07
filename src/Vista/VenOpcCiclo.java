@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
  * @author ccg
  */
 public class VenOpcCiclo extends JFrame {
-     public VenOpcCiclo(ControlVis c) {
+     public VenOpcCiclo(Control c) {
         
         super("Opciones de Ciclo");
         gestor=c;
@@ -110,5 +111,5 @@ public class VenOpcCiclo extends JFrame {
     private JButton eliminar;
     private JButton salir;
     private JPanel cancelar;
-    private ControlVis gestor;
+    private Control gestor;
 }

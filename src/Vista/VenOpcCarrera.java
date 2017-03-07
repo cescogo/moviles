@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
  * @author ccg
  */
 public class VenOpcCarrera extends JFrame{
-     public VenOpcCarrera(ControlVis c) {
+     public VenOpcCarrera(Control c) {
         
         super("Opciones de Carrera");
         ajustarComponentes(getContentPane());
@@ -111,5 +112,5 @@ public class VenOpcCarrera extends JFrame{
     private JButton eliminar;
     private JButton salir;
     private JPanel cancelar;
-    private ControlVis gestor;
+    private Control gestor;
 }

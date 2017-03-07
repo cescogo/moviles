@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,7 +26,7 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarGrupo extends JFrame{
-      public EliminarGrupo(ControlVis c) {
+      public EliminarGrupo(Control c) {
             super("eliminar Grupo");
         ajustarComponentes(getContentPane()); 
         gestor=c;
@@ -97,6 +98,6 @@ public class EliminarGrupo extends JFrame{
     private JTextField t_num_ciclo;
     private JTextField t_cedula;    
     private JButton aceptar;
-    private ControlVis gestor;
+    private Control gestor;
     private JButton cancel;
 }

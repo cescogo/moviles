@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -26,7 +27,7 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class AgregarMatriculador extends JFrame{
-    public AgregarMatriculador(ControlVis c) {
+    public AgregarMatriculador(Control c) {
             super("agregar Matriculador");
         ajustarComponentes(getContentPane());   
         gestor=c;
@@ -110,7 +111,8 @@ public class AgregarMatriculador extends JFrame{
     }
      private void salir()
     {
-        VenOpcMatriculador vi = new VenOpcMatriculador(gestor);
+        
+        VenOpcEstudiante vi = new VenOpcEstudiante(gestor);
         vi.init();
         this.dispose();
     }
@@ -139,7 +141,8 @@ public class AgregarMatriculador extends JFrame{
          }
          else 
          {
-             gestor.agregarMatriculador(t_telefono.getText(),t_email.getText(),t_nombre.getText(), t_cedula.getText(),   t_clave.getText());
+             int aux=Integer.parseInt(t_telefono.getText());
+             gestor.agregarMatriculador(aux,t_email.getText(),t_nombre.getText(), t_cedula.getText(),   t_clave.getText());
              salir();
          }
      }
@@ -158,5 +161,5 @@ public class AgregarMatriculador extends JFrame{
     private JTextField t_cedula;
     private JButton aceptar;
     private JButton cancel;
-    private ControlVis gestor;
+    private Control gestor;
 }

@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Control.Control;
+import Modelo.Carrera;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -17,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,7 +28,7 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarCarrera extends JFrame {
-    public ModificarCarrera(ControlVis c) {
+    public ModificarCarrera(Control c) {
             super("modificar Carrera");
             gestor=c;
         ajustarComponentes(getContentPane());   
@@ -47,25 +50,38 @@ public class ModificarCarrera extends JFrame {
         
         gc.insets=new Insets(4,4,4,4);
         
-       
+       gc.gridx=0;
+        gc.gridy=1;
+        formulario.add(codigo =new JLabel("codigo de la carrera:"),gc);
         
         gc.gridx=0;
-        gc.gridy=0;
+        gc.gridy=2;
         formulario.add(nombre =new JLabel("nombre de la carrera:"),gc);
         
       
        
         
+         gc.gridx=1;
+        gc.gridy=1;
+        formulario.add(t_codigo=new JTextField(20),gc);
         
         gc.gridx=1;
-        gc.gridy=0;
+        gc.gridy=2;
         formulario.add(t_nombre=new JTextField(20),gc);
        
+        
+        gc.gridx=2;
+        gc.gridy=1;
+                buscar=new JButton("buscar");
+                buscar.addActionListener((ActionEvent e)->{buscar();});
+        formulario.add(buscar,gc);
         
         
         gc.gridx=0;
         gc.gridy=3;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{modificar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=3;
@@ -80,6 +96,33 @@ public class ModificarCarrera extends JFrame {
         
     }
     
+    
+    private void buscar()
+    {
+        if(t_codigo.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+        }else 
+        {
+            Carrera c= new Carrera();
+            gestor.MostrarCarreraC(c, t_codigo.getText());
+            t_nombre.setText(c.getNombre());
+        }
+    }
+    
+    private void modificar()
+    {
+        if(t_nombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+        }else 
+        {
+            Carrera c= new Carrera();
+            c.setNombre(t_nombre.getText());
+            c.setCodigo(t_codigo.getText());
+            gestor.ActualizarCarrera(c);
+        }
+    }
      private void salir()
     {
         VenOpcCarrera vi = new VenOpcCarrera(gestor);
@@ -93,13 +136,13 @@ public class ModificarCarrera extends JFrame {
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;
-   private ControlVis gestor;
+   private Control gestor;
     private JLabel nombre;
     private JLabel codigo;
     
     private JTextField t_nombre;
     private JTextField t_codigo;
-    
+    private JButton buscar;
     private JButton aceptar;
     private JButton cancel;
 }

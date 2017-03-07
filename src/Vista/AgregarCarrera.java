@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -17,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,7 +27,7 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class AgregarCarrera extends JFrame {
-     public AgregarCarrera(ControlVis c) {
+     public AgregarCarrera(Control c) {
             super("agregar Carrera");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,250));
@@ -71,7 +73,9 @@ public class AgregarCarrera extends JFrame {
         
         gc.gridx=0;
         gc.gridy=3;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{agregar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=3;
@@ -85,7 +89,34 @@ public class AgregarCarrera extends JFrame {
        c.add(principal,BorderLayout.CENTER);
         
     }
-    
+    private boolean blanco()
+    {
+        if(t_nombre.getText().isEmpty()||
+           t_codigo.getText().isEmpty())
+        {
+            return true;
+        }
+        else 
+            return false;
+    }
+      
+    private void agregar()
+    {
+          
+     
+         if(blanco())
+         {
+               JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+           
+         }
+         else 
+         {
+             
+             gestor.agregarCarrera(t_nombre.getText(), t_codigo.getText());
+             salir();
+         }
+     
+    }
      private void salir()
     {
         VenOpcCarrera vi = new VenOpcCarrera(gestor);
@@ -99,7 +130,7 @@ public class AgregarCarrera extends JFrame {
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;
-   private ControlVis gestor;
+   private Control gestor;
     private JLabel nombre;
     private JLabel codigo;
     

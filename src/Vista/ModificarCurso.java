@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,7 +26,7 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarCurso extends JFrame{
-     public ModificarCurso(ControlVis c) {
+     public ModificarCurso(Control c) {
             super("modificar Curso");
             gestor=c;
         ajustarComponentes(getContentPane());   
@@ -129,5 +130,5 @@ public class ModificarCurso extends JFrame{
     private JTextField t_num_ciclo;
     private JButton aceptar;
     private JButton cancel;
-    private ControlVis gestor;
+    private Control gestor;
 }

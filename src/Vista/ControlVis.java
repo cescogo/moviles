@@ -22,7 +22,7 @@ import Modelo.Profesor;
 public class ControlVis {
 
     public ControlVis() {
-        inter= new VentanaInicio(this);
+        //inter= new VentanaInicio(this);
         accesoD= new AccesoDB();
     }
        

@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -26,7 +27,7 @@ import javax.swing.JTextField;
  */
 public class AgregarCurso extends JFrame {
     
-        public AgregarCurso(ControlVis c) {
+        public AgregarCurso(Control c) {
             super("agregar Curso");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,350));
@@ -124,7 +125,7 @@ public class AgregarCurso extends JFrame {
         setVisible(true);
     }
       private JPanel principal;
-      private ControlVis gestor;
+      private Control gestor;
     private JPanel formulario;
     private GridBagConstraints gc;
     private JLabel nombre;

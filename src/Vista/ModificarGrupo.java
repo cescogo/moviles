@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,7 +26,7 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class ModificarGrupo extends JFrame{
-      public ModificarGrupo(ControlVis c) {
+      public ModificarGrupo(Control c) {
             super("modificar Grupo");
             gestor=c;
         ajustarComponentes(getContentPane());   
@@ -130,7 +131,7 @@ public class ModificarGrupo extends JFrame{
     private JTextField t_horario;
     private JTextField t_profesor;
     private JTextField t_curso;
-    private ControlVis gestor;
+    private Control gestor;
     private JButton aceptar;
     private JButton cancel;
 }

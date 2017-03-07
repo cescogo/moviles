@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,7 +26,7 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class AgregarGrupo extends JFrame {
-          public AgregarGrupo(ControlVis c) {
+          public AgregarGrupo(Control c) {
             super("agregar Grupo");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,350));
@@ -124,7 +125,7 @@ public class AgregarGrupo extends JFrame {
     private JLabel horario;
     private JLabel profesor;
     private JLabel curso;
-    private ControlVis gestor;
+    private Control gestor;
     private JTextField t_ciclo;
     private JTextField t_numero;
     private JTextField t_horario;

@@ -264,6 +264,31 @@ public class AccesoDB {
         }
     }
 
+   public void BuscarPersona(Persona a,String ced)
+   {
+         try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM persona WHERE cedula='"+ ced;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {  
+                
+                a.setCedula(bd.registro.getString("cedula"));
+                a.setClave(bd.registro.getString("pass"));
+                a.setEmail(bd.registro.getString("correo"));
+                a.setNombre(bd.registro.getString("nombre"));
+                a.setTelefono(bd.registro.getInt("telefono"));
+                a.setTipo(bd.registro.getInt("tipo"));
+                
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+       
+   }
    public void BuscarPrfNombre(String nom, Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
@@ -446,7 +471,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM carrera WHERE CEDULA:"+id;
+            String comandoListar = "SELECT * FROM persona WHERE CEDULA ="+id;
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setCedula(bd.registro.getString("cedula"));
@@ -668,7 +693,7 @@ public class AccesoDB {
           try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
-            String sql = "update Carrera set NOMBRE = '%s' where Codigo = '%s'";
+            String sql = "update Carrera set NOMBRE = '"+a.getNombre()+ "' WHERE codigo = '"+a.getCodigo()+"'";;
             sql=String.format(sql, a.getNombre(),a.getCodigo());
             Statement s = bd.conexion.createStatement();
             s.executeUpdate(sql);
@@ -709,12 +734,13 @@ public class AccesoDB {
     }
     //</editor-fold>  
    
+    //<editor-fold desc="Metodos de eliminar">
    public boolean eliminar(String id){
          try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             Statement s = bd.conexion.createStatement();
-            String sql = "delete from persona WHERE CEDULA='"+ id+"'";            
+            String sql = "delete from persona WHERE cedula='"+ id+"'";            
             s.executeUpdate(sql);
             bd.closeCon();
             return true;
@@ -742,6 +768,24 @@ public class AccesoDB {
         return false;
       
    }
+   
+   public boolean eliminarCarrera(String id){
+         try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            Statement s = bd.conexion.createStatement();
+            String sql = "delete from carrera WHERE CODIGO='"+ id+"'";            
+            s.executeUpdate(sql);
+            bd.closeCon();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+           
+        }
+        return false;
+      
+   }
+   //</editor-fold> 
     public void ofertaAcd(String Carrera, int ciclo, Lista l) {
       try {
             ConexionBD bd = new ConexionBD();

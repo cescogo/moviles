@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -27,14 +28,15 @@ import javax.swing.JTextField;
  */
 public class VentanaInicio extends JFrame{
 
-    public VentanaInicio(ControlVis c) {
+    public VentanaInicio() {
             super("Login");
+            
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(400,250));
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        gestor=c;
+        gestor=new Control();
     }
     
     public void ajustarComponentes(Container c)
@@ -84,7 +86,7 @@ public class VentanaInicio extends JFrame{
     
     private void login()
     {
-        int aux= gestor.login(t_usuario.getText(),t_clave.getText());
+        int aux= gestor.verificaUsuario(t_usuario.getText(),t_clave.getText());
         if(aux==1)
         {
             VentanaAdministrador vi= new VentanaAdministrador(gestor);
@@ -116,5 +118,5 @@ public class VentanaInicio extends JFrame{
     private JTextField t_clave;
     private JButton cancel;
     private JButton aceptar;
-    private ControlVis gestor;
+    private Control gestor;
 }

@@ -6,7 +6,7 @@ import Modelo.*;
 public class Control {
 
     public Control() {
-        this.user = new Persona(0);
+        this.user=new Persona(0);
         this.accesoD = new AccesoDB();
 
     }
@@ -16,8 +16,7 @@ public class Control {
         return user.getTipo();
     }
 
-    private Persona user;
-    private AccesoDB accesoD;
+   
 
 //<editor-fold desc="Metodos de Carrera">
     public void agregarCarrera(String nomcar, String codCAr) {
@@ -26,7 +25,7 @@ public class Control {
     }
 
     public void BorrarCarrera(String c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            accesoD.eliminarCarrera(c);
     }
 
     public void MostrarCarreraC(Carrera C, String c) {
@@ -41,8 +40,8 @@ public class Control {
         accesoD.mostrarCAs(l);
     }
 
-    public void ActualizarCarrera(String cod, String nom) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void ActualizarCarrera(Carrera a) {
+        accesoD.Actualiza(a);
     }
 //</editor-fold>
 
@@ -87,12 +86,11 @@ public class Control {
     }
 
     public boolean borrarP(String id) {
-        if (accesoD.eliminar(id)) {
-            return true;
-        }
-        return false;
+        return accesoD.eliminar(id) ;
+       
     }
 
+  
     public void mostrarProNom(String nom, Lista l) {
         accesoD.BuscarPrfNombre(nom, l);
     }
@@ -116,6 +114,11 @@ public class Control {
         }
     }
 
+        public void buscarPer(Persona a, String ced)
+        {
+            accesoD.Buscar(a, ced);            
+        }
+        
     public void mostrarPCar(String carr, Lista l) {
         accesoD.BuscarEstCarr(carr, l);
     }
@@ -211,8 +214,8 @@ public class Control {
         //llamar al met de acceso de datos para ingresar a la base de datos
     }
 
-    public void eliminarPersona(String id) {
-        accesoD.eliminar(id);
-    }
+    
 
+     private Persona user;
+    private AccesoDB accesoD;
 }

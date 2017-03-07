@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,7 +26,7 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class AgregarCiclo extends JFrame{
-        public AgregarCiclo(ControlVis c) {
+        public AgregarCiclo(Control c) {
             super("agregar Ciclo");
         ajustarComponentes(getContentPane());   
         setMinimumSize(new Dimension(500,350));
@@ -112,7 +113,7 @@ public class AgregarCiclo extends JFrame{
       private JPanel principal;
     private JPanel formulario;
     private GridBagConstraints gc;
-   private ControlVis gestor;
+   private Control gestor;
     private JLabel anno;
     private JLabel num_ciclo;
     private JLabel fe_inicio;

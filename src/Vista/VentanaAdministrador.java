@@ -2,6 +2,7 @@ package Vista;
 
 
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -28,13 +29,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class VentanaAdministrador extends JFrame  {
 
-    public VentanaAdministrador(ControlVis c) {
+    public VentanaAdministrador(Control c) {
         
         super("Administrador");
         gestor=c;
         ajustarComponentes(getContentPane());
         
-        setMinimumSize(new Dimension(650, 300));
+        setMinimumSize(new Dimension(450, 300));
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -52,21 +53,9 @@ public class VentanaAdministrador extends JFrame  {
         principal.add(central, BorderLayout.CENTER);
         c.add(principal, BorderLayout.CENTER);
     
-				estudiante= new JButton("menu de estudiante"); 
+				estudiante= new JButton("menu de Persona"); 
                                 estudiante.addActionListener((ActionEvent e)->{ventanaEstudiante();});
 				central.add(estudiante);
-				
-				profesor= new JButton("menu de profesor");
-                                profesor.addActionListener((ActionEvent e)->{ventanaProfesor();});
-				central.add(profesor);
-				
-				administrador= new JButton("menu de administrador");
-                                administrador.addActionListener((ActionEvent e)->{ventanaAdministrador();});
-				central.add(administrador);
-				
-				matriculador= new JButton("menu de matriculador");
-                                matriculador.addActionListener((ActionEvent e)->{ventanaMatriculador();});
-				central.add(matriculador);
                                 
                                 curso= new JButton("menu de curso");
                                 curso.addActionListener((ActionEvent e)->{ventanaCurso();});
@@ -106,30 +95,7 @@ public class VentanaAdministrador extends JFrame  {
                 this.dispose();
             
     }
-    
-     private void ventanaProfesor()
-    {
-    		VenOpcProfesor ve= new VenOpcProfesor(gestor);
-                ve.init();
-                this.dispose();
-            
-    }
-    
-      private void ventanaAdministrador()
-    {
-    		VenOpcAdministra ve= new VenOpcAdministra(gestor);
-                ve.init();
-                this.dispose();
-            
-    }
-      
-       private void ventanaMatriculador()
-    {
-    		VenOpcMatriculador ve= new VenOpcMatriculador(gestor);
-                ve.init();
-                this.dispose();
-            
-    }
+  
        private void ventanaCurso()
        {
            VenOpcCurso vi= new VenOpcCurso(gestor);
@@ -159,20 +125,17 @@ public class VentanaAdministrador extends JFrame  {
        }
        private void salir()
        {
-           VentanaInicio vi = new VentanaInicio(gestor);
+           VentanaInicio vi = new VentanaInicio();
            vi.init();
            this.dispose();
        }
     private JButton estudiante;
-    private JButton profesor; 
-    private JButton administrador;
-    private JButton matriculador;
     private JButton grupo;
     private JButton curso;
     private JButton ciclo;
     private JButton carrera;
     private JButton salir;
-    private ControlVis gestor;
+    private Control gestor;
     private GridBagConstraints gc;
 
 

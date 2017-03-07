@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -26,8 +27,8 @@ import javax.swing.JTextField;
  * @author ccg
  */
 public class EliminarEstudiante extends JFrame{
-    public EliminarEstudiante(ControlVis c) {
-            super("eliminar Estudiante");
+    public EliminarEstudiante(Control c) {
+            super("eliminar Persona");
         ajustarComponentes(getContentPane()); 
         gestor=c;
         setMinimumSize(new Dimension(500,150));
@@ -52,7 +53,7 @@ public class EliminarEstudiante extends JFrame{
         
         gc.gridx=0;
         gc.gridy=0;
-        formulario.add(cedula =new JLabel("Cedula del estudiante a eliminar:"),gc);    
+        formulario.add(cedula =new JLabel("Cedula de la persona a eliminar:"),gc);    
       
         gc.gridx=1;
         gc.gridy=0;
@@ -103,8 +104,15 @@ public class EliminarEstudiante extends JFrame{
          }
          else 
          {
-             gestor.eliminarPersona( t_cedula.getText());
+            boolean aux= gestor.borrarP(t_cedula.getText());
+            if(!aux)
+            {
+                JOptionPane.showMessageDialog(null, "Persona no existe","Error",JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
              salir();
+            }
          }
      }
       private JPanel principal;
@@ -114,6 +122,6 @@ public class EliminarEstudiante extends JFrame{
     private JTextField t_cedula;    
     private JButton aceptar;
     private JButton cancel;
-    private ControlVis gestor;
+    private Control gestor;
     
 }

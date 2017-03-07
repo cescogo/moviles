@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Control.Control;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
  * @author ccg
  */
 public class VenOpcGrupo extends JFrame{
-     public VenOpcGrupo(ControlVis c) {
+     public VenOpcGrupo(Control c) {
         
         super("Opciones de Grupo");
         gestor=c;
@@ -110,6 +111,6 @@ public class VenOpcGrupo extends JFrame{
     private JButton modificar;
     private JButton eliminar;
     private JButton salir;
-    private ControlVis gestor;
+    private Control gestor;
     private JPanel cancelar;
 }
