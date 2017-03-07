@@ -18,7 +18,12 @@ public class Grupo {
     }
 
     public Grupo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      this.id = "";
+        this.ciclo = 0;
+        this.numero = -1;
+        this.horario = "";
+        this.profesor = "";
+        this.curso = "";
     }
 
     public String getId() {
@@ -71,6 +76,10 @@ public class Grupo {
         this.curso = curso;
     }
 
+     @Override
+    public String toString() {
+        return "{carrera=" +curso +", codigo=" + id +", Ced profesor =" + profesor +", horario=" + horario+'}';
+    }
   
     
   

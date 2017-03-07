@@ -558,10 +558,10 @@ public class AccesoDB {
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) { 
                 Grupo a = new Grupo();
-                a.setId(bd.registro.getString("ID_GRUPO"));
-                a.setNumero(bd.registro.getInt("NUMERO"));
                 a.setProfesor(bd.registro.getString("ID_PROF"));
                 a.setCurso(bd.registro.getString("COD_CURSO"));  
+                a.setNumero(bd.registro.getInt("NUMERO"));
+                a.setId(bd.registro.getString("ID_GRUPO"));
                 l.agregar(a);    
             }
             bd.closeCon();
@@ -691,8 +691,9 @@ public class AccesoDB {
             bd.Connect();
             String fec ="";
             Statement s = bd.conexion.createStatement();
-            s.executeUpdate("INSERT INTO CURSO VALUES('" + a.getId() + "','" + a.getNumero()+ "','"
-                                                         + a.getProfesor()+ "','" + a.getCurso()+ "')");
+            String sql ="INSERT INTO grupo VALUES('" + a.getId() + "','" + a.getNumero()+ "','"
+                    + a.getProfesor()+ "','" + a.getCurso()+ "')";
+            s.executeUpdate(sql);
             bd.closeCon();
             }
           catch (SQLException e) {
@@ -854,8 +855,8 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM CURSO WHERE COD_CARRERA ="+Carrera+""
-                    + "AND NUM_CICLO="+ciclo;
+            String comandoListar = "SELECT * FROM CURSO WHERE COD_CARRERA ='"+Carrera+"'"
+                    + " AND NUM_CICLO="+ciclo;
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {
                 Curso a = new Curso();

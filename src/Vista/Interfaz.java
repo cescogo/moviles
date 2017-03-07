@@ -32,7 +32,7 @@ public class Interfaz {
 
     public void initB() {
         int opc = 0;
-        while (opc != 1) {
+        while (opc != 2) {
             System.out.println("1--> ENTRAR");
             System.out.println("2--> SALIR");
             opc = leerI();
@@ -60,6 +60,10 @@ public class Interfaz {
                 break;
             case 4:
                 FuncAlumno();
+                //
+                break;
+            case 0:break;
+                
         }
 
     }
@@ -747,7 +751,6 @@ public class Interfaz {
 
     public void Oferta() {
         int opc = 0;
-        
         while (opc != 2) {
             opc = Oferta2();
             if (opc == 1) {
@@ -757,23 +760,23 @@ public class Interfaz {
     }
 
     public void AdminOferta() {
-        String Carrera = SolicitaNomCarrera();
+        String Carrera = SolicitaCodCarrera();
         int ciclo = SolicitaCiclo();
         Lista cursos = new Lista();
         ctrl.ofertaAcd(Carrera, ciclo, cursos);
         System.out.println(cursos.toString());
-
-        sbmoferta();
+        
         int opc = sbmoferta();
         if (opc == 1) {
             String curso = SolicitaCodCurso();
             Lista grupos = new Lista();
             ctrl.BuscarGrpCrs(curso, grupos);
             System.out.println(grupos.toString());
-            if (sbmgrpsCrs() == 1) {
+                int ccc= sbmgrpsCrs();
+            if (ccc == 1) {
                 AgregarGrupo(curso);
             }
-            if (sbmgrpsCrs() == 2) {
+            if (ccc == 2) {
                 Grupo g = new Grupo();
                 ctrl.Bcgrupo(curso, SolicitaNgrupo(), g);
                 

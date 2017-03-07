@@ -208,7 +208,7 @@ public class Control {
     public void agregarGrupo(char ciclo, int numero, String horario, String profesor, String curso) {
         String id = curso + '-' + String.valueOf(numero);
         Grupo p = new Grupo(id, ciclo, numero, horario, profesor, curso);
-        //llamar al met de acceso de datos para ingresar a la base de datos
+        accesoD.agrega(p);
     }
 
     public void Bcgrupo(String id_g, int ngrp, Grupo p) {
