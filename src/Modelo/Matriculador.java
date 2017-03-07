@@ -17,6 +17,10 @@ public class Matriculador extends Persona {
         super(telefono, email, nombre, cedula, 2,clave);
     }
 
+    public Matriculador() {
+        super(2);
+        }
+
    
     
   

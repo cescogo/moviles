@@ -169,7 +169,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM persona WHERE CEDULA='"+ id+"'";
+            String comandoListar = "SELECT * FROM persona WHERE CEDULA='"+ id+"' And TIPO = 4";
             bd.registro = bd.comando.executeQuery(comandoListar);
             
             while (bd.registro.next()) {                
@@ -189,22 +189,23 @@ public class AccesoDB {
         }
     }
 
-   public void BuscarEstNom(Persona a, String nom) {
+   public void BuscarEstNom(String nom, Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM persona WHERE nombre='"+ nom+"'";
+            String comandoListar = "SELECT * FROM persona WHERE nombre='"+ nom+"' And TIPO = 4";
             bd.registro = bd.comando.executeQuery(comandoListar);
-            while (bd.registro.next()) {                
+            while (bd.registro.next()) {   
+                Alumno a = new Alumno();
                 a.setCedula(bd.registro.getString("cedula"));
                 a.setClave(bd.registro.getString("pass"));
                 a.setEmail(bd.registro.getString("correo"));
                 a.setNombre(bd.registro.getString("nombre"));
                 a.setTelefono(bd.registro.getInt("telefono"));
                 a.setTipo(bd.registro.getInt("tipo"));
-                if(a instanceof Alumno)
-                    ((Alumno) a).setF_nac("F_NACIMIENTO");
+                a.setF_nac(bd.registro.getString("F_NACIMIENTO"));
+                l.agregar(a);
             }
             bd.closeCon();
             
@@ -213,22 +214,23 @@ public class AccesoDB {
         }
     }
 
-   public void BuscarEstCarr(Persona a, String carr) {
+   public void BuscarEstCarr(String carr, Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
             String comandoListar = "SELECT * FROM persona WHERE carrera='"+ carr+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
-            while (bd.registro.next()) {                
+            while (bd.registro.next()) {   
+                Alumno a=  new Alumno();
                 a.setCedula(bd.registro.getString("cedula"));
                 a.setClave(bd.registro.getString("pass"));
                 a.setEmail(bd.registro.getString("correo"));
                 a.setNombre(bd.registro.getString("nombre"));
                 a.setTelefono(bd.registro.getInt("telefono"));
                 a.setTipo(bd.registro.getInt("tipo"));
-                if(a instanceof Alumno)
-                    ((Alumno) a).setF_nac("F_NACIMIENTO");
+                a.setF_nac(bd.registro.getString("F_NACIMIENTO"));
+                l.agregar(a);
             }
             bd.closeCon();
             
@@ -242,7 +244,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM persona WHERE CEDULA='"+ id+"'";
+            String comandoListar = "SELECT * FROM persona WHERE CEDULA='"+ id+"' And TIPO = 3";
             bd.registro = bd.comando.executeQuery(comandoListar);
             
             while (bd.registro.next()) {                
@@ -267,7 +269,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM persona WHERE nombre='"+ nom+"'";
+            String comandoListar = "SELECT * FROM persona WHERE nombre='"+ nom+"' And TIPO = 3";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {  
                 Profesor a = new Profesor();
@@ -286,6 +288,52 @@ public class AccesoDB {
         }
     }
    
+   public void BuscarAdmId(Persona a, String id) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM persona WHERE CEDULA='"+ id+"' And TIPO = 1";
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            
+            while (bd.registro.next()) {                
+                a.setCedula(bd.registro.getString("cedula"));
+                a.setClave(bd.registro.getString("pass"));
+                a.setEmail(bd.registro.getString("correo"));
+                a.setNombre(bd.registro.getString("nombre"));
+                a.setTelefono(bd.registro.getInt("telefono"));
+                a.setTipo(bd.registro.getInt("tipo"));
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public void BuscarMtr(Persona a, String id) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM persona WHERE CEDULA='"+ id+"' And TIPO = 2";
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            
+            while (bd.registro.next()) {                
+                a.setCedula(bd.registro.getString("cedula"));
+                a.setClave(bd.registro.getString("pass"));
+                a.setEmail(bd.registro.getString("correo"));
+                a.setNombre(bd.registro.getString("nombre"));
+                a.setTelefono(bd.registro.getInt("telefono"));
+                a.setTipo(bd.registro.getInt("tipo"));
+            }
+            bd.closeCon();
+            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
    public void mostrar(Persona a, Lista l) {
         try {
             ConexionBD bd = new ConexionBD();
