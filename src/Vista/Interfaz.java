@@ -32,7 +32,7 @@ public class Interfaz {
 
     public void initB() {
         int opc = 0;
-        while (opc != 1) {
+        while (opc != 2) {
             System.out.println("1--> ENTRAR");
             System.out.println("2--> SALIR");
             opc = leerI();
@@ -53,13 +53,19 @@ public class Interfaz {
                 FuncAdministrativas();
                 break;
             case 2:
-                //FuncMatriculador();
+                int opc = 0;
+                while((opc = nuevamatricula())!= 2)
+                    if(opc==1)AdminMatricula();
                 break;
             case 3:
                 //FuncProfesor();
                 break;
             case 4:
                 FuncAlumno();
+                //
+                break;
+            case 0:break;
+                
         }
 
     }
@@ -747,7 +753,6 @@ public class Interfaz {
 
     public void Oferta() {
         int opc = 0;
-        
         while (opc != 2) {
             opc = Oferta2();
             if (opc == 1) {
@@ -757,23 +762,23 @@ public class Interfaz {
     }
 
     public void AdminOferta() {
-        String Carrera = SolicitaNomCarrera();
+        String Carrera = SolicitaCodCarrera();
         int ciclo = SolicitaCiclo();
         Lista cursos = new Lista();
         ctrl.ofertaAcd(Carrera, ciclo, cursos);
         System.out.println(cursos.toString());
-
-        sbmoferta();
+        
         int opc = sbmoferta();
         if (opc == 1) {
             String curso = SolicitaCodCurso();
             Lista grupos = new Lista();
             ctrl.BuscarGrpCrs(curso, grupos);
             System.out.println(grupos.toString());
-            if (sbmgrpsCrs() == 1) {
+                int ccc= sbmgrpsCrs();
+            if (ccc == 1) {
                 AgregarGrupo(curso);
             }
-            if (sbmgrpsCrs() == 2) {
+            if (ccc == 2) {
                 Grupo g = new Grupo();
                 ctrl.Bcgrupo(curso, SolicitaNgrupo(), g);
                 
@@ -1092,9 +1097,14 @@ public class Interfaz {
             while(op!=3){
             op=opcMA();
             if(op == 1){
-                //matricula
-            }
+                if(ctrl.MAtricula(SolicitaNomCurso(), a))
+                    System.out.println("Matriculado");
+                else System.out.println("no Matriculado");
+           }
             if(op == 2){
+                if(ctrl.DesMAtricula(SolicitaNomCurso(), a))
+                    System.out.println("DesMatriculado");
+                else System.out.println("no puede desmatricular");                
                 //dematricula
             }
             }
@@ -1102,6 +1112,12 @@ public class Interfaz {
             
         }
     }
+    public int nuevamatricula(){
+        System.out.println("1--> nueva matricula");
+        System.out.println("2--> salir");
+        return leerI();
+    }
+    
 public int opcMA(){
     System.out.println("Agregar");
     System.out.println("eliminar");

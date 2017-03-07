@@ -11,6 +11,8 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import Modelo.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AccesoDB {
     
@@ -49,6 +51,28 @@ public class AccesoDB {
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
             String comandoListar = "SELECT * FROM curso WHERE codigo='"+ cod+"'"; 
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                 a.setCodigo(bd.registro.getString("codigo"));
+                 a.setNombre(bd.registro.getString("nombre"));  
+                 a.setCreditos(bd.registro.getInt("creditos"));
+                 a.setHsemanales(bd.registro.getInt("H_SEMANALES"));
+                 a.setCarrera(bd.registro.getString("COD_CARRERA"));
+                 a.setNum_ciclo(bd.registro.getInt("NUM_CICLO"));  
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+   
+   public void CMatri(Curso a, String car, String cod) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM curso WHERE codigo='"+ cod+"' "
+                    + "And COD_CARRERA='"+car+"'"; 
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                  a.setCodigo(bd.registro.getString("codigo"));
@@ -558,10 +582,10 @@ public class AccesoDB {
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) { 
                 Grupo a = new Grupo();
-                a.setId(bd.registro.getString("ID_GRUPO"));
-                a.setNumero(bd.registro.getInt("NUMERO"));
                 a.setProfesor(bd.registro.getString("ID_PROF"));
                 a.setCurso(bd.registro.getString("COD_CURSO"));  
+                a.setNumero(bd.registro.getInt("NUMERO"));
+                a.setId(bd.registro.getString("ID_GRUPO"));
                 l.agregar(a);    
             }
             bd.closeCon();
@@ -691,8 +715,9 @@ public class AccesoDB {
             bd.Connect();
             String fec ="";
             Statement s = bd.conexion.createStatement();
-            s.executeUpdate("INSERT INTO CURSO VALUES('" + a.getId() + "','" + a.getNumero()+ "','"
-                                                         + a.getProfesor()+ "','" + a.getCurso()+ "')");
+            String sql ="INSERT INTO grupo VALUES('" + a.getId() + "','" + a.getNumero()+ "','"
+                    + a.getProfesor()+ "','" + a.getCurso()+ "')";
+            s.executeUpdate(sql);
             bd.closeCon();
             }
           catch (SQLException e) {
@@ -814,7 +839,74 @@ public class AccesoDB {
         return false;
       
    }
+   public void matricula(Nota n){
+   try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            Statement s = bd.conexion.createStatement();
+            s.executeUpdate("INSERT INTO CURSO VALUES('" + n.getNOTA()+ "','" + n.getCURSO()+ "','"
+                                                         + n.getESTUDIANTE()+"'");
+            bd.closeCon();            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+   }
 
+   public boolean Desmatricula(String id, String cod){
+         try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            Statement s = bd.conexion.createStatement();
+            String sql = "delete from Nota WHERE CODIGO='"+ cod+"' AND ESTUDIANTE ='"+id+"'";            
+            s.executeUpdate(sql);
+            bd.closeCon();
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+           
+        }
+        return false;
+      
+   }
+   
+   
+   public boolean estaECurso(String ced,String curs){
+    
+       try {
+           ConexionBD bd = new ConexionBD();
+            bd.Connect();
+           Statement s = bd.conexion.createStatement();
+           String comandoListar = "SELECT Curso FROM NOTA WHERE CURSO ='"+curs+"' AND ESTUDIANTE='"+ced+"'";
+           bd.registro = bd.comando.executeQuery(comandoListar);
+            if(bd.registro.next()){
+            return true;
+            }
+            bd.closeCon();
+       } catch (SQLException ex) {
+             System.err.println(ex.getMessage());
+       }
+            return false;
+   }
+   
+   public String pasoCurso(String ced,String curs){
+    
+       try {
+           ConexionBD bd = new ConexionBD();
+            bd.Connect();
+           Statement s = bd.conexion.createStatement();
+           String comandoListar = "SELECT Curso FROM NOTA WHERE CURSO ='"+curs+"' AND ESTUDIANTE='"+ced+
+                   "' AND Nota != 0";
+           bd.registro = bd.comando.executeQuery(comandoListar);
+            if(bd.registro.next()){
+            return curs;
+            }
+            bd.closeCon();
+       } catch (SQLException ex) {
+             System.err.println(ex.getMessage());
+       }
+            return "";
+   }
+   
    public boolean eliminarCurso(String id){
          try {
             ConexionBD bd = new ConexionBD();
@@ -854,8 +946,8 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM CURSO WHERE COD_CARRERA ="+Carrera+""
-                    + "AND NUM_CICLO="+ciclo;
+            String comandoListar = "SELECT * FROM CURSO WHERE COD_CARRERA ='"+Carrera+"'"
+                    + " AND NUM_CICLO="+ciclo;
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {
                 Curso a = new Curso();
