@@ -167,7 +167,9 @@ public class AgregarGrupo extends JFrame {
             
             else
             {
-                gestor.agregarGrupo(Integer.parseInt(t_numero.getText()), t_horario.getText(), t_profesor.getText(),  t_curso.getText());
+                int aux=Integer.parseInt(t_numero.getText());
+                
+                gestor.agregarGrupo(aux, t_horario.getText(), t_profesor.getText(),  t_curso.getText());
                 salir();
                 
             }

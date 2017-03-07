@@ -18,7 +18,7 @@ public class Grupo {
 
     public Grupo() {
       this.id = "";
-        this.ciclo = 0;
+       
         this.numero = -1;
         this.horario = "";
         this.profesor = "";

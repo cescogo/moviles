@@ -6,6 +6,7 @@
 package Vista;
 
 import Control.Control;
+import Modelo.Carrera;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -133,6 +134,12 @@ public class AgregarEstudiante extends JFrame {
         vi.init();
         this.dispose();
     }
+      private void salirCur()
+    {
+        AgregarCurso vi = new AgregarCurso(gestor);
+        vi.init();
+        this.dispose();
+    }
      
      private void Agregar()
      {
@@ -143,13 +150,36 @@ public class AgregarEstudiante extends JFrame {
          }
          else 
          {
+             if(!existe())
+             {
+                 JOptionPane.showMessageDialog(null, "Carrera no existe agreguela por favor","Error",JOptionPane.ERROR_MESSAGE);
+                 salirCur();
+                 
+             }
+             else
+             {
              int aux=Integer.parseInt(t_telefono.getText());
              gestor.agregarAlumno(t_nombre.getText(), t_cedula.getText(), t_Fe_nac.getText(), aux, t_email.getText(), t_clave.getText(),t_codcarr.getText());
              salir();
+             }
          }
      }
     public void init() {
         setVisible(true);
+    }
+    
+    private boolean existe()
+    {
+        Carrera c= new Carrera();
+        gestor.MostrarCarreraC(c,t_codcarr.getText());
+        if(c.getCodigo()=="")
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     
     private boolean blanco()
@@ -159,7 +189,8 @@ public class AgregarEstudiante extends JFrame {
            t_email.getText()==""||
            t_telefono.getText()==""||
            t_cedula.getText()==""||
-           t_Fe_nac.getText()=="")
+           t_Fe_nac.getText()==""||
+                t_codcarr.getText().isEmpty())
         {
             return true;
         }
