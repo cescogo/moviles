@@ -482,7 +482,7 @@ public class AccesoDB {
         }
     }
    
-   public void Buscar(Grupo a, String cod, String num) {
+   public void Buscar(Grupo a, String cod, int num) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -747,7 +747,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT CODIGO FROM CURSO WHERE COD_CARRERA ="+Carrera+""
+            String comandoListar = "SELECT * FROM CURSO WHERE COD_CARRERA ="+Carrera+""
                     + "AND NUM_CICLO="+ciclo;
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {

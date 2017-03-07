@@ -4,6 +4,7 @@ import java.util.Scanner;
 import Control.Control;
 import Modelo.*;
 import java.awt.List;
+
 public class Interfaz {
 
     private Control ctrl;
@@ -11,6 +12,7 @@ public class Interfaz {
     public Interfaz(Control cont) {
         ctrl = cont;
     }
+
     public void BienvInter(int t) {
         switch (t) {
             case 1:
@@ -27,6 +29,7 @@ public class Interfaz {
                 break;
         }
     }
+
     public void initB() {
         int opc = 0;
         while (opc != 1) {
@@ -38,6 +41,7 @@ public class Interfaz {
             }
         }
     }
+
     public void init() {
         System.out.println("Bienvenido al programa de gestion academica");
         System.out.println("---------LOGIN---------");
@@ -55,10 +59,11 @@ public class Interfaz {
                 //FuncProfesor();
                 break;
             case 4:
-                //FuncAlumno();
+            //FuncAlumno();
         }
 
     }
+
     public String solicitaUsr() {
         System.out.println("Introdusca Usuario: ");
         String pass = "";
@@ -67,6 +72,7 @@ public class Interfaz {
         return pass;
 
     }
+
     public String solicitaPass() {
         System.out.println("digite la contraseña:");
         String pass = "";
@@ -74,7 +80,8 @@ public class Interfaz {
         pass = entradaEscaner.nextLine(); //Invocamos un método sobre un objeto Scanner
         return pass;
     }
-    public void FuncAdministrativas(){
+
+    public void FuncAdministrativas() {
         BienvInter(1);
         int opc = -1;
         while (opc != 10) {
@@ -96,13 +103,13 @@ public class Interfaz {
                     //Adminciclo();
                     break;
                 case 6:
-                    //AdminOferta();
+                    Oferta();
                     break;
                 case 7:
                     //AdminMatricula();
                     break;
                 case 8:
-                    //ConsultaHistorial();
+                    ConsultaHistorial(1);
                     break;
                 case 9:
                     AgregarAcceso();
@@ -110,9 +117,10 @@ public class Interfaz {
                 default:
                     ERROR();
                     break;
-            }
+                }
         }
     }
+
     private void AdminCarrera() {
         int opc = 0;
         while (opc != 5) {
@@ -139,15 +147,18 @@ public class Interfaz {
             }
         }
     }
+
     private void crearCarrera() {
-        String nomcar =SolicitaNomCarrera();
-        String codCAr =SolicitaCodCarrera();
+        String nomcar = SolicitaNomCarrera();
+        String codCAr = SolicitaCodCarrera();
         ctrl.agregarCarrera(nomcar, codCAr);
-    }  
+    }
+
     public void BorrarCarrera() {
         String c = SolicitaCodCarrera();
         ctrl.BorrarCarrera(c);
     }
+
     public void MostrarCarrera() {
         int p = 0;
         Carrera c = new Carrera();
@@ -155,10 +166,10 @@ public class Interfaz {
             BusqCar();
             switch (p = leerI()) {
                 case 1:
-                    ctrl.MostrarCarreraC(c,SolicitaCodCarrera());
+                    ctrl.MostrarCarreraC(c, SolicitaCodCarrera());
                     break;
                 case 2:
-                    ctrl.MostrarCarreraN(c,SolicitaNomCarrera());
+                    ctrl.MostrarCarreraN(c, SolicitaNomCarrera());
                     break;
                 default:
                     ERROR();
@@ -166,23 +177,26 @@ public class Interfaz {
             System.out.println(c.toString());
         }
     }
+
     public void MostrarCarreras() {
         Lista l = new Lista();
         ctrl.MostrarCarreras(l);
-         System.out.println(l.toString());
+        System.out.println(l.toString());
     }
-     public void ActualizarCarrera() {
-         ctrl.ActualizarCarrera(SolicitaCodCarrera(), SolicitaNomCarrera());
+
+    public void ActualizarCarrera() {
+        ctrl.ActualizarCarrera(SolicitaCodCarrera(), SolicitaNomCarrera());
     }
-     
+
     public void errorLogin() {
         System.out.println("Error Usuario o Contraseña incorrecta: ");
     }
+
     public void ERROR() {
         System.out.println("ERROR....");
     }
-    
-     private void AdminCurso() {
+
+    private void AdminCurso() {
         int opc = 0;
         while (opc != 5) {
             menuCurso();
@@ -199,18 +213,24 @@ public class Interfaz {
                 case 4:
                     ActualizarCurso();
                     break;
-                default : ERROR();
+                default:
+                    ERROR();
             }
         }
     }
+
     private void crearCurso() {
-      ctrl.agregarCurso(SolicitaCodCurso(), SolicitaNomCurso(), SolicitaCreditos(), SolicitaHsemanal(), SolicitaCodCarrera(), SolicitaCiclo());
+        ctrl.agregarCurso(SolicitaCodCurso(), SolicitaNomCurso(), SolicitaCreditos(), SolicitaHsemanal(), SolicitaCodCarrera(), SolicitaCiclo());
     }
+
     private void BorrarCurso() {
-        if(ctrl.BorrarCurso(SolicitaCodCurso()))
+        if (ctrl.BorrarCurso(SolicitaCodCurso())) {
             SucceDel();
-        else ErrorDel();
+        } else {
+            ErrorDel();
+        }
     }
+
     private void MostrarCurso() {
         int p = 0;
         Curso C = new Curso();
@@ -218,7 +238,7 @@ public class Interfaz {
             BusqCurso();
             switch (p = leerI()) {
                 case 1:
-                    ctrl.MostrarCurso(C, SolicitaNomCurso(),1);
+                    ctrl.MostrarCurso(C, SolicitaNomCurso(), 1);
                     System.out.println(C.toString());
                     break;
                 case 2:
@@ -235,9 +255,10 @@ public class Interfaz {
             }
         }
     }
+
     private void ActualizarCurso() {
         Curso s = new Curso();
-        ctrl.MostrarCurso(s, SolicitaCodCurso(),2);
+        ctrl.MostrarCurso(s, SolicitaCodCurso(), 2);
         System.out.println(s.toString());
         if (s.getCodigo() != "") {
             int p = 0;
@@ -246,37 +267,40 @@ public class Interfaz {
                 switch (p = leerI()) {
                     case 1://nombre
                         String nom = SolicitaNomCurso();
-                        if(nom != "")
+                        if (nom != "") {
                             s.setNombre(nom);
+                        }
                         break;
                     case 2:
                         int cr = SolicitaCreditos();
-                        if(cr > 2 || cr < 5)
+                        if (cr > 2 || cr < 5) {
                             s.setCreditos(cr);
+                        }
                         break;
                     case 3://correo
                         int hr = SolicitaHsemanal();
-                        if(hr > 1)
+                        if (hr > 1) {
                             s.setHsemanales(hr);
+                        }
                         break;
                     case 4:
                         int ci = SolicitaCiclo();
-                        if( ci ==1 || ci ==2)
+                        if (ci == 1 || ci == 2) {
                             s.setNum_ciclo(ci);
+                        }
                         break;
                     default:
                         ERROR();
                 }
             }
-        }
-        else{ 
+        } else {
             ERROR();
-                
+
         }
         ctrl.ActualizarCurso(s);
     }
 
-     private void AdminProfes() {
+    private void AdminProfes() {
         int opc = 0;
         while (opc != 5) {
             MenuProfesor();
@@ -293,32 +317,38 @@ public class Interfaz {
                 case 4:
                     ActualizarProfe();
                     break;
-                default: ERROR();
+                default:
+                    ERROR();
                     break;
             }
         }
     }
+
     private void crearProfe() {
         ctrl.agregarProfesor(SolicitaNombres(), SolicitaCedulas(), SolicitaTelefono(), SolicitaEmail(), solicitaPass());
     }
+
     private void BorrarPersona() {
-        if(ctrl.borrarP(SolicitaCedulas()))
+        if (ctrl.borrarP(SolicitaCedulas())) {
             SucceDel();
-        else ErrorDel();
+        } else {
+            ErrorDel();
+        }
     }
+
     private void MostrarProfe() {
         int p = 0;
         Profesor per = new Profesor();
         while (p != 3) {
             BusqProf();
-           switch (p = leerI()) {
+            switch (p = leerI()) {
                 case 1:
                     ctrl.mostrarPCed(per, SolicitaCedulas());
                     System.out.println(per.toString());
                     break;
                 case 2:
                     Lista l = new Lista();
-                    ctrl.mostrarProNom(SolicitaNombres(),l);
+                    ctrl.mostrarProNom(SolicitaNombres(), l);
                     System.out.println(l.toString());
                     break;
                 default:
@@ -326,6 +356,7 @@ public class Interfaz {
             }
         }
     }
+
     private void ActualizarProfe() {
         Profesor pro = new Profesor();
         ctrl.mostrarPCed(pro, SolicitaCedulas());
@@ -335,40 +366,44 @@ public class Interfaz {
                 switch (p = ModifProf()) {
                     case 1://nombre
                         String nom = SolicitaNombres();
-                        if(nom != "")
-                        pro.setNombre(nom);
-                            
+                        if (nom != "") {
+                            pro.setNombre(nom);
+                        }
+
                         break;
                     case 2://pass
                         String pass = solicitaPass();
-                        if(pass != "")
+                        if (pass != "") {
                             pro.setClave(pass);
+                        }
                         break;
                     case 3://correo
-                         String correo = SolicitaEmail();
-                        if(correo != "")
+                        String correo = SolicitaEmail();
+                        if (correo != "") {
                             pro.setEmail(correo);
+                        }
                         break;
                     case 4://telefono
                         int tel = SolicitaTelefono();
-                        if(tel != 0)
+                        if (tel != 0) {
                             pro.setTelefono(tel);
+                        }
                         break;
                     default:
                         ERROR();
                 }
             }
-        }
-        else{ ERROR();
-                return;
+        } else {
+            ERROR();
+            return;
         }
         ctrl.actualizaP(pro);
     }
-    
-      private void AdminEst() {
-      int opc = 0;
+
+    private void AdminEst() {
+        int opc = 0;
         while (opc != 5) {
-                MenuProfesor();
+            MenuProfesor();
             switch (opc = leerI()) {
                 case 1:
                     crearEst();
@@ -382,47 +417,53 @@ public class Interfaz {
                 case 4:
                     ActualizarEst();
                     break;
-                default: ERROR();
+                default:
+                    ERROR();
                     break;
             }
         }
     }
+
     private void crearEst() {
         ctrl.agregarAlumno(SolicitaNombres(), SolicitaCedulas(), SolicitaFec_Nac(), SolicitaTelefono(), SolicitaEmail(), solicitaPass());
     }
+
     private void BorrarEst() {
-         if(ctrl.borrarP(SolicitaCedulas()))
+        if (ctrl.borrarP(SolicitaCedulas())) {
             SucceDel();
-        else 
-             ErrorDel();
+        } else {
+            ErrorDel();
+        }
     }
+
     private void MostrarEst() {
-       int p = 0;
+        int p = 0;
         Profesor per = new Profesor();
         while (p != 3) {
             BusqProf();
-           switch (p = leerI()) {
+            switch (p = leerI()) {
                 case 1:
                     ctrl.mostrarPCed(per, SolicitaCedulas());
                     System.out.println(per.toString());
                     break;
                 case 2:
                     Lista l = new Lista();
-                    ctrl.mostrarEstNom(SolicitaNombres(),l);
+                    ctrl.mostrarEstNom(SolicitaNombres(), l);
                     System.out.println(l.toString());
                     break;
                 case 3:
-                   // buscar carrera
+                    // buscar carrera
                     Lista w = new Lista();
-                    ctrl.mostrarPCar(SolicitaCodCarrera(),w);
+                    ctrl.mostrarPCar(SolicitaCodCarrera(), w);
                     break;
                 default:
                     ERROR();
             }
         }
     }
+
     private void ActualizarEst() {
-        Alumno al= new Alumno();
+        Alumno al = new Alumno();
         ctrl.mostrarPCed(al, SolicitaCedulas());
         System.out.println(al.toString());
 
@@ -433,40 +474,47 @@ public class Interfaz {
                 switch (p) {
                     case 1://nombre
                         String nom = SolicitaNombres();
-                        if(nom != "")
+                        if (nom != "") {
                             al.setNombre(nom);
+                        }
                         break;
                     case 2://pass
                         String pass = solicitaPass();
-                        if(pass != "")al.setClave(pass);
+                        if (pass != "") {
+                            al.setClave(pass);
+                        }
                         break;
                     case 3://correo
-                         String correo = SolicitaEmail();
-                        if(correo != "")al.setEmail(correo);
+                        String correo = SolicitaEmail();
+                        if (correo != "") {
+                            al.setEmail(correo);
+                        }
                         break;
                     case 4://telefono
                         int tel = SolicitaTelefono();
-                        if(tel != 0)al.setTelefono(tel);
+                        if (tel != 0) {
+                            al.setTelefono(tel);
+                        }
                         break;
                     default:
                         ERROR();
                 }
             }
-        }
-        else{ ERROR();
-                return;
+        } else {
+            ERROR();
+            return;
         }
         ctrl.actualizaP(al);
     }
-    
+
     private void AgregarAcceso() {
-        
-      }
-    
+
+    }
+
     private void AdminAdmin() {
-      int opc = 0;
+        int opc = 0;
         while (opc != 5) {
-                MenuProfesor();
+            MenuProfesor();
             switch (opc = leerI()) {
                 case 1:
                     crearAdm();
@@ -480,26 +528,31 @@ public class Interfaz {
                 case 4:
                     ActualizarAdm();
                     break;
-                default: ERROR();
+                default:
+                    ERROR();
                     break;
             }
         }
     }
-      private void crearAdm() {
-        ctrl.agregarAdministrador( SolicitaNombres(), SolicitaCedulas(), SolicitaTelefono(), SolicitaEmail(), solicitaPass());
+
+    private void crearAdm() {
+        ctrl.agregarAdministrador(SolicitaNombres(), SolicitaCedulas(), SolicitaTelefono(), SolicitaEmail(), solicitaPass());
     }
+
     private void BorrarAdm() {
-         if(ctrl.borrarP(SolicitaCedulas()))
+        if (ctrl.borrarP(SolicitaCedulas())) {
             SucceDel();
-        else 
-             ErrorDel();
+        } else {
+            ErrorDel();
+        }
     }
+
     private void MostrarAdm() {
-           int p = 0;
+        int p = 0;
         Administrador per = new Administrador();
         while (p != 2) {
             BusqAcc();
-           switch (p = leerI()) {
+            switch (p = leerI()) {
                 case 1:
                     ctrl.mostrarPCed(per, SolicitaCedulas());
                     System.out.println(per.toString());
@@ -509,8 +562,9 @@ public class Interfaz {
             }
         }
     }
+
     private void ActualizarAdm() {
-        Administrador al= new Administrador();
+        Administrador al = new Administrador();
         ctrl.mostrarPCed(al, SolicitaCedulas());
         System.out.println(al.toString());
 
@@ -521,37 +575,43 @@ public class Interfaz {
                 switch (p) {
                     case 1://nombre
                         String nom = SolicitaNombres();
-                        if(nom != "")
+                        if (nom != "") {
                             al.setNombre(nom);
+                        }
                         break;
                     case 2://pass
                         String pass = solicitaPass();
-                        if(pass != "")al.setClave(pass);
+                        if (pass != "") {
+                            al.setClave(pass);
+                        }
                         break;
                     case 3://correo
-                         String correo = SolicitaEmail();
-                        if(correo != "")al.setEmail(correo);
+                        String correo = SolicitaEmail();
+                        if (correo != "") {
+                            al.setEmail(correo);
+                        }
                         break;
                     case 4://telefono
                         int tel = SolicitaTelefono();
-                        if(tel != 0)al.setTelefono(tel);
+                        if (tel != 0) {
+                            al.setTelefono(tel);
+                        }
                         break;
                     default:
                         ERROR();
                 }
             }
-        }
-        else{ ERROR();
-                return;
+        } else {
+            ERROR();
+            return;
         }
         ctrl.actualizaP(al);
     }
-    
-    
-      private void AdminMatr() {
-      int opc = 0;
+
+    private void AdminMatr() {
+        int opc = 0;
         while (opc != 5) {
-                MenuProfesor();
+            MenuProfesor();
             switch (opc = leerI()) {
                 case 1:
                     crearMatr();
@@ -565,26 +625,31 @@ public class Interfaz {
                 case 4:
                     ActualizarMatr();
                     break;
-                default: ERROR();
+                default:
+                    ERROR();
                     break;
             }
         }
     }
+
     private void crearMatr() {
-        ctrl.agregarMatriculador( SolicitaTelefono(), SolicitaEmail(),SolicitaNombres(), SolicitaCedulas(), solicitaPass());
+        ctrl.agregarMatriculador(SolicitaTelefono(), SolicitaEmail(), SolicitaNombres(), SolicitaCedulas(), solicitaPass());
     }
+
     private void BorrarMatr() {
-         if(ctrl.borrarP(SolicitaCedulas()))
+        if (ctrl.borrarP(SolicitaCedulas())) {
             SucceDel();
-        else 
-             ErrorDel();
+        } else {
+            ErrorDel();
+        }
     }
+
     private void MostrarMatr() {
-           int p = 0;
+        int p = 0;
         Matriculador per = new Matriculador();
         while (p != 2) {
             BusqAcc();
-           switch (p = leerI()) {
+            switch (p = leerI()) {
                 case 1:
                     ctrl.mostrarPCed(per, SolicitaCedulas());
                     System.out.println(per.toString());
@@ -594,8 +659,9 @@ public class Interfaz {
             }
         }
     }
+
     private void ActualizarMatr() {
-        Matriculador al= new Matriculador();
+        Matriculador al = new Matriculador();
         ctrl.mostrarPCed(al, SolicitaCedulas());
         System.out.println(al.toString());
 
@@ -606,53 +672,135 @@ public class Interfaz {
                 switch (p) {
                     case 1://nombre
                         String nom = SolicitaNombres();
-                        if(nom != "")
+                        if (nom != "") {
                             al.setNombre(nom);
+                        }
                         break;
                     case 2://pass
                         String pass = solicitaPass();
-                        if(pass != "")al.setClave(pass);
+                        if (pass != "") {
+                            al.setClave(pass);
+                        }
                         break;
                     case 3://correo
-                         String correo = SolicitaEmail();
-                        if(correo != "")al.setEmail(correo);
+                        String correo = SolicitaEmail();
+                        if (correo != "") {
+                            al.setEmail(correo);
+                        }
                         break;
                     case 4://telefono
                         int tel = SolicitaTelefono();
-                        if(tel != 0)al.setTelefono(tel);
+                        if (tel != 0) {
+                            al.setTelefono(tel);
+                        }
                         break;
                     default:
                         ERROR();
                 }
             }
-        }
-        else{ ERROR();
-                return;
+        } else {
+            ERROR();
+            return;
         }
         ctrl.actualizaP(al);
     }
-    
-    
-    
-    
-    
-    
-    
-public void AddAcceso(){
-    System.out.println("1-> Administrador");
-    System.out.println("2-> Matriculador");
-    System.out.println("3->Salir");
-    int opc = 0;
-    while(opc!=3){
-        switch(opc = leerI()){
-            case 1: AdminAdmin();
-            break;
-            case 2: AdminMatr();
+
+    public void moferta() {
+        System.out.println("1-->Oferta academica");
+        System.out.println("2-->salir");
+    }
+
+    public int SolicitaNumgrp() {
+        System.out.println("digite el numero de grupo");
+        return leerI();
+    }
+
+    private void AgregarGrupo(String car) {
+        ctrl.agregarGrupo((char) SolicitaCiclo(), SolicitaNgrupo(), SolicitaHorario(), SolicitaCedulas(), car);
+    }
+
+    public void Oferta() {
+        int opc = 0;
+        
+        while (opc != 2) {
+            opc = Oferta2();
+            if (opc == 1) {
+                AdminOferta();
+            }
         }
     }
-}
 
-public void MenuAdministrador() {
+    public void AdminOferta() {
+        String Carrera = SolicitaNomCarrera();
+        int ciclo = SolicitaCiclo();
+        Lista cursos = new Lista();
+        ctrl.ofertaAcd(Carrera, ciclo, cursos);
+        System.out.println(cursos.toString());
+
+        sbmoferta();
+        int opc = sbmoferta();
+        if (opc == 1) {
+            String curso = SolicitaCodCurso();
+            Lista grupos = new Lista();
+            ctrl.BuscarGrpCrs(curso, grupos);
+            System.out.println(grupos.toString());
+            if (sbmgrpsCrs() == 1) {
+                AgregarGrupo(curso);
+            }
+            if (sbmgrpsCrs() == 2) {
+                Grupo g = new Grupo();
+                ctrl.Bcgrupo(curso, SolicitaNgrupo(), g);
+                
+                if (g.getId() != "") {
+                    int p = 0;
+                    String nom = SolicitaCedulas();
+                    if (nom != "") {
+                    g.setProfesor(nom);
+                    }
+                }else ERROR();
+            }
+        }
+    }
+
+    public int sbmgrpsCrs() {
+        System.out.println("1--> agregar grupo ");
+        System.out.println("2--> modificar grupo");
+        System.out.println("otros salir...");
+        return leerI();
+    }
+
+    public int sbmoferta() {
+        System.out.println("1--> seleccionar un curso");
+        System.out.println("2--> atras");
+        return leerI();
+    }
+     private void ConsultaHistorial(int t) {
+         Lista l =  new Lista();
+         if(t == 1)
+             ctrl.ConsultaHistorial(SolicitaCedulas(),l);
+         else
+             ctrl.ConsultaHistorial(SolicitaCedulas(),l);
+         System.out.println(l.toString());    
+   
+     }
+
+    public void AddAcceso() {
+        System.out.println("1-> Administrador");
+        System.out.println("2-> Matriculador");
+        System.out.println("3->Salir");
+        int opc = 0;
+        while (opc != 3) {
+            switch (opc = leerI()) {
+                case 1:
+                    AdminAdmin();
+                    break;
+                case 2:
+                    AdminMatr();
+            }
+        }
+    }
+
+    public void MenuAdministrador() {
         System.out.println("-----Menu Adminstrador-----");
         System.out.println("1--> Admisntrar Carreras");
         System.out.println("2--> Admisntrar cursos");
@@ -720,10 +868,11 @@ public void MenuAdministrador() {
 
     }
 
-      public void BusqAcc() {
+    public void BusqAcc() {
         System.out.println("1--Cedula");
         System.out.println("2--salir");
     }
+
     public void BusqProf() {
         System.out.println("1--Cedula");
         System.out.println("2--Nombre");
@@ -815,7 +964,7 @@ public void MenuAdministrador() {
         return pass;
     }
 
-    public int Oferta() {
+    public int Oferta2() {
         System.out.println("1--> ingrese Codigo para ver grupos");
         System.out.println("2--> salir");
         return leerI();
