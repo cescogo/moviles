@@ -217,6 +217,16 @@ public class Control {
         accesoD.Buscar(p, id_g, ngrp);
     }
     
+    public void Buscar(Grupo g,String cod)
+    {
+        accesoD.Buscar(g, cod);
+    }
+    
+    public void actualizar(Grupo g)
+    {
+        accesoD.Actualiza(g);
+    }
+    
     public boolean MAtricula(String cod, Alumno a){
         Curso c = new Curso();
         accesoD.CMatri(c, a.getCarrera(), cod);

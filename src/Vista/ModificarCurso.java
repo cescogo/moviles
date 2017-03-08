@@ -6,6 +6,7 @@
 package Vista;
 
 import Control.Control;
+import Modelo.Curso;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -18,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -30,7 +32,7 @@ public class ModificarCurso extends JFrame{
             super("modificar Curso");
             gestor=c;
         ajustarComponentes(getContentPane());   
-        setMinimumSize(new Dimension(500,350));
+        setMinimumSize(new Dimension(550,300));
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,7 +40,7 @@ public class ModificarCurso extends JFrame{
     
     public void ajustarComponentes(Container c)
     {
-        c.setLayout(new BorderLayout());
+       c.setLayout(new BorderLayout());
          principal = new JPanel();
         principal.setLayout(new BorderLayout());
         principal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -47,50 +49,67 @@ public class ModificarCurso extends JFrame{
         gc=new GridBagConstraints();
         
         gc.insets=new Insets(4,4,4,4);
+         gc.gridx=0;
+        gc.gridy=0;        
+        buscar= new JLabel("codigo del curso:");
+        formulario.add(buscar,gc);
         
         gc.gridx=0;
-        gc.gridy=1;        
+        gc.gridy=2;        
         nombre= new JLabel("Nombre:");
         formulario.add(nombre,gc);
         
           
       
         gc.gridx=0;
-        gc.gridy=2;
+        gc.gridy=3;
         formulario.add(creditos =new JLabel("Creditos:"),gc);
         
          gc.gridx=0;
-        gc.gridy=3;
+        gc.gridy=4;
         formulario.add( h_semanales=new JLabel("horas semanales:"),gc);
         
-            
-        gc.gridx=0;
-        gc.gridy=4;
-        formulario.add(num_ciclo =new JLabel("número de ciclo:"),gc);
+         gc.gridx=0;
+        gc.gridy=5;
+        formulario.add( num_ciclo=new JLabel("ciclo en el que se imparte:"),gc);   
+       
+        
+         gc.gridx=1;
+        gc.gridy=0;
+        formulario.add(t_buscar=new JTextField(20),gc);
         
         gc.gridx=1;
-        gc.gridy=1;
+        gc.gridy=2;
         formulario.add(t_nombre=new JTextField(20),gc);
         
         
        
         gc.gridx=1;
-        gc.gridy=2;
+        gc.gridy=3;
         formulario.add(t_creditos=new JTextField(20),gc);
         
         gc.gridx=1;
-        gc.gridy=3;
+        gc.gridy=4;
         formulario.add(t_h_semanales=new JTextField(20),gc);
         
-      
-        
-        gc.gridx=1;
-        gc.gridy=4;
+          gc.gridx=1;
+        gc.gridy=5;
         formulario.add(t_num_ciclo=new JTextField(20),gc);
+        
+       
+        
+         gc.gridx=3;
+        gc.gridy=0;
+                b_buscar=new JButton("buscar");
+                b_buscar.addActionListener((ActionEvent e)->{existe();});
+        formulario.add(b_buscar,gc);
+        
         
         gc.gridx=0;
         gc.gridy=7;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                aceptar.addActionListener((ActionEvent e)->{modificar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=7;
@@ -104,12 +123,73 @@ public class ModificarCurso extends JFrame{
        c.add(principal,BorderLayout.CENTER);
         
     }
+    
+    private void modificar()
+    {
+        if(blanco())
+        {
+             JOptionPane.showMessageDialog(null, "campo vacio","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+            Curso c = new Curso();
+           c.setNombre( t_nombre.getText());
+            c.setCreditos(Integer.parseInt(t_creditos.getText()));
+            c.setHsemanales(Integer.parseInt(t_h_semanales.getText()));
+            c.setNum_ciclo(Integer.parseInt(t_num_ciclo.getText()));
+            c.setCodigo(t_buscar.getText());
+            gestor.ActualizarCurso(c);
+            salir();
+        }
+           
+    }
+    
+    private void existe()
+    {
+        if(t_buscar.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "campo vacio","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        {
+             Curso c= new Curso();
+            gestor.MostrarCurso(c, t_buscar.getText(), 2);
+            if(c.getCodigo()=="")
+        {
+            JOptionPane.showMessageDialog(null, "no existe el curso agreguelo por favor ","Error",JOptionPane.ERROR_MESSAGE);
+            salir();
+        }
+        else
+        {
+            t_nombre.setText(c.getNombre());
+            t_creditos.setText(String.valueOf(c.getCreditos()));
+            t_h_semanales.setText(String.valueOf(c.getHsemanales()));            
+            t_num_ciclo.setText(String.valueOf(c.getNum_ciclo()));
+        }
+        }
+    }
+    
+    private boolean blanco()
+    {
+         if(t_nombre.getText().isEmpty()||
+            t_creditos.getText().isEmpty()||
+            t_h_semanales.getText().isEmpty()||
+            t_num_ciclo.getText().isEmpty())
+         {
+             return true;
+         }
+         else return false;
+    }
+    
      private void salir()
     {
         VenOpcCurso vi = new VenOpcCurso(gestor);
         vi.init();
         this.dispose();
     }
+     
+  
+     
     public void init() {
         setVisible(true);
     }
@@ -119,15 +199,15 @@ public class ModificarCurso extends JFrame{
     private JLabel nombre;
     private JLabel creditos;
     private JLabel h_semanales;
-    private JLabel carrera;
-    private JLabel codigo;
+    private JLabel buscar;
     private JLabel num_ciclo;
     private JTextField t_nombre;
-    private JTextField t_codigo;
+    private JTextField t_buscar;
     private JTextField t_creditos;
     private JTextField t_h_semanales;
     private JTextField t_carrera;
     private JTextField t_num_ciclo;
+    private JButton b_buscar;
     private JButton aceptar;
     private JButton cancel;
     private Control gestor;

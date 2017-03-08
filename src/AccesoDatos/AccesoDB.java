@@ -550,7 +550,24 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
-   
+   public void Buscar(Grupo a, String cod) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM grupo WHERE ID_GRUPO ="+cod;
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                a.setId(bd.registro.getString("ID_GRUPO"));
+                a.setNumero(bd.registro.getInt("NUMERO"));
+                a.setProfesor(bd.registro.getString("ID_PROF"));
+                a.setCurso(bd.registro.getString("COD_CURSO"));     
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
      
    public void Buscar(Ciclo a, String cod) {
         try {
@@ -781,8 +798,8 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             String sql = "update curso set NOMBRE = '"+a.getNombre()
-                    +"' ,CREDITOS = "+a.getCreditos()+" ,NUM_CICLO = "+a.getNum_ciclo()
-                    + " where Codigo = '"+a.getCodigo()+"'";
+                    +"',CREDITOS = '"+a.getCreditos()+"',NUM_CICLO = '"+a.getNum_ciclo()
+                    + "',H_SEMANALES= '"+a.getHsemanales()+"' where Codigo = '"+a.getCodigo()+"'";
             Statement s = bd.conexion.createStatement();
             s.executeUpdate(sql);
             bd.closeCon();
@@ -796,9 +813,7 @@ public class AccesoDB {
             bd.Connect();
                   String sql = "update ciclo set id = '"+a.getId()+ "',anno = '"+a.getAnno()+"',num_ciclo='"+ a.getNciclo()+
                           "',fecha_inicio='"+a.getFinicio()+"',fecha_final='"+a.getFfinal()+"'WHERE id = '"+id+"'";
-            sql=String.format(sql, a.getId(), a.getAnno(),a.getNciclo(),a.getFinicio(),a.getFfinal(),id);
-           
-            Statement s = bd.conexion.createStatement();
+             Statement s = bd.conexion.createStatement();
             s.executeUpdate(sql);
             bd.closeCon();
         } catch (SQLException e) {
@@ -806,11 +821,11 @@ public class AccesoDB {
         }
     }
        
-   public void Actualiza(Grupo a){
+   public void Actualiza(Grupo a ){
           try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
-             String sql = "update grupo set ID_PROF = '%s', NUMERO = '%i' where ID_GRUPO = '%S'";
+             String sql = "update grupo set ID_PROF = '"+a.getProfesor()+"' where ID_GRUPO = '"+a.getId()+"'";
             sql=String.format(sql,a.getProfesor(), a.getNumero(),a.getId());
             Statement s = bd.conexion.createStatement();
             s.executeUpdate(sql);
