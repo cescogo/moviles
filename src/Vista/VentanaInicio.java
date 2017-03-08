@@ -94,6 +94,13 @@ public class VentanaInicio extends JFrame{
             this.dispose();
         }
         else
+            if(aux==2)
+            {
+                 VenMatriculador vi= new VenMatriculador(gestor);
+            vi.init();
+            this.dispose();
+            }
+        else
         {
             JOptionPane.showMessageDialog(null, "usuario no existe","Error",JOptionPane.ERROR_MESSAGE);
             t_usuario.setText("");
