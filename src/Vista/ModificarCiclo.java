@@ -138,6 +138,7 @@ public class ModificarCiclo extends JFrame {
                  t_num_ciclo.setText(String.valueOf(c.getNciclo()));
                  t_fe_inicio.setText(c.getFinicio());
                  t_fe_final.setText(c.getFinicio());
+                 
             }
         }
     }
@@ -158,6 +159,7 @@ public class ModificarCiclo extends JFrame {
             c.setFinicio(t_fe_inicio.getText());
             c.setId(t_anno.getText()+t_num_ciclo.getText());
             gestor.actualizar(c, aux);
+            salir();
             
         }
     }

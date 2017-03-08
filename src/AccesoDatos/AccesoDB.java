@@ -766,7 +766,7 @@ public class AccesoDB {
           try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
-            String sql = "update Carrera set NOMBRE = '"+a.getNombre()+ "' WHERE codigo = '"+a.getCodigo()+"'";;
+            String sql = "update Carrera set NOMBRE = '"+a.getNombre()+ "' WHERE codigo = '"+a.getCodigo()+"'";
             sql=String.format(sql, a.getNombre(),a.getCodigo());
             Statement s = bd.conexion.createStatement();
             s.executeUpdate(sql);
@@ -794,9 +794,8 @@ public class AccesoDB {
           try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
-                  String sql = "update curso set id = '%s' ,anno = %i ,NUM_CICLO = %i, "
-                          + "fecha_inicio ='%s', fecha_final = '%s'"
-                    + " where id = '%S'";
+                  String sql = "update ciclo set id = '"+a.getId()+ "',anno = '"+a.getAnno()+"',num_ciclo='"+ a.getNciclo()+
+                          "',fecha_inicio='"+a.getFinicio()+"',fecha_final='"+a.getFfinal()+"'WHERE id = '"+id+"'";
             sql=String.format(sql, a.getId(), a.getAnno(),a.getNciclo(),a.getFinicio(),a.getFfinal(),id);
            
             Statement s = bd.conexion.createStatement();
