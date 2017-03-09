@@ -248,6 +248,16 @@ public class Control {
         return false;
     }
 
+    public void Matricular(Nota n)
+    {
+        accesoD.matricula(n);
+    }
+    
+    public void cursado(String est,String cur,Nota n)
+    {
+        accesoD.condicion(est, cur, n);
+    }
+    
     private Persona user;
     private AccesoDB accesoD;
 }

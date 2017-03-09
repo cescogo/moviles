@@ -66,6 +66,29 @@ public class AccesoDB {
         }
     }
    
+   public void condicion(String est,String cur,Nota n)
+   {
+       try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT + FROM nota WHERE Estudiante='"+ est+"' "
+                    + "And curso='"+cur+"'"; 
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                 n.setCURSO(bd.registro.getString("curso"));
+                 n.setCondision(bd.registro.getString("condicion"));  
+                 n.setESTUDIANTE(bd.registro.getString("estudiante"));
+                 n.setGrupo(bd.registro.getString("Grupo"));
+                 n.setNOTA(bd.registro.getFloat("nota"));
+                  
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+   }
+   
    public void CMatri(Curso a, String car, String cod) {
         try {
             ConexionBD bd = new ConexionBD();
@@ -756,6 +779,8 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
+   
+   
  //</editor-fold>
    
    //<editor-fold desc="Metodos de Actualizar">
@@ -860,7 +885,7 @@ public class AccesoDB {
             bd.Connect();
             Statement s = bd.conexion.createStatement();
             s.executeUpdate("INSERT INTO CURSO VALUES('" + n.getNOTA()+ "','" + n.getCURSO()+ "','"
-                                                         + n.getESTUDIANTE()+"'");
+                                                         + n.getESTUDIANTE()+"','"+n.getGrupo()+"','"+n.getCondision()+"')");
             bd.closeCon();            
         } catch (Exception e) {
             System.err.println(e.getMessage());

@@ -2,25 +2,34 @@
 package Modelo;
 
 public class Nota {
-private double NOTA;
+private float NOTA;
 private String CURSO;
 private String ESTUDIANTE;
 private String grupo;
 private String condision;
 
-    public Nota(double NOTA, String CURSO, String ESTUDIANTE, String grupo, String condision) {
+    public Nota(float NOTA, String CURSO, String ESTUDIANTE, String grupo, String condision) {
         this.NOTA = NOTA;
         this.CURSO = CURSO;
         this.ESTUDIANTE = ESTUDIANTE;
         this.grupo = grupo;
         this.condision = condision;
     }
+    
+    public Nota()
+    {
+        this.NOTA = 0;
+        this.CURSO = "";
+        this.ESTUDIANTE = "";
+        this.grupo = "";
+        this.condision = "";
+    }
 
-    public double getNOTA() {
+    public float getNOTA() {
         return NOTA;
     }
 
-    public void setNOTA(double NOTA) {
+    public void setNOTA(float NOTA) {
         this.NOTA = NOTA;
     }
 

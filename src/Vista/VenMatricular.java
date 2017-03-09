@@ -6,8 +6,8 @@
 package Vista;
 
 import Control.Control;
-import Modelo.Grupo;
-import Modelo.Persona;
+import Modelo.*;
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -140,16 +140,19 @@ public class VenMatricular extends JFrame  {
               
               Persona a= new Persona(0);
               Grupo g= new Grupo();
+              Nota n= new Nota();
               String id_grupo=id_curso.getText()+"-"+num_grupo.getText();
               gestor.buscarPer(a, id_estudiante.getText());
               gestor.Buscar(g, id_grupo);
+              
+              
               
               if(a.getTipo()!=4)
               {
                   JOptionPane.showMessageDialog(null, "Estudiante no existe","Error",JOptionPane.ERROR_MESSAGE);
                   id_estudiante.setText("");
               }
-              else
+              //else
                   if(g.getId()=="")
               {
                   JOptionPane.showMessageDialog(null, "Grupo no existe","Error",JOptionPane.ERROR_MESSAGE);
@@ -157,10 +160,25 @@ public class VenMatricular extends JFrame  {
               }
               else
                   {
-                      //constructor de nota 
-                      //gestor agregar nota
+                      gestor.cursado(id_grupo, id_curso.getText(), n);
+                      if(n.getCondision()!="aplazado")
+                      {
+                          JOptionPane.showMessageDialog(null, "Estudiante ya esta matriculado o aprobo el curso","Error",JOptionPane.ERROR_MESSAGE);
+                          id_estudiante.setText("");
+                      }
+                      else
+                          if(n.getCondision()=="")
+                      {
+                          n.setCURSO(id_grupo);
+                          n.setCondision("encurso");
+                          n.setESTUDIANTE(id_grupo);
+                          n.setGrupo(id_grupo);
+                          gestor.Matricular(n);
+                           salir(); 
+                      }
                       
-                     salir(); 
+                      
+                    
                   }
             
           }
