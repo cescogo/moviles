@@ -228,14 +228,14 @@ public class Control {
     }
     
     public boolean MAtricula(String cod, Alumno a){
-        Curso c = new Curso();
-        accesoD.CMatri(c, a.getCarrera(), cod);
-        if(!c.getCodigo().isEmpty())
-           if(!accesoD.estaECurso(a.getCedula(), cod)){
-                Nota n =  new Nota(0, cod, a.getCedula());
-                accesoD.matricula(n);          
-                return true;
-           }       
+//        Curso c = new Curso();
+//        accesoD.CMatri(c, a.getCarrera(), cod);
+//        if(!c.getCodigo().isEmpty())
+//           if(!accesoD.estaECurso(a.getCedula(), cod)){
+//                Nota n =  new Nota(0, cod, a.getCedula());
+//                accesoD.matricula(n);          
+//                return true;
+//           }       
         return false;
     }
 

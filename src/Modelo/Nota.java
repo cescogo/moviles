@@ -5,16 +5,15 @@ public class Nota {
 private double NOTA;
 private String CURSO;
 private String ESTUDIANTE;
+private String grupo;
+private String condision;
 
-    public Nota(double NOTA, String CURSO, String ESTUDIANTE) {
+    public Nota(double NOTA, String CURSO, String ESTUDIANTE, String grupo, String condision) {
         this.NOTA = NOTA;
         this.CURSO = CURSO;
         this.ESTUDIANTE = ESTUDIANTE;
-    }
-    public Nota(){
-        this.NOTA = 0;
-        this.CURSO = "";
-        this.ESTUDIANTE = "";    
+        this.grupo = grupo;
+        this.condision = condision;
     }
 
     public double getNOTA() {
@@ -40,5 +39,22 @@ private String ESTUDIANTE;
     public void setESTUDIANTE(String ESTUDIANTE) {
         this.ESTUDIANTE = ESTUDIANTE;
     }
-    
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
+    }
+
+    public String getCondision() {
+        return condision;
+    }
+
+    public void setCondision(String condision) {
+        this.condision = condision;
+    }
+
+   
 }
