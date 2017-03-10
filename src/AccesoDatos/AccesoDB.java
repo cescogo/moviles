@@ -72,7 +72,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT + FROM nota WHERE Estudiante='"+ est+"' "
+            String comandoListar = "SELECT * FROM nota WHERE Estudiante='"+ est+"' "
                     + "And curso='"+cur+"'"; 
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
@@ -911,15 +911,21 @@ public class AccesoDB {
    }
    
    
-   public boolean estaECurso(String ced,String curs){
+   public boolean estaECurso(Nota n, String ced,String curs){
     
        try {
            ConexionBD bd = new ConexionBD();
             bd.Connect();
            Statement s = bd.conexion.createStatement();
-           String comandoListar = "SELECT Curso FROM NOTA WHERE CURSO ='"+curs+"' AND ESTUDIANTE='"+ced+"'";
+           String comandoListar = 
+                   "SELECT Curso FROM NOTA WHERE CURSO ='"+curs+"' AND ESTUDIANTE='"+ced+"' AND CONDICION = encurso";
            bd.registro = bd.comando.executeQuery(comandoListar);
             if(bd.registro.next()){
+                n.setCURSO(bd.registro.getString("curso"));
+                n.setCondision(bd.registro.getString("condicion"));                
+                n.setESTUDIANTE(bd.registro.getString("estudiante"));                
+                n.setGrupo(bd.registro.getString("grupo"));
+                n.setNOTA(bd.registro.getInt("nota"));
             return true;
             }
             bd.closeCon();

@@ -152,24 +152,25 @@ public class VenMatricular extends JFrame  {
                  
               }
               //else
-                  if(gestor.existeGrupo(id_grupo))
+                  Grupo g= new Grupo();
+                  gestor.Buscar(g, id_grupo);
+                  if(g.getId().isEmpty())
               {
                   JOptionPane.showMessageDialog(null, "Grupo no existe","Error",JOptionPane.ERROR_MESSAGE);
                   num_grupo.setText("");
               }
               else
                   {
-                      Grupo g= new Grupo();
                          Nota n= new Nota();
                          
                         gestor.Buscar(g, id_grupo);
-//                      gestor.cursado(id_grupo, id_curso.getText(), n);
-//                      if(n.getCondision()!="aplazado")
-//                      {
-//                          JOptionPane.showMessageDialog(null, "Estudiante ya esta matriculado o aprobo el curso","Error",JOptionPane.ERROR_MESSAGE);
-//                          id_estudiante.setText("");
-//                      }
-//                      else
+                        gestor.cursado(id_grupo, id_curso.getText(), n);
+                        if(n.getCondision()!="aplazado")
+                        {
+                          JOptionPane.showMessageDialog(null, "Estudiante ya esta matriculado o aprobo el curso","Error",JOptionPane.ERROR_MESSAGE);
+                          id_estudiante.setText("");
+                        }
+                        else
                           if(n.getCondision()=="")
                       {
                           n.setCURSO(id_curso.getText());
