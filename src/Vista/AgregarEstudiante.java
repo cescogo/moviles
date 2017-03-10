@@ -150,12 +150,18 @@ public class AgregarEstudiante extends JFrame {
          }
          else 
          {
-             if(!existe())
+             if(!gestor.existeCarrera(t_codcarr.getText()))
              {
                  JOptionPane.showMessageDialog(null, "Carrera no existe agreguela por favor","Error",JOptionPane.ERROR_MESSAGE);
                  salirCur();
                  
              }
+             else
+                 if(gestor.existeEst(t_cedula.getText()))
+                 {
+                     JOptionPane.showMessageDialog(null, "Estudiante ya existe ","Error",JOptionPane.ERROR_MESSAGE);
+                 
+                 }
              else
              {
              int aux=Integer.parseInt(t_telefono.getText());
@@ -168,19 +174,7 @@ public class AgregarEstudiante extends JFrame {
         setVisible(true);
     }
     
-    private boolean existe()
-    {
-        Carrera c= new Carrera();
-        gestor.MostrarCarreraC(c,t_codcarr.getText());
-        if(c.getCodigo()=="")
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
+   
     
     private boolean blanco()
     {

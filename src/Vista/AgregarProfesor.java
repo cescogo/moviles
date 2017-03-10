@@ -139,6 +139,11 @@ public class AgregarProfesor extends JFrame {
                JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
            
          }
+         else
+             if(gestor.existePro(t_cedula.getText()))
+             {
+                 JOptionPane.showMessageDialog(null, "Profesor ya existe","Error",JOptionPane.ERROR_MESSAGE);
+             }
          else 
          {
              int aux=Integer.parseInt(t_telefono.getText());

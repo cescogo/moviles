@@ -139,6 +139,11 @@ public class AgregarMatriculador extends JFrame{
                JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
            
          }
+         else
+             if(gestor.existeMat(t_cedula.getText()))
+             {
+                 JOptionPane.showMessageDialog(null, "Matriculador ya existe","Error",JOptionPane.ERROR_MESSAGE);
+             }
          else 
          {
              int aux=Integer.parseInt(t_telefono.getText());

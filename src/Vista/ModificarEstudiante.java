@@ -131,14 +131,19 @@ public class ModificarEstudiante extends JFrame{
     }
      private void buscar()
      {
-         Persona a=new Persona(0);
-         gestor.buscarPer(a,t_buscar.getText());
-         if(a.getTipo()==0)
-         {
-             JOptionPane.showMessageDialog(null, "usuario no existe","Error",JOptionPane.ERROR_MESSAGE);
-         }
+        
+        if(t_buscar.getText().isEmpty())
+        {
+             JOptionPane.showMessageDialog(null, "campo vacio","Error",JOptionPane.ERROR_MESSAGE);
+        }
+             if(!gestor.existeEst(t_buscar.getText()))
+             {
+                 JOptionPane.showMessageDialog(null, "usuario no existe","Error",JOptionPane.ERROR_MESSAGE);
+             }
          else
          {
+                  Persona a=new Persona(0);
+         gestor.buscarPer(a,t_buscar.getText());
              t_nombre.setText(a.getNombre());
               t_clave.setText(a.getClave());
               t_email.setText(a.getEmail());

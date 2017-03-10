@@ -118,11 +118,17 @@ public class AgregarCiclo extends JFrame{
             return false;
     }
     private void agregar()
-    {
+    {String aux= t_anno.getText()+"-"+t_num_ciclo.getText();
         if(blanco())
         {
              JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
         }
+        else
+            if(gestor.existeCiclo(aux))
+            {
+                JOptionPane.showMessageDialog(null, "Ciclo ya existe","Error",JOptionPane.ERROR_MESSAGE);
+            }
+        
         else
         {
             gestor.agregarCiclo(Integer.parseInt(t_anno.getText()),Integer.parseInt(t_num_ciclo.getText()), t_fe_inicio.getText(), t_fe_final.getText());

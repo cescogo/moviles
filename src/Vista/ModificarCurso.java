@@ -152,15 +152,16 @@ public class ModificarCurso extends JFrame{
         }
         else
         {
-             Curso c= new Curso();
-            gestor.MostrarCurso(c, t_buscar.getText(), 2);
-            if(c.getCodigo()=="")
+            
+            if(!gestor.existeCur(t_buscar.getText()))
         {
             JOptionPane.showMessageDialog(null, "no existe el curso agreguelo por favor ","Error",JOptionPane.ERROR_MESSAGE);
             salir();
         }
         else
         {
+             Curso c= new Curso();
+            gestor.MostrarCurso(c, t_buscar.getText(), 2);
             t_nombre.setText(c.getNombre());
             t_creditos.setText(String.valueOf(c.getCreditos()));
             t_h_semanales.setText(String.valueOf(c.getHsemanales()));            

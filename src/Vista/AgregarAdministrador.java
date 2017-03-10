@@ -142,6 +142,11 @@ public class AgregarAdministrador extends JFrame {
            
          }
          else 
+             if(gestor.existeAdmi(t_cedula.getText()))
+             {
+                 JOptionPane.showMessageDialog(null, "Administrador ya existe","Error",JOptionPane.ERROR_MESSAGE);
+             }
+         else
          {
              int aux=Integer.parseInt(t_telefono.getText());
              gestor.agregarAdministrador(t_nombre.getText(), t_cedula.getText(), aux, t_email.getText(), t_clave.getText());

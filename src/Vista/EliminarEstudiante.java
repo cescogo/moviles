@@ -103,6 +103,7 @@ public class EliminarEstudiante extends JFrame{
            
          }
          else 
+             
          {
             boolean aux= gestor.borrarP(t_cedula.getText());
             if(!aux)

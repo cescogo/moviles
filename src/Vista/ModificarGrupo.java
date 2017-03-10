@@ -116,15 +116,15 @@ public class ModificarGrupo extends JFrame{
         }
         else
         {
-            Grupo g= new Grupo();
-              gestor.Buscar(g, t_buscar.getText());
-              if(g.getId()=="")
+            
+              if(!gestor.existeGrupo(t_buscar.getText()))
               {
                    JOptionPane.showMessageDialog(null, "grupo no existe agreguelo por favor ","Error",JOptionPane.ERROR_MESSAGE);
                    salir();
               }
               else
-              {
+              {Grupo g= new Grupo();
+              gestor.Buscar(g, t_buscar.getText());
 //                  t_horario.setText(g.getHorario());
                   t_profesor.setText(g.getProfesor());
               }

@@ -237,7 +237,7 @@ public class Control {
 
 //<editor-fold desc="Metodos de Ciclo">
     public void agregarCiclo(int anno, int nciclo, String Finicio, String Ffinal) {
-        String id = String.valueOf(anno) + String.valueOf(nciclo);
+        String id = String.valueOf(anno)+ "-"+ String.valueOf(nciclo);
         Ciclo p = new Ciclo(id, anno, nciclo, Finicio, Ffinal);
         accesoD.agrega(p);
     }

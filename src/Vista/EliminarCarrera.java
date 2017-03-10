@@ -102,10 +102,16 @@ public class EliminarCarrera extends JFrame{
                JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
            
          }
+         else
+             if(!gestor.existeCarrera(t_cedula.getText()))
+             {
+                 JOptionPane.showMessageDialog(null, "Carrera no existe","Error",JOptionPane.ERROR_MESSAGE);
+             }
          else 
          {
              
              gestor.BorrarCarrera(t_cedula.getText());
+             JOptionPane.showMessageDialog(null, "Eliminacion Exitosa","Error",JOptionPane.INFORMATION_MESSAGE);
              salir();
          }
      

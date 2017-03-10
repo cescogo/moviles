@@ -125,15 +125,16 @@ public class ModificarCiclo extends JFrame {
         }
         else
         {
-            Ciclo c= new Ciclo();
-            gestor.buscar(c,t_id.getText());
             
-            if(c.getId()=="")
+            
+            if(!gestor.existeCiclo(t_id.getText()))
             {
                     JOptionPane.showMessageDialog(null, "Curso no existe","Error",JOptionPane.ERROR_MESSAGE);
             }
             else
             {
+                Ciclo c = new Ciclo();
+                gestor.buscar(c, t_id.getText());
                  t_anno.setText(String.valueOf(c.getAnno()));
                  t_num_ciclo.setText(String.valueOf(c.getNciclo()));
                  t_fe_inicio.setText(c.getFinicio());

@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -60,7 +61,9 @@ public class EliminarCurso extends JFrame{
       
         gc.gridx=0;
         gc.gridy=2;
-        formulario.add(aceptar=new JButton("Aceptar"),gc);
+                aceptar=new JButton("Aceptar");
+                        aceptar.addActionListener((ActionEvent e)->{eliminar();});
+        formulario.add(aceptar,gc);
         
         gc.gridx=1;
         gc.gridy=2;
@@ -73,6 +76,31 @@ public class EliminarCurso extends JFrame{
        
        c.add(principal,BorderLayout.CENTER);
         
+    }
+    
+     private void eliminar()
+    {
+          
+     
+         if(t_cedula.getText().isEmpty())
+             
+         {
+               JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
+           
+         }
+         else
+             if(!gestor.existeCiclo(t_cedula.getText()))
+             {
+                 JOptionPane.showMessageDialog(null, "Cursono existe","Error",JOptionPane.ERROR_MESSAGE);
+             }
+         else 
+         {
+             
+             gestor.BorrarCarrera(t_cedula.getText());
+             JOptionPane.showMessageDialog(null, "Eliminacion Exitosa","Error",JOptionPane.INFORMATION_MESSAGE);
+             salir();
+         }
+     
     }
      private void salir()
     {
