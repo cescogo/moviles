@@ -163,15 +163,15 @@ public class VenMatricular extends JFrame  {
                   {
                          Nota n= new Nota();
                          
-                        gestor.Buscar(g, id_grupo);
-                        gestor.cursado(id_grupo, id_curso.getText(), n);
-                        if(n.getCondision()!="aplazado")
+                        
+                        gestor.cursado(a.getCedula(), id_curso.getText(), n);
+                        if(n.getCondision()=="encurso" ||n.getCondision()=="aprovado" )
                         {
                           JOptionPane.showMessageDialog(null, "Estudiante ya esta matriculado o aprobo el curso","Error",JOptionPane.ERROR_MESSAGE);
                           id_estudiante.setText("");
                         }
                         else
-                          if(n.getCondision()=="")
+                          
                       {
                           n.setCURSO(id_curso.getText());
                           n.setCondision("encurso");
