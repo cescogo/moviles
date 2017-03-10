@@ -60,10 +60,7 @@ public class VenDesmatricular extends JFrame {
         curso= new JLabel("codigo del curso:");
         formulario.add(curso,gc);
         
-        gc.gridx=0;
-        gc.gridy=3;        
-        grupo= new JLabel("numero de grupo:");
-        formulario.add(curso,gc);
+       
         
        
         
@@ -80,9 +77,7 @@ public class VenDesmatricular extends JFrame {
         
        
        
-        gc.gridx=1;
-        gc.gridy=3;
-        formulario.add(num_grupo=new JTextField(20),gc);
+       
         
      
                
@@ -117,8 +112,7 @@ public class VenDesmatricular extends JFrame {
      private boolean blanco()
     {
         if(id_estudiante.getText().isEmpty()||
-           id_curso.getText().isEmpty()||
-           num_grupo.getText().isEmpty())
+           id_curso.getText().isEmpty())
         {
             return true;
         }
@@ -135,32 +129,19 @@ public class VenDesmatricular extends JFrame {
            
          }
          else 
-          {
+           {
+                      Nota n= new Nota(); 
+                      gestor.cursado(id_estudiante.getText(), id_curso.getText(), n);
+                      if(n.getCondision().equals( "encurso"))
+                      {
+                          gestor.desmatricula(id_estudiante.getText(),id_curso.getText());
+                           salir(); 
+                      }
+                      else
+                      {
+                      JOptionPane.showMessageDialog(null, "Estudiante no esta matriculado","Error",JOptionPane.ERROR_MESSAGE);
+                      }
               
-              Persona a= new Persona(0);
-              Grupo g= new Grupo();
-              String id_grupo=id_curso.getText()+"-"+num_grupo.getText();
-              gestor.buscarPer(a, id_estudiante.getText());
-              gestor.Buscar(g, id_grupo);
-              
-              if(a.getTipo()!=4)
-              {
-                  JOptionPane.showMessageDialog(null, "Estudiante no existe","Error",JOptionPane.ERROR_MESSAGE);
-                  id_estudiante.setText("");
-              }
-              else
-                  if(g.getId()=="")
-              {
-                  JOptionPane.showMessageDialog(null, "Grupo no existe","Error",JOptionPane.ERROR_MESSAGE);
-                  num_grupo.setText("");
-              }
-              else
-                  {
-                      //constructor de nota 
-                      //gestor agregar nota
-                      
-                     salir(); 
-                  }
             
           }
      }

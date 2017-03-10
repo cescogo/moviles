@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Movil/moviles/src/BaseDeDatos/gestionDB.sql</file>
-            <file>file:/F:/Movil/moviles/src/Vista/VenMatricular.java</file>
-            <file>file:/F:/Movil/moviles/src/Vista/Interfaz.java</file>
-            <file>file:/F:/Movil/moviles/src/Vista/VenOpcCarrera.java</file>
-            <file>file:/F:/Movil/moviles/src/Control/Control.java</file>
-            <file>file:/F:/Movil/moviles/src/Modelo/Nota.java</file>
-            <file>file:/F:/Movil/moviles/src/AccesoDatos/AccesoDB.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VenDesmatricular.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Control/Control.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/Vista/VenMatricular.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/moviles/Moviles.java</file>
+            <file>file:/C:/Users/ccg/Desktop/moviles/src/AccesoDatos/AccesoDB.java</file>
         </group>
     </open-files>
 </project-private>

@@ -307,7 +307,13 @@ public class Control {
            }       
         return false;
     }
-
+    
+    public void desmatricula(String ced, String cur)
+    {
+        accesoD.Desmatricula(ced ,cur); 
+    }
+    
+   
     public void Matricular(Nota n)
     {
         accesoD.matricula(n);

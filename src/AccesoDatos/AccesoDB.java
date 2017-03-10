@@ -725,8 +725,9 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             Statement s = bd.conexion.createStatement();
-            s.executeUpdate("INSERT INTO nota VALUES('" + n.getNOTA()+ "','" + n.getCURSO()+ "','"
-                                                         + n.getESTUDIANTE()+"',"+n.getGrupo()+",'"+n.getCondision()+"')");
+            s.executeUpdate("INSERT INTO nota VALUES(" 
+                    + n.getNOTA()+ ",'" + n.getCURSO()+ "','"
+                    + n.getESTUDIANTE()+"','"+n.getGrupo()+"','"+n.getCondision()+"')");
             bd.closeCon();            
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -898,7 +899,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             Statement s = bd.conexion.createStatement();
-            String sql = "delete from Nota WHERE CODIGO='"+ cod+"' AND ESTUDIANTE ='"+id+"'";            
+            String sql = "delete from Nota WHERE Curso='"+ cod+"' AND ESTUDIANTE ='"+id+"'";            
             s.executeUpdate(sql);
             bd.closeCon();
             return true;
