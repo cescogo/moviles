@@ -16,29 +16,34 @@ solicita datos carrera		|	crea carrera			|		mete carrera
 
 solicita && muestar carrera	|	valida jalar carrera	|		actualiza carrera
 -----------------------------------------------------------------------------------------
-solicita datos curso		|	crea curso 				|		mete curso
+solicita datos curso		|	valido carrera
+								crea curso 				|		mete curso
 
 solicita && muestar curso	|	valida jalar curso 		|		mete curso
 
 solicita codigo				|	valida existencia		|		elimina						   --> no lo pide
 -----------------------------------------------------------------------------------------
-solicita datos grupo		|	crea grupo				|		mete grupo
+solicita datos grupo		|	valida existe carrera	|
+							|		crea grupo			|
+														|		mete grupo
 
 solicita && muestar gurpo	|	valida jalar grupo		|		actualiza grupo
 
 solicita codigo				|	valida existencia grupo	|		elimina grupo					(debe fijarse que no tenga a nadie relacionado)
 -----------------------------------------------------------------------------------------
-oferta
-solcita carrera&&ciclo		|	valida carr-jala cursos	|		saca cursos de la carrera en ciclo
+oferta							
+								valida profesor
+							
+solcita carrera&&ciclo		|	valida curso-jala cursos|		saca cursos de la carrera en ciclo
 seleccion de curso			|	jala grupos de curso	|		saca grupos de curso
-agrega-elimina grupo		|	METODOS DE GRUPO		|		METODOS DE GRUPO
+agrega grupo				|	METODOS DE GRUPO		|		METODOS DE GRUPO
 -----------------------------------------------------------------------------------------
-matricula
+matricula						validar grupo
 solicita estudiante			|	valida jalar estudiante |		saca persona tipo 4
-muestra cursos				|	pide cursos				|		saca cursos de NOTA 			(o los grupos)
+muestra cursos				|							|		saca cursos de NOTA 			(o los grupos)
 escoge		matricula	
 pide codigo de grupo		|  busca curso con cod grupo|		saca cod curso de tabla grupo 			
-_							|	valida curso con carrera|		saca carrera de tabla curso 
+_							|							|		saca carrera de tabla curso 
 _							|  valida condicion de curso|		saca condicion  de tabla nota
 show cond de matri (S/N) 	| crea nota(curso-grupo-est)|		mete nota
 
@@ -48,11 +53,12 @@ show cond de desmatri (S/N)	| 			---				|		elimina registro de tabla NOTA
 ------------------------------------------------------------------------------------------
 registro de notas
 muestra lista de grupos		| pueded validar existencia |		saca grupos de tabla NOTA con condicion != aplazado(ciclo actual) || aprovado && del profesor
-seleciona grupo				|							|		saca NOTA Y ESTUDIANTES de tabla NOTA con el cod del grupo
+seleciona grupo				|	valida condicion		|		saca NOTA Y ESTUDIANTES de tabla NOTA con el cod del grupo
 muestra notas-actualiza		| 							|		actualiza datos de tabla nota en estudiante con grupo
 ------------------------------------------------------------------------------------------
 historial
-solicita estudiante			|	valida existecia		|		saca * de tabla NOTA cuando condicion = aplzado || aprovado
+solicita estudiante			|	valida estudiante
+								muestro historial		|		saca * de tabla NOTA cuando condicion = aplzado || aprovado
 
 
 
