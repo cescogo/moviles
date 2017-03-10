@@ -30,7 +30,7 @@ import javax.swing.JTextField;
  */
 public class VenMatricular extends JFrame  {
         public VenMatricular(Control c) {
-            super("Desmatricular Estudiante");
+            super("Matricular Estudiante");
         ajustarComponentes(getContentPane()); 
         gestor=c;
         setMinimumSize(new Dimension(600,450));
@@ -64,7 +64,7 @@ public class VenMatricular extends JFrame  {
         gc.gridx=0;
         gc.gridy=3;        
         grupo= new JLabel("numero de grupo:");
-        formulario.add(curso,gc);
+        formulario.add(grupo,gc);
         
        
         
@@ -139,11 +139,9 @@ public class VenMatricular extends JFrame  {
           {
               
               Persona a= new Persona(0);
-              Grupo g= new Grupo();
-              Nota n= new Nota();
-              String id_grupo=id_curso.getText()+"-"+num_grupo.getText();
               gestor.buscarPer(a, id_estudiante.getText());
-              gestor.Buscar(g, id_grupo);
+              String id_grupo=id_curso.getText()+"-"+num_grupo.getText();
+              
               
               
               
@@ -151,27 +149,32 @@ public class VenMatricular extends JFrame  {
               {
                   JOptionPane.showMessageDialog(null, "Estudiante no existe","Error",JOptionPane.ERROR_MESSAGE);
                   id_estudiante.setText("");
+                 
               }
               //else
-                  if(g.getId()=="")
+                  if(gestor.existeGrupo(id_grupo))
               {
                   JOptionPane.showMessageDialog(null, "Grupo no existe","Error",JOptionPane.ERROR_MESSAGE);
                   num_grupo.setText("");
               }
               else
                   {
-                      gestor.cursado(id_grupo, id_curso.getText(), n);
-                      if(n.getCondision()!="aplazado")
-                      {
-                          JOptionPane.showMessageDialog(null, "Estudiante ya esta matriculado o aprobo el curso","Error",JOptionPane.ERROR_MESSAGE);
-                          id_estudiante.setText("");
-                      }
-                      else
+                      Grupo g= new Grupo();
+                         Nota n= new Nota();
+                         
+                        gestor.Buscar(g, id_grupo);
+//                      gestor.cursado(id_grupo, id_curso.getText(), n);
+//                      if(n.getCondision()!="aplazado")
+//                      {
+//                          JOptionPane.showMessageDialog(null, "Estudiante ya esta matriculado o aprobo el curso","Error",JOptionPane.ERROR_MESSAGE);
+//                          id_estudiante.setText("");
+//                      }
+//                      else
                           if(n.getCondision()=="")
                       {
-                          n.setCURSO(id_grupo);
+                          n.setCURSO(id_curso.getText());
                           n.setCondision("encurso");
-                          n.setESTUDIANTE(id_grupo);
+                          n.setESTUDIANTE(id_estudiante.getText());
                           n.setGrupo(id_grupo);
                           gestor.Matricular(n);
                            salir(); 

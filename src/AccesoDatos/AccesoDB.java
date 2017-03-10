@@ -720,6 +720,18 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
+     public void matricula(Nota n){
+   try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            Statement s = bd.conexion.createStatement();
+            s.executeUpdate("INSERT INTO nota VALUES('" + n.getNOTA()+ "','" + n.getCURSO()+ "','"
+                                                         + n.getESTUDIANTE()+"','"+n.getGrupo()+"','"+n.getCondision()+"')");
+            bd.closeCon();            
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+   }
 
    public void agrega(Carrera a){
           try {
@@ -879,18 +891,7 @@ public class AccesoDB {
         return false;
       
    }
-   public void matricula(Nota n){
-   try {
-            ConexionBD bd = new ConexionBD();
-            bd.Connect();
-            Statement s = bd.conexion.createStatement();
-            s.executeUpdate("INSERT INTO CURSO VALUES('" + n.getNOTA()+ "','" + n.getCURSO()+ "','"
-                                                         + n.getESTUDIANTE()+"','"+n.getGrupo()+"','"+n.getCondision()+"')");
-            bd.closeCon();            
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-   }
+ 
 
    public boolean Desmatricula(String id, String cod){
          try {

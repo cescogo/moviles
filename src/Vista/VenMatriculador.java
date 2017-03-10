@@ -49,11 +49,11 @@ public class VenMatriculador extends JFrame {
         c.add(principal, BorderLayout.CENTER);
     
 				desmatricular= new JButton("Desmatricular estudiante"); 
-                                desmatricular.addActionListener((ActionEvent e)->{vendesmatricular();});
+                                desmatricular.addActionListener((ActionEvent e)->{Vendesmatricular();});
 				central.add(desmatricular);
                                 
                                 matricular= new JButton("matricular estudiante");
-                                matricular.addActionListener((ActionEvent e)->{Venmatricular();});
+                                matricular.addActionListener((ActionEvent e)->{venmatricular();});
 				central.add(matricular);
                                 
                                 
@@ -63,7 +63,7 @@ public class VenMatriculador extends JFrame {
     
         }
 
-    private void Venmatricular()
+    private void Vendesmatricular()
     {
         
     		VenDesmatricular ve= new VenDesmatricular(gestor);
@@ -75,7 +75,7 @@ public class VenMatriculador extends JFrame {
         setVisible(true);
     }
     
-    private void vendesmatricular()
+    private void venmatricular()
     {
     		VenMatricular ve= new VenMatricular(gestor);
                 ve.init();
