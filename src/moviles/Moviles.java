@@ -13,7 +13,7 @@ public class Moviles {
 //       Interfaz in = new Interfaz(ctrl);
 //           in.initB();
         
-       VenDesmatricular m= new VenDesmatricular(ctrl);
+       VenMatriculador m= new VenMatriculador(ctrl);
        m.init();
 //           
     }

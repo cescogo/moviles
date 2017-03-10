@@ -4,6 +4,7 @@ import java.util.Scanner;
 import Control.Control;
 import Modelo.*;
 import java.awt.List;
+import javax.swing.JOptionPane;
 
 public class Interfaz {
 
@@ -54,8 +55,11 @@ public class Interfaz {
                 break;
             case 2:
                 int opc = 0;
-                while((opc = nuevamatricula())!= 2)
-                    if(opc==1)AdminMatricula();
+                while ((opc = nuevamatricula()) != 2) {
+                    if (opc == 1) {
+                        AdminMatricula();
+                    }
+                }
                 break;
             case 3:
                 //FuncProfesor();
@@ -64,23 +68,27 @@ public class Interfaz {
                 FuncAlumno();
                 //
                 break;
-            case 0:break;
-                
+            case 0:
+                break;
+
         }
 
     }
-    public int solicitaAlopc(){
+
+    public int solicitaAlopc() {
         System.out.println("1->historial");
         System.out.println("2->salir");
         return leerI();
     }
-    
-        private void FuncAlumno() {
+
+    private void FuncAlumno() {
         BienvInter(4);
-        int opc = 0 ;
-        while((opc = solicitaAlopc())!= 2)
-            if(opc ==1)
+        int opc = 0;
+        while ((opc = solicitaAlopc()) != 2) {
+            if (opc == 1) {
                 ConsultaHistorial();
+            }
+        }
     }
 
     public String solicitaUsr() {
@@ -136,9 +144,10 @@ public class Interfaz {
                 default:
                     ERROR();
                     break;
-                }
+            }
         }
     }
+//
 
     private void AdminCarrera() {
         int opc = 0;
@@ -170,12 +179,20 @@ public class Interfaz {
     private void crearCarrera() {
         String nomcar = SolicitaNomCarrera();
         String codCAr = SolicitaCodCarrera();
-        ctrl.agregarCarrera(nomcar, codCAr);
+        if (ctrl.existeCarrera(codCAr)) {
+            System.out.println("Carrera ya existe, Error");
+        } else {
+            ctrl.agregarCarrera(nomcar, codCAr);
+        }
     }
 
     public void BorrarCarrera() {
         String c = SolicitaCodCarrera();
-        ctrl.BorrarCarrera(c);
+        if (ctrl.existeCarrera(c)) {
+            System.out.println("Carrera No existe, Error");
+        } else {
+            ctrl.BorrarCarrera(c);
+        }
     }
 
     public void MostrarCarrera() {
@@ -207,6 +224,7 @@ public class Interfaz {
         Carrera a = new Carrera(SolicitaCodCarrera(), SolicitaNomCarrera());
         ctrl.ActualizarCarrera(a);
     }
+//
 
     public void errorLogin() {
         System.out.println("Error Usuario o Contraseña incorrecta: ");
@@ -240,11 +258,24 @@ public class Interfaz {
     }
 
     private void crearCurso() {
-        ctrl.agregarCurso(SolicitaCodCurso(), SolicitaNomCurso(), SolicitaCreditos(), SolicitaHsemanal(), SolicitaCodCarrera(), SolicitaCiclo());
+        String carrera = SolicitaCodCarrera();
+        String Ccurso = SolicitaCodCurso();
+
+        if (!ctrl.existeCarrera(carrera)) {
+            System.out.println("Carrera no existe agreguela por favor, Error");
+        } else if (ctrl.existeCur(Ccurso)) {
+            System.out.println("Curso ya existe, Error");
+        } else {
+            ctrl.agregarCurso(Ccurso, SolicitaNomCurso(), SolicitaCreditos(), SolicitaHsemanal(), carrera, SolicitaCiclo());
+        }
+
     }
 
     private void BorrarCurso() {
-        if (ctrl.BorrarCurso(SolicitaCodCurso())) {
+        String curso = SolicitaCodCurso();
+        if (!ctrl.existeCur(curso)) {
+            System.out.println("Curso existe, Error");
+        } else if (ctrl.BorrarCurso(curso)) {
             SucceDel();
         } else {
             ErrorDel();
@@ -279,15 +310,14 @@ public class Interfaz {
     private void ActualizarCurso() {
         Curso s = new Curso();
         ctrl.MostrarCurso(s, SolicitaCodCurso(), 2);
-        System.out.println(s.toString());
         if (s.getCodigo() != "") {
             int p = 0;
             while (p != 5) {
-                
+
                 switch (p = ModifProf()) {
                     case 1://nombre
                         String nom = SolicitaNomCurso();
-                        if (nom != "") {
+                        if (!nom.isEmpty()) {
                             s.setNombre(nom);
                         }
                         break;
@@ -313,11 +343,14 @@ public class Interfaz {
                         ERROR();
                 }
             }
+            ctrl.ActualizarCurso(s);
+
         } else {
             ERROR();
-
+            System.out.println(s.toString());
+            System.out.println("no existe ese curso");
         }
-        ctrl.ActualizarCurso(s);
+
     }
 
     private void AdminProfes() {
@@ -345,11 +378,16 @@ public class Interfaz {
     }
 
     private void crearProfe() {
-        ctrl.agregarProfesor(SolicitaNombres(), SolicitaCedulas(), SolicitaTelefono(), SolicitaEmail(), solicitaPass());
+        String ced = SolicitaCedulas("profesor");
+        if (ctrl.existePro(ced)) {
+            System.out.println("Profesor ya existe, Error");
+        } else {
+            ctrl.agregarProfesor(SolicitaNombres(), ced, SolicitaTelefono(), SolicitaEmail(), solicitaPass());
+        }
     }
 
     private void BorrarPersona() {
-        if (ctrl.borrarP(SolicitaCedulas())) {
+        if (ctrl.borrarP(SolicitaCedulas("persona"))) {
             SucceDel();
         } else {
             ErrorDel();
@@ -363,7 +401,7 @@ public class Interfaz {
             BusqProf();
             switch (p = leerI()) {
                 case 1:
-                    ctrl.mostrarPCed(per, SolicitaCedulas());
+                    ctrl.mostrarPCed(per, SolicitaCedulas("profesor"));
                     System.out.println(per.toString());
                     break;
                 case 2:
@@ -379,8 +417,8 @@ public class Interfaz {
 
     private void ActualizarProfe() {
         Profesor pro = new Profesor();
-        ctrl.mostrarPCed(pro, SolicitaCedulas());
-        if (pro.getCedula() != "") {
+        ctrl.mostrarPCed(pro, SolicitaCedulas("profesor"));
+        if (!pro.getCedula().isEmpty()) {
             int p = 0;
             while (p != 5) {
                 switch (p = ModifProf()) {
@@ -429,7 +467,7 @@ public class Interfaz {
                     crearEst();
                     break;
                 case 2:
-                    BorrarEst();
+                    BorrarPersona();
                     break;
                 case 3:
                     MostrarEst();
@@ -445,15 +483,13 @@ public class Interfaz {
     }
 
     private void crearEst() {
-        ctrl.agregarAlumno(SolicitaNombres(), SolicitaCedulas(), SolicitaFec_Nac(), SolicitaTelefono(), SolicitaEmail(), solicitaPass(),SolicitaCodCarrera());
-    }
-
-    private void BorrarEst() {
-        if (ctrl.borrarP(SolicitaCedulas())) {
-            SucceDel();
+        String ced = SolicitaCedulas("Estudiante");
+        if (ctrl.existeEst(ced)) {
+            System.out.println("Estudiante ya existe, Error");
         } else {
-            ErrorDel();
+            ctrl.agregarAlumno(SolicitaNombres(), ced, SolicitaFec_Nac(), SolicitaTelefono(), SolicitaEmail(), solicitaPass(), SolicitaCodCarrera());
         }
+
     }
 
     private void MostrarEst() {
@@ -463,7 +499,7 @@ public class Interfaz {
             BusqAlmn();
             switch (p = leerI()) {
                 case 1:
-                    ctrl.mostrarPCed(per, SolicitaCedulas());
+                    ctrl.mostrarPCed(per, SolicitaCedulas("Estudiante"));
                     System.out.println(per.toString());
                     break;
                 case 2:
@@ -485,10 +521,10 @@ public class Interfaz {
 
     private void ActualizarEst() {
         Alumno al = new Alumno();
-        ctrl.mostrarPCed(al, SolicitaCedulas());
-        System.out.println(al.toString());
+        ctrl.mostrarPCed(al, SolicitaCedulas("Estudiante"));
 
         if (al.getCedula() != "") {
+            System.out.println(al.toString());
             int p = 0;
             while (p != 5) {
                 p = ModifAlmn();
@@ -523,21 +559,24 @@ public class Interfaz {
             }
         } else {
             ERROR();
+            System.out.println("estudianre no existe");
             return;
         }
         ctrl.actualizaP(al);
     }
 
     private void AgregarAcceso() {
-        int opc =0 ;
-       
-        while(opc!=2){
+        int opc = 0;
+
+        while (opc != 2) {
             System.out.println("2__agregar accesos");
             System.out.println("1__salir");
-                opc = leerI();
-            if(opc==1)
+            opc = leerI();
+            if (opc == 1) {
                 AddAcceso();
-            else ERROR();        
+            } else {
+                ERROR();
+            }
         }
 
     }
@@ -551,7 +590,7 @@ public class Interfaz {
                     crearAdm();
                     break;
                 case 2:
-                    BorrarAdm();
+                    BorrarPersona();
                     break;
                 case 3:
                     MostrarAdm();
@@ -560,22 +599,20 @@ public class Interfaz {
                     ActualizarAdm();
                     break;
                 case 5:
-                    break;                    
+                    break;
                 default:
                     ERROR();
                     break;
             }
         }
     }
-     private void crearAdm() {
-        ctrl.agregarAdministrador(SolicitaNombres(), SolicitaCedulas(), SolicitaTelefono(), SolicitaEmail(), solicitaPass());
-    }
 
-    private void BorrarAdm() {
-        if (ctrl.borrarP(SolicitaCedulas())) {
-            SucceDel();
+    private void crearAdm() {
+        String ced = SolicitaCedulas("administrador");
+        if (ctrl.existeAdmi(ced)) {
+            System.out.println("Administrador ya existe, Error");
         } else {
-            ErrorDel();
+            ctrl.agregarAdministrador(SolicitaNombres(), ced, SolicitaTelefono(), SolicitaEmail(), solicitaPass());
         }
     }
 
@@ -586,7 +623,7 @@ public class Interfaz {
             BusqAcc();
             switch (p = leerI()) {
                 case 1:
-                    ctrl.mostrarPCed(per, SolicitaCedulas());
+                    ctrl.mostrarPCed(per, SolicitaCedulas("administrador"));
                     System.out.println(per.toString());
                     break;
                 default:
@@ -597,10 +634,10 @@ public class Interfaz {
 
     private void ActualizarAdm() {
         Administrador al = new Administrador();
-        ctrl.mostrarPCed(al, SolicitaCedulas());
-        System.out.println(al.toString());
+        ctrl.mostrarPCed(al, SolicitaCedulas("administrador"));
 
         if (al.getCedula() != "") {
+            System.out.println(al.toString());
             int p = 0;
             while (p != 5) {
                 p = ModifAlmn();
@@ -635,6 +672,7 @@ public class Interfaz {
             }
         } else {
             ERROR();
+            System.out.println("no existe persona");
             return;
         }
         ctrl.actualizaP(al);
@@ -649,7 +687,7 @@ public class Interfaz {
                     crearMatr();
                     break;
                 case 2:
-                    BorrarMatr();
+                    BorrarPersona();
                     break;
                 case 3:
                     MostrarMatr();
@@ -665,14 +703,11 @@ public class Interfaz {
     }
 
     private void crearMatr() {
-        ctrl.agregarMatriculador(SolicitaTelefono(), SolicitaEmail(), SolicitaNombres(), SolicitaCedulas(), solicitaPass());
-    }
-
-    private void BorrarMatr() {
-        if (ctrl.borrarP(SolicitaCedulas())) {
-            SucceDel();
+        String ced = SolicitaCedulas("Matriculador");
+        if (ctrl.existeMat(ced)) {
+            System.out.println("Matriculador ya existe, Error");
         } else {
-            ErrorDel();
+            ctrl.agregarMatriculador(SolicitaTelefono(), SolicitaEmail(), SolicitaNombres(), ced, solicitaPass());
         }
     }
 
@@ -683,7 +718,7 @@ public class Interfaz {
             BusqAcc();
             switch (p = leerI()) {
                 case 1:
-                    ctrl.mostrarPCed(per, SolicitaCedulas());
+                    ctrl.mostrarPCed(per, SolicitaCedulas("Matriculador"));
                     System.out.println(per.toString());
                     break;
                 default:
@@ -694,10 +729,10 @@ public class Interfaz {
 
     private void ActualizarMatr() {
         Matriculador al = new Matriculador();
-        ctrl.mostrarPCed(al, SolicitaCedulas());
-        System.out.println(al.toString());
+        ctrl.mostrarPCed(al, SolicitaCedulas("Matriculador"));
 
         if (al.getCedula() != "") {
+            System.out.println(al.toString());
             int p = 0;
             while (p != 5) {
                 p = ModifAlmn();
@@ -747,8 +782,21 @@ public class Interfaz {
         return leerI();
     }
 
-    private void AgregarGrupo(String car) {
-        ctrl.agregarGrupo(SolicitaNgrupo(), SolicitaHorario(), SolicitaCedulas(), car);
+    private void AgregarGrupo(String curso) {
+        int t_numero = SolicitaNgrupo();
+        String aux = curso + "-" + t_numero;
+        String t_profesor = SolicitaCedulas("profesor");
+
+        if (!ctrl.existeCur(curso)) {
+            System.out.println("Curso no existe agreguelo por favor, Error");
+        } else if (!ctrl.existePro(t_profesor)) {
+            System.out.println("Profesor no existe agreguelo por favor, Error");
+        } else if (ctrl.existeGrupo(aux)) {
+            System.out.println("Grupo ya existe, Error");
+
+        } else {
+            ctrl.agregarGrupo(t_numero, SolicitaHorario(), t_profesor, curso);
+        }
     }
 
     public void Oferta() {
@@ -767,28 +815,32 @@ public class Interfaz {
         Lista cursos = new Lista();
         ctrl.ofertaAcd(Carrera, ciclo, cursos);
         System.out.println(cursos.toString());
-        
+
         int opc = sbmoferta();
+
         if (opc == 1) {
             String curso = SolicitaCodCurso();
             Lista grupos = new Lista();
             ctrl.BuscarGrpCrs(curso, grupos);
             System.out.println(grupos.toString());
-                int ccc= sbmgrpsCrs();
+            int ccc = sbmgrpsCrs();
             if (ccc == 1) {
                 AgregarGrupo(curso);
             }
             if (ccc == 2) {
                 Grupo g = new Grupo();
                 ctrl.Bcgrupo(curso, SolicitaNgrupo(), g);
-                
+
                 if (g.getId() != "") {
                     int p = 0;
-                    String nom = SolicitaCedulas();
+                    String nom = SolicitaCedulas("profesor");
                     if (nom != "") {
-                    g.setProfesor(nom);
+                        g.setProfesor(nom);
                     }
-                }else ERROR();
+                } else {
+                    ERROR();
+                }
+                ctrl.actualizar(g);
             }
         }
     }
@@ -805,20 +857,21 @@ public class Interfaz {
         System.out.println("2--> atras");
         return leerI();
     }
-     private void ConsultaHistorial() {
-         Lista l =  new Lista();
-         ctrl.ConsultaHistorial(SolicitaCedulas(),l);
-         System.out.println(l.toString());    
-   
-     }
+
+    private void ConsultaHistorial() {
+        Lista l = new Lista();
+        ctrl.ConsultaHistorial(SolicitaCedulas("estudiante"), l);
+        System.out.println(l.toString());
+
+    }
 
     public void AddAcceso() {
-       
+
         int opc = 0;
         while (opc != 3) {
-        System.out.println("1-> Administrador");
-        System.out.println("2-> Matriculador");
-        System.out.println("3->Salir");
+            System.out.println("1-> Administrador");
+            System.out.println("2-> Matriculador");
+            System.out.println("3->Salir");
             switch (opc = leerI()) {
                 case 1:
                     AdminAdmin();
@@ -826,7 +879,8 @@ public class Interfaz {
                 case 2:
                     AdminMatr();
                     break;
-                default:ERROR();
+                default:
+                    ERROR();
             }
         }
     }
@@ -874,15 +928,16 @@ public class Interfaz {
 
     public void MenuMatriculador() {
         System.out.println("-----Menu Matriculador-----");
-           System.out.println("1--> agregar Matriculador");
+        System.out.println("1--> agregar Matriculador");
         System.out.println("2--> Borrar Matriculador");
         System.out.println("3--> mostrar Matriculador");
         System.out.println("4--> actualizar Matriculador");
         System.out.println("5-->SALIR");
     }
-      public void MenuAdmisn() {
+
+    public void MenuAdmisn() {
         System.out.println("-----Menu Administrador-----");
-           System.out.println("1--> agregar Administrador");
+        System.out.println("1--> agregar Administrador");
         System.out.println("2--> Borrar Administrador");
         System.out.println("3--> mostrar Administrador");
         System.out.println("4--> actualizar Administrador");
@@ -968,8 +1023,8 @@ public class Interfaz {
         return nombre;
     }
 
-    public String SolicitaCedulas() {
-        System.out.println("digite la cedula de persona:");
+    public String SolicitaCedulas(String persona) {
+        System.out.println("digite la cedula de"+persona+":");
         String cedula = "";
         Scanner entradaEscaner = new Scanner(System.in);
         cedula = entradaEscaner.nextLine(); //Invocamos un método sobre un objeto Scanner
@@ -1088,39 +1143,89 @@ public class Interfaz {
 
     private void AdminMatricula() {
         Alumno a = new Alumno();
-        ctrl.mostrarPCed(a, SolicitaCedulas());
-        if(!a.getCedula().isEmpty()){
+        ctrl.mostrarPCed(a, SolicitaCedulas("alumno"));
+        if (!a.getCedula().isEmpty()) {
             Lista l = new Lista();
             ctrl.matriculados(a.getCedula(), l);
             System.out.println(l.toString());
             int op = 0;
-            while(op!=3){
-            op=opcMA();
-            if(op == 1){
-                if(ctrl.MAtricula(SolicitaNomCurso(), a))
-                    System.out.println("Matriculado");
-                else System.out.println("no Matriculado");
-           }
-            if(op == 2){
-                if(ctrl.DesMAtricula(SolicitaNomCurso(), a))
-                    System.out.println("DesMatriculado");
-                else System.out.println("no puede desmatricular");                
-                //dematricula
+            while (op != 3) {
+                op = opcMA();
+                if (op == 1) {
+                    if (matriculaEst(a, SolicitaCodCurso())) {
+                        System.out.println("Matriculado");
+                    } else {
+                        System.out.println("no Matriculado");
+                    }
+                }
+                if (op == 2) {
+                    if (ctrl.DesMAtricula(SolicitaNomCurso(), a)) {
+                        System.out.println("DesMatriculado");
+                    } else {
+                        System.out.println("no puede desmatricular");
+                    }
+                    //dematricula
+                }
             }
-            }
-            
-            
+
         }
     }
-    public int nuevamatricula(){
+
+    
+    private boolean matriculaEst(Persona a, String curso){
+            int ngrupo = SolicitaNumgrp();
+            String id_grupo = curso+ "-" + ngrupo;
+        
+            if (a.getTipo() != 4) {
+                System.out.println("Estudiante no existe");
+                return false;
+            }
+            //else
+            Grupo g = new Grupo();
+            ctrl.Buscar(g, id_grupo);
+            if (g.getId().isEmpty()) {
+                System.out.println("Grupo no existe, Error");
+                return false;
+            }else {
+                Nota n = new Nota();
+                ctrl.cursado(a.getCedula(), curso, n);
+                if (n.getCondision() != "aplazado") {
+                    System.out.println("Estudiante ya esta matriculado o aprobo el curso, Error");
+                    return false;
+                } else {
+                    n.setCURSO(curso);
+                    n.setCondision("encurso");
+                    n.setESTUDIANTE(a.getCedula());
+                    n.setGrupo(id_grupo);
+                    ctrl.Matricular(n);
+                }
+
+            }
+            return true;
+    }
+    private boolean desmatriculaEst(Persona a , String curso){
+             Nota n= new Nota(); 
+                      ctrl.cursado(a.getCedula(), curso, n);
+                      if(n.getCondision().equals( "encurso")){
+                          ctrl.desmatricula(a.getCedula(),curso);
+                          return false;
+                      }
+                      else
+                      {
+                          System.out.println("Estudiante no esta matriculado");
+                      }
+    return true;
+    }
+    
+    public int nuevamatricula() {
         System.out.println("1--> nueva matricula");
         System.out.println("2--> salir");
         return leerI();
     }
-    
-public int opcMA(){
-    System.out.println("Agregar");
-    System.out.println("eliminar");
-    return leerI();
-}
+
+    public int opcMA() {
+        System.out.println("Agregar");
+        System.out.println("eliminar");
+        return leerI();
+    }
 }
