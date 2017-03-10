@@ -726,7 +726,7 @@ public class AccesoDB {
             bd.Connect();
             Statement s = bd.conexion.createStatement();
             s.executeUpdate("INSERT INTO nota VALUES('" + n.getNOTA()+ "','" + n.getCURSO()+ "','"
-                                                         + n.getESTUDIANTE()+"','"+n.getGrupo()+"','"+n.getCondision()+"')");
+                                                         + n.getESTUDIANTE()+"',"+n.getGrupo()+",'"+n.getCondision()+"')");
             bd.closeCon();            
         } catch (Exception e) {
             System.err.println(e.getMessage());
