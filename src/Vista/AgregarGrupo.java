@@ -121,55 +121,40 @@ public class AgregarGrupo extends JFrame {
         else
              return false; 
     }
-    
-    private boolean existe()
-    {
-        Curso c = new Curso();
-        gestor.MostrarCurso(c, t_curso.getText(), 2);
-        if(c.getCodigo()=="")
-        {
-            return false;
-        }
-        else 
-            return true;
-    }
-    
-    private boolean existePro()
-    {
-        Persona c = new Persona(0);
-        gestor.buscarPer(c, t_profesor.getText());
-        if(c.getTipo()!= 3)
-        {
-            return false;
-        }
-        else 
-            return true;
-    }
+ 
     
     private void agregar()
     {
+        
         if(blanco())
         {
             JOptionPane.showMessageDialog(null, "Campos vacios","Error",JOptionPane.ERROR_MESSAGE);
         }
         else
         {
-            if(!existe())
+            String aux=t_curso.getText()+"-"+t_numero.getText();
+            if(!gestor.existeCur(t_curso.getText()))
             {
                 JOptionPane.showMessageDialog(null, "Curso no existe agreguelo por favor","Error",JOptionPane.ERROR_MESSAGE);
                 salirCur();
             }else
-                if(!existePro())
+                if(!gestor.existePro(t_profesor.getText()))
                 {
                     JOptionPane.showMessageDialog(null, "Profesor no existe agreguelo por favor","Error",JOptionPane.ERROR_MESSAGE);
                     salirPro();
                 }
-            
+           
+            else
+                    if(gestor.existeGrupo(aux))
+                    {
+                         JOptionPane.showMessageDialog(null, "Grupo ya existe ","Error",JOptionPane.ERROR_MESSAGE);
+
+                    }
             else
             {
-                int aux=Integer.parseInt(t_numero.getText());
+                int aux1=Integer.parseInt(t_numero.getText());
                 
-                gestor.agregarGrupo(aux, t_horario.getText(), t_profesor.getText(),  t_curso.getText());
+                gestor.agregarGrupo(aux1, t_horario.getText(), t_profesor.getText(),  t_curso.getText());
                 salir();
                 
             }

@@ -135,16 +135,7 @@ public class AgregarCurso extends JFrame {
             return false;
     }
     
-    private boolean existe(String cod)
-    {
-        Carrera c= new Carrera();
-        gestor.MostrarCarreraC(c, cod);
-        if(c.getCodigo()=="")
-        {
-            return false;
-        }
-        return true;
-    }
+   
     private void agregar()
     {
         if(blanco())
@@ -153,11 +144,16 @@ public class AgregarCurso extends JFrame {
         }
         else
         {
-            if(!existe(t_carrera.getText()))
+            if(!gestor.existeCarrera(t_carrera.getText()))
             {
                 JOptionPane.showMessageDialog(null, "Carrera no existe agreguela por favor","Error",JOptionPane.ERROR_MESSAGE);
                 salirCar();
             }
+            else
+                if(gestor.existeCur(t_codigo.getText()))
+                {
+                    JOptionPane.showMessageDialog(null, "Curso ya existe ","Error",JOptionPane.ERROR_MESSAGE);
+                }
             else
             {
                 gestor.agregarCurso(t_codigo.getText(),  t_nombre.getText(), Integer.parseInt(t_creditos.getText()), Integer.parseInt( t_h_semanales.getText()), t_carrera.getText(), Integer.parseInt(t_num_ciclo.getText()));

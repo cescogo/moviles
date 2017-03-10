@@ -542,7 +542,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM carrera WHERE codigo ="+cod;
+            String comandoListar = "SELECT * FROM carrera WHERE codigo ='"+cod+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                  a.setCodigo(bd.registro.getString("codigo"));
@@ -559,8 +559,8 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM grupo WHERE ID_GRUPO ="+cod
-                        +" && From grupo where NUMERO="+num;
+            String comandoListar = "SELECT * FROM grupo WHERE ID_GRUPO = '"+cod
+                        +"' && From grupo where NUMERO= '"+num+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setId(bd.registro.getString("ID_GRUPO"));

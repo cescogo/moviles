@@ -41,6 +41,14 @@ public class Control {
     public void ActualizarCarrera(Carrera a) {
         accesoD.Actualiza(a);
     }
+    
+    public boolean existeCarrera(String cod)
+    {
+        Carrera c= new Carrera();
+        accesoD.Buscar(c, cod);
+        return true ? c.getCodigo()!="":false;
+       
+    }
 //</editor-fold>
 
 //<editor-fold desc="Metodos de Curso">
@@ -69,12 +77,26 @@ public class Control {
     public void ActualizarCurso(Curso c) {
         accesoD.Actualiza(c);
     }
+    
+    public boolean existeCur(String cog)
+    {
+        Curso c= new Curso();
+        accesoD.BuscarCursoCod(c, cog);
+        return true ? c.getCodigo()!="": false;
+    }
     //</editor-fold>
 
 //<editor-fold desc="Metodos de Profesores">
     public void agregarProfesor(String nombre, String cedula, int telefono, String email, String clave) {
         Profesor p = new Profesor(telefono, email, nombre, cedula, clave);
         agregarP(p);
+    }
+    
+    public boolean existePro(String cod)
+    {
+        Profesor p= new Profesor();
+        accesoD.BuscarPrfId(p, cod);
+        return true ? p.getCedula()!="":false;
     }
 
 //</editor-fold>
@@ -137,6 +159,30 @@ public class Control {
     public void actualizaP(Persona p) {
         accesoD.Actualiza(p);
     }
+    
+    public boolean existeEst(String cod)
+    {
+        Persona e= new Persona(4);
+        accesoD.BuscarEStId(e, cod);
+        return true?e.getCedula()!="":false;
+    }
+    
+      public boolean existeAdmi(String cod)
+    {
+        Persona e= new Persona(1);
+        accesoD.BuscarAdmId(e, cod);
+        return true?e.getCedula()!="":false;
+    }
+      
+        public boolean existeMat(String cod)
+    {
+        Persona e= new Persona(2);
+        accesoD.BuscarMtr(e, cod);
+        return true?e.getCedula()!="":false;
+    }
+    
+    
+    
 
 //</editor-fold>
     public void ofertaAcd(String Carrera, int ciclo, Lista cursos) {
@@ -203,8 +249,15 @@ public class Control {
     public void actualizar(Ciclo c, String id) {
         accesoD.Actualiza(c, id);
     }
+    
+    public boolean existeCiclo(String cod)
+    {
+        Ciclo c= new Ciclo();
+        accesoD.Buscar(c, cod);
+        return true? c.getId()!="":false;
+    }
     //</editor-fold>
-
+//<editor-fold desc="Metodos de grupo">
     public void agregarGrupo( int numero, String horario, String profesor, String curso) {
         String id = curso + '-' + String.valueOf(numero);
 
@@ -227,6 +280,13 @@ public class Control {
         accesoD.Actualiza(g);
     }
     
+    public boolean existeGrupo(String cod)
+    {
+        Grupo g= new Grupo();
+        accesoD.Buscar(g, cod);
+        return true? g.getId()!="":false;
+    }
+    //</editor-fold>
     public boolean MAtricula(String cod, Alumno a){
 //        Curso c = new Curso();
 //        accesoD.CMatri(c, a.getCarrera(), cod);
