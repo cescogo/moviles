@@ -578,7 +578,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM grupo WHERE ID_GRUPO ="+cod;
+            String comandoListar = "SELECT * FROM grupo WHERE ID_GRUPO ='"+cod+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {                
                 a.setId(bd.registro.getString("ID_GRUPO"));
