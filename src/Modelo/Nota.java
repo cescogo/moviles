@@ -68,6 +68,12 @@ private String condision;
     public String toString() {
         return "Cod Curso: "+CURSO+", grupo # "+grupo+", Estudiante: "+ESTUDIANTE+", Condicion:" +condision+ ", nota:" +NOTA;
     }
+    public String toprofesorC(){
+        return  "Cod Curso: "+CURSO+", grupo # "+grupo;
+   }
+    public String toprofesorE(){
+        return  "Estudiante: "+ESTUDIANTE+", NOta: "+NOTA;    
+    }
 
    
 }

@@ -62,7 +62,7 @@ public class Interfaz {
                 }
                 break;
             case 3:
-                //FuncProfesor();
+                FuncProfesor(usr);
                 break;
             case 4:
                 FuncAlumno();
@@ -1226,5 +1226,58 @@ public class Interfaz {
         System.out.println("Agregar");
         System.out.println("eliminar");
         return leerI();
+    }
+
+    private void FuncProfesor(String usr) {
+        Lista grupos = new Lista();
+        ctrl.gruposProfe(usr, grupos);
+        System.out.println(grupos.toString());
+        int opc =0;
+        while(opc != 2){
+            opc = menunotas();
+            if(opc == 1){
+                String codGrp = soliCodGRUPO();
+                Lista notas = new Lista();
+                ctrl.notasPgrupo(codGrp, notas);
+                System.out.println(notas.toString());
+                int op = 0;
+                while(op!=2){
+                    op = sbmenunota();
+                    if(op ==1){
+                        String Est = SolicitaCedulas("estudiante");
+                        Nota n = new Nota();
+                        ctrl.notaEst(codGrp, Est, n);
+                        System.out.println(n.toString());
+                        n.setNOTA(solicitanota(Est));
+                        ctrl.actualiza(n);
+                    }
+                }
+            }
+        }
+    }
+    
+    public String soliCodGRUPO(){
+        System.out.println("digite el codigo de grupo");
+        return leerS();
+    }
+    
+    public int sbmenunota(){
+     System.out.println("1 seleccione 1 Estudiante");
+        System.out.println("2 salir ");
+       return leerI();
+    }
+    
+    public int menunotas(){
+     System.out.println("1 seleccione 1 grupo");
+        System.out.println("2 salir ");
+       return leerI();
+    }
+
+    private float solicitanota(String Est) {
+        System.out.println("Digite la nota para "+Est);
+          float datoI = 0;
+        Scanner entradaEscaner = new Scanner(System.in);
+        datoI = entradaEscaner.nextFloat();
+        return datoI;
     }
 }
