@@ -316,7 +316,17 @@ public class Control {
     {
         accesoD.Desmatricula(ced ,cur); 
     }
+    public void notasPgrupo(String cdogrp, Lista l){
+           accesoD.notasDEgrupo(cdogrp, l);
+    }
     
+    public void gruposProfe(String ced, Lista l){
+        Lista grupos = new Lista();
+        accesoD.BuscarGrpPrf(ced, grupos);
+    }
+    public void notaEst(String a, String est, Nota n){
+        accesoD.notaESt(a, est, n);
+    }
    
     public void Matricular(Nota n)
     {
@@ -334,4 +344,8 @@ public class Control {
     
     private Persona user;
     private AccesoDB accesoD;
+
+    public void actualiza(Nota n) {
+        accesoD.Actualiza(n);
+    }
 }
