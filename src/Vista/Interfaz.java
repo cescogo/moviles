@@ -151,7 +151,7 @@ public class Interfaz {
 
     private void AdminCarrera() {
         int opc = 0;
-        while (opc != 5) {
+        while (opc != 6) {
             menuCarr();
             switch (opc = leerI()) {
                 case 1:
@@ -188,7 +188,7 @@ public class Interfaz {
 
     public void BorrarCarrera() {
         String c = SolicitaCodCarrera();
-        if (ctrl.existeCarrera(c)) {
+        if (!ctrl.existeCarrera(c)) {
             System.out.println("Carrera No existe, Error");
         } else {
             ctrl.BorrarCarrera(c);
@@ -221,7 +221,7 @@ public class Interfaz {
     }
 
     public void ActualizarCarrera() {
-        Carrera a = new Carrera(SolicitaCodCarrera(), SolicitaNomCarrera());
+        Carrera a = new Carrera(SolicitaNomCarrera(), SolicitaCodCarrera());
         ctrl.ActualizarCarrera(a);
     }
 //
@@ -1024,7 +1024,7 @@ public class Interfaz {
     }
 
     public String SolicitaCedulas(String persona) {
-        System.out.println("digite la cedula de"+persona+":");
+        System.out.println("digite la cedula de" + persona + ":");
         String cedula = "";
         Scanner entradaEscaner = new Scanner(System.in);
         cedula = entradaEscaner.nextLine(); //Invocamos un método sobre un objeto Scanner
@@ -1146,10 +1146,10 @@ public class Interfaz {
         ctrl.mostrarPCed(a, SolicitaCedulas("alumno"));
         if (!a.getCedula().isEmpty()) {
             Lista l = new Lista();
-            ctrl.matriculados(a.getCedula(), l);
-            System.out.println(l.toString());
             int op = 0;
             while (op != 3) {
+                ctrl.matriculados(a.getCedula(), l);
+                System.out.println(l.toString());
                 op = opcMA();
                 if (op == 1) {
                     if (matriculaEst(a, SolicitaCodCurso())) {
@@ -1159,7 +1159,7 @@ public class Interfaz {
                     }
                 }
                 if (op == 2) {
-                    if (ctrl.DesMAtricula(SolicitaNomCurso(), a)) {
+                    if (desmatriculaEst(a, SolicitaCodCurso())) {
                         System.out.println("DesMatriculado");
                     } else {
                         System.out.println("no puede desmatricular");
@@ -1171,52 +1171,51 @@ public class Interfaz {
         }
     }
 
-    
-    private boolean matriculaEst(Persona a, String curso){
-            int ngrupo = SolicitaNumgrp();
-            String id_grupo = curso+ "-" + ngrupo;
-        
-            if (a.getTipo() != 4) {
-                System.out.println("Estudiante no existe");
-                return false;
-            }
-            //else
-            Grupo g = new Grupo();
-            ctrl.Buscar(g, id_grupo);
-            if (g.getId().isEmpty()) {
-                System.out.println("Grupo no existe, Error");
-                return false;
-            }else {
-                Nota n = new Nota();
-                ctrl.cursado(a.getCedula(), curso, n);
-                if (n.getCondision() != "aplazado") {
-                    System.out.println("Estudiante ya esta matriculado o aprobo el curso, Error");
-                    return false;
-                } else {
-                    n.setCURSO(curso);
-                    n.setCondision("encurso");
-                    n.setESTUDIANTE(a.getCedula());
-                    n.setGrupo(id_grupo);
-                    ctrl.Matricular(n);
-                }
+    private boolean matriculaEst(Alumno a, String curso) {
+        int ngrupo = SolicitaNumgrp();
+        String id_grupo = curso + "-" + ngrupo;
 
+        if (a.getTipo() != 4) {
+            System.out.println("Estudiante no existe");
+            return false;
+        }
+        //else
+        Grupo g = new Grupo();
+        Curso cc = new Curso();
+        ctrl.Buscar(g, id_grupo);
+        ctrl.cursoNCarrera(cc, a.getCarrera(), curso);
+        if (cc.getCodigo().isEmpty()) {
+            System.out.println("Grupo no existe, Error");
+            return false;
+        } else {
+            Nota n = new Nota();
+            ctrl.cursado(a.getCedula(), curso, n);
+            if (n.getCondision() == "encurso" || n.getCondision() == "aprovado") {
+                System.out.println("Estudiante ya esta matriculado o aprobo el curso, Error");
+                return false;
+            } else {
+                n.setCURSO(curso);
+                n.setCondision("encurso");
+                n.setESTUDIANTE(a.getCedula());
+                n.setGrupo(id_grupo);
+                ctrl.Matricular(n);
             }
+
+        }
+        return true;
+    }
+
+    private boolean desmatriculaEst(Persona a, String curso) {
+        Nota n = new Nota();
+        ctrl.encurso(a.getCedula(), curso, n);
+        if (n.getCondision().equals("encurso")) {
+            ctrl.desmatricula(a.getCedula(), curso);
             return true;
+        }
+        System.out.println("Estudiante no esta matriculado");
+        return false;
     }
-    private boolean desmatriculaEst(Persona a , String curso){
-             Nota n= new Nota(); 
-                      ctrl.cursado(a.getCedula(), curso, n);
-                      if(n.getCondision().equals( "encurso")){
-                          ctrl.desmatricula(a.getCedula(),curso);
-                          return false;
-                      }
-                      else
-                      {
-                          System.out.println("Estudiante no esta matriculado");
-                      }
-    return true;
-    }
-    
+
     public int nuevamatricula() {
         System.out.println("1--> nueva matricula");
         System.out.println("2--> salir");

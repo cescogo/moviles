@@ -275,6 +275,10 @@ public class Control {
         accesoD.Buscar(g, cod);
     }
     
+    public void cursoNCarrera(Curso a, String CArrare, String codcur){
+        accesoD.BuscarCursoCar2(a, CArrare, codcur);
+    }
+    
     public void actualizar(Grupo g)
     {
         accesoD.Actualiza(g);
@@ -322,6 +326,10 @@ public class Control {
     public void cursado(String est,String cur,Nota n)
     {
         accesoD.condicion(est, cur, n);
+    }
+    public void encurso(String est,String cur,Nota n)
+    {
+        accesoD.Cursoencurso(est, cur, n);
     }
     
     private Persona user;

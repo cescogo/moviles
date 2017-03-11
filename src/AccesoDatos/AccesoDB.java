@@ -89,7 +89,31 @@ public class AccesoDB {
         }
    }
    
-   public void CMatri(Curso a, String car, String cod) {
+     public void Cursoencurso(String est,String cur,Nota n)
+   {
+       try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM nota WHERE Estudiante='"+ est+"' "
+                    + "And curso='"+cur+"' and CONDICION ='encurso'"; 
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {                
+                 n.setCURSO(bd.registro.getString("curso"));
+                 n.setCondision(bd.registro.getString("condicion"));  
+                 n.setESTUDIANTE(bd.registro.getString("estudiante"));
+                 n.setGrupo(bd.registro.getString("Grupo"));
+                 n.setNOTA(bd.registro.getFloat("nota"));
+                  
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+   }
+   
+     
+   public void BuscarCursoCar2(Curso a, String car, String cod) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -226,8 +250,10 @@ public class AccesoDB {
                 a.setNombre(bd.registro.getString("nombre"));
                 a.setTelefono(bd.registro.getInt("telefono"));
                 a.setTipo(bd.registro.getInt("tipo"));
-                if(a instanceof Alumno)
+                //if(a instanceof Alumno)
                     ((Alumno) a).setF_nac("F_NACIMIENTO");
+                    ((Alumno) a).setCarrera(bd.registro.getString("carrera"));
+           
             }
             bd.closeCon();
             
@@ -677,17 +703,16 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM NOTA WHERE NOTA = 0 AND ESTUDIANTE="+w;
+            String comandoListar = "SELECT * FROM NOTA WHERE CONDICION = 'encurso' AND ESTUDIANTE='"+w+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {   
-                Curso a = new Curso();
-                  a.setNum_ciclo(bd.registro.getInt("Num_ciclo"));
-                a.setNombre(bd.registro.getString("nombre"));                               
-                a.setCreditos(bd.registro.getInt("creditos"));
-                a.setHsemanales(bd.registro.getInt("H_SEMANALES"));
-                a.setCodigo(bd.registro.getString("codigo"));
-                a.setNum_ciclo(bd.registro.getInt("NUM_CICLO"));
-                l.agregar(a);           
+                Nota n = new Nota();
+                n.setCURSO(bd.registro.getString("curso"));
+                n.setCondision(bd.registro.getString("condicion"));                
+                n.setESTUDIANTE(bd.registro.getString("estudiante"));                
+                n.setGrupo(bd.registro.getString("grupo"));
+                n.setNOTA(bd.registro.getInt("nota"));
+                l.agregar(n);           
             }
             bd.closeCon();
             
@@ -899,7 +924,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             Statement s = bd.conexion.createStatement();
-            String sql = "delete from Nota WHERE Curso='"+ cod+"' AND ESTUDIANTE ='"+id+"' AND CONDICION = encurso";            
+            String sql = "delete from Nota WHERE Curso='"+ cod+"' AND ESTUDIANTE ='"+id+"' AND CONDICION = 'encurso'";            
             s.executeUpdate(sql);
             bd.closeCon();
             return true;

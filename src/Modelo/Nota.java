@@ -64,6 +64,10 @@ private String condision;
     public void setCondision(String condision) {
         this.condision = condision;
     }
+  @Override
+    public String toString() {
+        return "Cod Curso: "+CURSO+", grupo # "+grupo+", Estudiante: "+ESTUDIANTE+", Condicion:" +condision+ ", nota:" +NOTA;
+    }
 
    
 }
