@@ -1242,6 +1242,7 @@ public class Interfaz {
                 System.out.println(notas.toString());
                 int op = 0;
                 while(op!=2){
+                    op = sbmenunota();
                     if(op ==1){
                         String Est = SolicitaCedulas("estudiante");
                         Nota n = new Nota();
@@ -1251,9 +1252,7 @@ public class Interfaz {
                         ctrl.actualiza(n);
                     }
                 }
-            
             }
-            
         }
     }
     

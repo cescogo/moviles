@@ -321,8 +321,7 @@ public class Control {
     }
     
     public void gruposProfe(String ced, Lista l){
-        Lista grupos = new Lista();
-        accesoD.BuscarGrpPrf(ced, grupos);
+                accesoD.BuscarGrpPrf(ced, l);
     }
     public void notaEst(String a, String est, Nota n){
         accesoD.notaESt(a, est, n);
