@@ -10,10 +10,10 @@ public class Moviles {
 //      VentanaInicio vi= new VentanaInicio();
 //       vi.init();
        Control ctrl  = new Control();
-       Interfaz in = new Interfaz(ctrl);
-           in.initB();
+//       Interfaz in = new Interfaz(ctrl);
+//           in.initB();
         
-       VenMatriculador m= new VenMatriculador(ctrl);
+      MostrarEstudiantes m= new MostrarEstudiantes(ctrl);
        m.init();
 //           
     }
