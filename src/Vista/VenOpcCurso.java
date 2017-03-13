@@ -57,7 +57,8 @@ public class VenOpcCurso extends JFrame{
                                 modificar.addActionListener((ActionEvent e)->{modificar();});
 				central.add(modificar);
 				
-				consultar= new JButton("buscar curso");
+				consultar= new JButton("Ver curso");
+                                consultar.addActionListener((ActionEvent e)->{verCursos();});
 				central.add(consultar);
 				
 				eliminar= new JButton("eliminar curso");
@@ -98,7 +99,12 @@ private void eliminar()
        
     }
     
-    
+    private void verCursos()
+    {
+        MostrarCursos vi= new MostrarCursos(gestor);
+        vi.init();
+        this.dispose();
+    }
     
     private void salir()
     {

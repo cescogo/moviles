@@ -182,7 +182,10 @@ public class Control {
     }
     
     
-    
+   public void mostrarEst(Lista l)
+   {
+       
+   }
 
 //</editor-fold>
     public void ofertaAcd(String Carrera, int ciclo, Lista cursos) {
@@ -291,17 +294,7 @@ public class Control {
         return true? g.getId()!="":false;
     }
     //</editor-fold>
-    public boolean MAtricula(String cod, Alumno a){
-//        Curso c = new Curso();
-//        accesoD.CMatri(c, a.getCarrera(), cod);
-//        if(!c.getCodigo().isEmpty())
-//           if(!accesoD.estaECurso(a.getCedula(), cod)){
-//                Nota n =  new Nota(0, cod, a.getCedula());
-//                accesoD.matricula(n);          
-//                return true;
-//           }       
-        return false;
-    }
+   
 
      
     public boolean DesMAtricula(String cod, Alumno a){

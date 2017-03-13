@@ -36,6 +36,14 @@ public class Lista {
        return lista.toString();
     }
     
+   public int size()
+   {
+       return lista.size();
+   }
    
+   public Object getElemento(int index)
+   {
+       return lista.get(index);
+   }
     
 }
