@@ -6,17 +6,15 @@
 package Vista;
 
 import Control.Control;
+import Modelo.Curso;
+import Modelo.Lista;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,11 +29,11 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ccg
  */
-public class MostrarEstudiantes extends JFrame{
-    
-      public MostrarEstudiantes(Control c) {
-            super("Mostrar Estudiante");
-            tabla= new ModeloTabla();
+public class MostrarGrupos {
+      public MostrarCursos(Control c) {
+            super("Mostrar Cursos");
+            tabla= new ModeloTabla1();
+            
         ajustarComponentes(getContentPane());   
         gestor=c;
         setMinimumSize(new Dimension(600,400));
@@ -50,11 +48,25 @@ public class MostrarEstudiantes extends JFrame{
          principal = new JPanel();
         principal.setLayout(new BorderLayout());
         principal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        JPanel busca= new JPanel();
+        busca.setLayout(new FlowLayout());
         
          formulario =new JPanel(new BorderLayout());
+         bus= new JLabel("codigo de la carrera que desea ver los cursos");
+         busca.add(bus);
+         buscar= new JTextField(10);
+         busca.add(buscar);
+         b_buscar= new JButton("Buscar");
+         b_buscar.addActionListener((ActionEvent e)->{mostrar();});
+         busca.add(b_buscar);
+         
+         formulario.add(busca,BorderLayout.NORTH);
+         
        JPanel pTabla=new JPanel();
+       
         pTabla.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
         pTabla.setLayout(new BorderLayout());
+        
 
           JScrollPane desplazamientoTabla = new JScrollPane(
                   ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -62,10 +74,11 @@ public class MostrarEstudiantes extends JFrame{
         
         tablaDatos = new JTable();        
         tablaDatos.setModel(tabla);
+        
         desplazamientoTabla.setViewportView(tablaDatos);
         
         pTabla.add(BorderLayout.CENTER, desplazamientoTabla);
-        formulario.add(pTabla);
+        formulario.add(pTabla,BorderLayout.CENTER);
         principal.add(formulario);
         c.add(principal);
         
@@ -83,7 +96,30 @@ public class MostrarEstudiantes extends JFrame{
     }
     
    
-    
+    private void mostrar()
+    {
+       if(buscar.getText().isEmpty())
+       {
+           JOptionPane.showMessageDialog(null, "Campo vacio","Error",JOptionPane.ERROR_MESSAGE);
+       }
+       else
+        if(!gestor.existeCarrera(buscar.getText()))
+        {
+            JOptionPane.showMessageDialog(null, "Carrera no existe","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else
+        { 
+            Lista l= new Lista();
+            gestor.MostrarCursos(l, buscar.getText());
+            Curso c= new Curso();
+            for(int i=0; i< l.size();i++)
+            {
+                c= (Curso)l.getElemento(i);
+                tabla.addRow(new Object[]{c.getCodigo(),c.getNombre(),c.getCreditos(),c.getHsemanales(),c.getNum_ciclo()});
+            }
+        }
+        
+    }
     
       private JPanel principal;
       private Control gestor;
@@ -91,17 +127,19 @@ public class MostrarEstudiantes extends JFrame{
    
     private JButton aceptar;
    private JTable tablaDatos;
-   public ModeloTabla tabla;
-    
+   public ModeloTabla1 tabla;
+   private JTextField buscar;
+   private JLabel bus;
+    private JButton b_buscar;
     
     
 }
- class ModeloTabla extends DefaultTableModel {
+ class ModeloTabla1 extends DefaultTableModel {
 
-        public ModeloTabla() {
+        public ModeloTabla1() {
             super(new Object[][]{},
-                    new String[]{"Cedula", "Nombre", "F nacimiento", "Correo",
-                    "Telefono","Carrera"});
+                    new String[]{"Codigo", "Nombre", "Creditos", "H semanales",
+                    "Ciclo"});
             
             }
         
@@ -111,3 +149,7 @@ public class MostrarEstudiantes extends JFrame{
             return false;
         }
     }
+
+
+
+}
