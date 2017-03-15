@@ -6,7 +6,7 @@
 package Vista;
 
 import Control.Control;
-import Modelo.Curso;
+import Modelo.*;
 import Modelo.Lista;
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -15,6 +15,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,10 +30,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ccg
  */
-public class MostrarGrupos {
-      public MostrarCursos(Control c) {
+public class MostrarGrupos extends JFrame {
+      public MostrarGrupos(Control c) {
             super("Mostrar Cursos");
-            tabla= new ModeloTabla1();
+            tabla= new ModeloTabla2();
             
         ajustarComponentes(getContentPane());   
         gestor=c;
@@ -52,7 +53,7 @@ public class MostrarGrupos {
         busca.setLayout(new FlowLayout());
         
          formulario =new JPanel(new BorderLayout());
-         bus= new JLabel("codigo de la carrera que desea ver los cursos");
+         bus= new JLabel("codigo del curso que desea ver los grupos");
          busca.add(bus);
          buscar= new JTextField(10);
          busca.add(buscar);
@@ -103,19 +104,21 @@ public class MostrarGrupos {
            JOptionPane.showMessageDialog(null, "Campo vacio","Error",JOptionPane.ERROR_MESSAGE);
        }
        else
-        if(!gestor.existeCarrera(buscar.getText()))
+        if(!gestor.existeCur(buscar.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Carrera no existe","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Curso no existe","Error",JOptionPane.ERROR_MESSAGE);
         }
         else
         { 
             Lista l= new Lista();
-            gestor.MostrarCursos(l, buscar.getText());
-            Curso c= new Curso();
+            gestor.BuscarGrpCrs(buscar.getText(),l);
+            Grupo c= new Grupo();
+            Persona p= new Persona(0);
             for(int i=0; i< l.size();i++)
             {
-                c= (Curso)l.getElemento(i);
-                tabla.addRow(new Object[]{c.getCodigo(),c.getNombre(),c.getCreditos(),c.getHsemanales(),c.getNum_ciclo()});
+                c= (Grupo)l.getElemento(i);
+                gestor.buscarPer(p, c.getProfesor());
+                tabla.addRow(new Object[]{c.getNumero(),c.getProfesor(),p.getNombre()});
             }
         }
         
@@ -127,19 +130,18 @@ public class MostrarGrupos {
    
     private JButton aceptar;
    private JTable tablaDatos;
-   public ModeloTabla1 tabla;
+   public ModeloTabla2 tabla;
    private JTextField buscar;
    private JLabel bus;
     private JButton b_buscar;
     
     
 }
- class ModeloTabla1 extends DefaultTableModel {
+ class ModeloTabla2 extends DefaultTableModel {
 
-        public ModeloTabla1() {
+        public ModeloTabla2() {
             super(new Object[][]{},
-                    new String[]{"Codigo", "Nombre", "Creditos", "H semanales",
-                    "Ciclo"});
+                    new String[]{"numero", "id Prof","Profesor"});
             
             }
         
@@ -152,4 +154,4 @@ public class MostrarGrupos {
 
 
 
-}
+
