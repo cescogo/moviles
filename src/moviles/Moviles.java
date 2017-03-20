@@ -13,7 +13,7 @@ public class Moviles {
 //       Interfaz in = new Interfaz(ctrl);
 //           in.initB();
         
-      MostrarEstuCarre m= new MostrarEstuCarre(ctrl);
+      MostrarGruProf m= new MostrarGruProf(ctrl,"123");
        m.init();
 //           
     }

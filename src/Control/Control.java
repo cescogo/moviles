@@ -340,4 +340,6 @@ public class Control {
     public void actualiza(Nota n) {
         accesoD.Actualiza(n);
     }
+    
+    
 }

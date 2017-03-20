@@ -45,5 +45,10 @@ public class Lista {
    {
        return lista.get(index);
    }
+   
+   public void Clean()
+   {
+       lista.clear();
+   }
     
 }

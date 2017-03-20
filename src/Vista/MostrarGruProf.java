@@ -32,10 +32,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MostrarGruProf extends JFrame {
     
-  public MostrarGruProf(Control c) {
+  public MostrarGruProf(Control c, String ced) {
             super("Mostrar Grupos de un profesor");
             tabla= new ModeloTabla4();
-            
+            cedula=ced;            
         ajustarComponentes(getContentPane());   
         gestor=c;
         setMinimumSize(new Dimension(600,400));
@@ -46,24 +46,16 @@ public class MostrarGruProf extends JFrame {
     
     public void ajustarComponentes(Container c)
     {
-        c.setLayout(new BorderLayout());
+         c.setLayout(new BorderLayout());
          principal = new JPanel();
         principal.setLayout(new BorderLayout());
         principal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        JPanel busca= new JPanel();
-        busca.setLayout(new FlowLayout());
+       
         
          formulario =new JPanel(new BorderLayout());
-         bus= new JLabel("cédula del profesor que desea ver los grupos");
-         busca.add(bus);
-         buscar= new JTextField(10);
-         busca.add(buscar);
-         b_buscar= new JButton("Buscar");
-         b_buscar.addActionListener((ActionEvent e)->{mostrar();});
-         busca.add(b_buscar);
+       
          
-         formulario.add(busca,BorderLayout.NORTH);
-         
+        
        JPanel pTabla=new JPanel();
        
         pTabla.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
@@ -89,39 +81,32 @@ public class MostrarGruProf extends JFrame {
     {
         VenOpcEstudiante vi = new VenOpcEstudiante(gestor);
         vi.init();
+        l.Clean();
         this.dispose();
     }
      
      
     public void init() {
         setVisible(true);
+        mostrar();
     }
     
    
     private void mostrar()
-    {
-       if(buscar.getText().isEmpty())
-       {
-           JOptionPane.showMessageDialog(null, "Campo vacio","Error",JOptionPane.ERROR_MESSAGE);
-       }
-       else
-        if(!gestor.existePro(buscar.getText()))
-        {
-            JOptionPane.showMessageDialog(null, "Profesor no existe","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        else
-        { 
-            Lista l= new Lista();
-//            gestor.(buscar.getText(),l);
+    { 
+      
+        
+           l= new Lista();
+            gestor.gruposProfe(cedula,l);
             Grupo c= new Grupo();
-            Persona p= new Persona(0);
+            Curso p= new Curso();
             for(int i=0; i< l.size();i++)
             {
                 c= (Grupo)l.getElemento(i);
-                gestor.buscarPer(p, c.getProfesor());
-                tabla.addRow(new Object[]{c.getNumero(),c.getProfesor(),p.getNombre()});
+                gestor.MostrarCurso(p, c.getCurso(),2);
+                tabla.addRow(new Object[]{c.getNumero(),p.getCodigo(),p.getNombre()});
             }
-        }
+        
         
     }
     
@@ -132,9 +117,9 @@ public class MostrarGruProf extends JFrame {
     private JButton aceptar;
    private JTable tablaDatos;
    public ModeloTabla4 tabla;
-   private JTextField buscar;
-   private JLabel bus;
-    private JButton b_buscar;
+    
+    private Lista l;
+    private String cedula;
     
     
 }
@@ -142,7 +127,7 @@ public class MostrarGruProf extends JFrame {
 
         public ModeloTabla4() {
             super(new Object[][]{},
-                    new String[]{"numero", "id Prof","Profesor"});
+                    new String[]{"numero","cod Curso","nombre Curso"});
             
             }
         
