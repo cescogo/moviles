@@ -83,13 +83,19 @@ public class MostrarGruProf extends JFrame {
                 {
                     int row= tablaDatos.getSelectedRow();
                   Grupo c= (Grupo) l.getElemento(row);
-                    //mostrar estudiantes de un grupo
+                  venGrupos(c.getCurso(),c.getNumero());
+                  
+                    
                 }
             }
         });
-        
-    
+            
         pTabla.add(BorderLayout.CENTER, desplazamientoTabla);
+        salir= new JButton("salir");
+        salir.addActionListener((ActionEvent e)->{salir();});
+        JPanel cancelar= new JPanel(new BorderLayout());
+        cancelar.add(salir,BorderLayout.EAST);
+        formulario.add(cancelar,BorderLayout.SOUTH);
         formulario.add(pTabla,BorderLayout.CENTER);
         principal.add(formulario);
         c.add(principal);
@@ -97,7 +103,7 @@ public class MostrarGruProf extends JFrame {
     }
      private void salir()
     {
-        VenOpcEstudiante vi = new VenOpcEstudiante(gestor);
+        VentanaInicio vi = new VentanaInicio();
         vi.init();
         l.Clean();
         this.dispose();
@@ -109,6 +115,13 @@ public class MostrarGruProf extends JFrame {
         mostrar();
     }
     
+    private void venGrupos(String cur, int gru)
+    {
+        MostrarEstGrupo vi = new MostrarEstGrupo(gestor,cur,gru,cedula);
+        vi.init();
+        this.dispose();
+        
+    }
    
     private void mostrar()
     { 
@@ -131,7 +144,7 @@ public class MostrarGruProf extends JFrame {
       private Control gestor;
     private JPanel formulario;
    
-    private JButton aceptar;
+    private JButton salir;
    private JTable tablaDatos;
    public ModeloTabla4 tabla;
     

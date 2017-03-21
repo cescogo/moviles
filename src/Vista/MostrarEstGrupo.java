@@ -12,6 +12,7 @@ import Modelo.*;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
@@ -30,11 +31,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MostrarEstGrupo extends JFrame {
     
-public MostrarEstGrupo(Control c, String curso, int grupo) {
+public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
             super("Mostrar Estudiantes de un Grupo");
             tabla= new ModeloTabla5();
             this.curso=curso;    
             this.grupo=grupo;
+            this.ced_prof=ced_prof;
             l = new Lista();
         ajustarComponentes(getContentPane());   
         gestor=c;
@@ -81,13 +83,18 @@ public MostrarEstGrupo(Control c, String curso, int grupo) {
                 {
                     int row= tablaDatos.getSelectedRow();
                   Grupo c= (Grupo) l.getElemento(row);
-                    //modificar nota
+                    //modificar
                 }
             }
         });
         
     
         pTabla.add(BorderLayout.CENTER, desplazamientoTabla);
+        salir= new JButton("salir");
+        salir.addActionListener((ActionEvent e)->{salir();});
+        JPanel cancelar= new JPanel(new BorderLayout());
+        cancelar.add(salir,BorderLayout.EAST);
+        formulario.add(cancelar,BorderLayout.SOUTH);
         formulario.add(pTabla,BorderLayout.CENTER);
         principal.add(formulario);
         c.add(principal);
@@ -95,7 +102,7 @@ public MostrarEstGrupo(Control c, String curso, int grupo) {
     }
      private void salir()
     {
-        VenOpcEstudiante vi = new VenOpcEstudiante(gestor);
+        MostrarGruProf vi = new MostrarGruProf(gestor,ced_prof);
         vi.init();
         l.Clean();
         this.dispose();
@@ -129,13 +136,14 @@ public MostrarEstGrupo(Control c, String curso, int grupo) {
       private Control gestor;
     private JPanel formulario;
    
-    private JButton aceptar;
+    private JButton salir;
    private JTable tablaDatos;
    public ModeloTabla5 tabla;
     
     private Lista l;
     private String curso;
     private int grupo;
+    private String ced_prof;
     
     
 }

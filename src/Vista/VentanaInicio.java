@@ -6,6 +6,7 @@
 package Vista;
 
 import Control.Control;
+import Modelo.Profesor;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -97,6 +98,14 @@ public class VentanaInicio extends JFrame{
             if(aux==2)
             {
                  VenMatriculador vi= new VenMatriculador(gestor);
+            vi.init();
+            this.dispose();
+            }
+        else
+            if(aux==3)
+            {
+               
+            MostrarGruProf vi= new MostrarGruProf(gestor,t_usuario.getText());
             vi.init();
             this.dispose();
             }
