@@ -7,24 +7,20 @@ package Vista;
 
 import Control.Control;
 import Modelo.*;
-import Modelo.Lista;
+
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,15 +28,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ccg
  */
-public class MostrarGruProf extends JFrame {
+public class MostrarEstGrupo extends JFrame {
     
-  public MostrarGruProf(Control c, String ced) {
-            super("Mostrar Grupos de un profesor");
-            tabla= new ModeloTabla4();
-            cedula=ced;    
+public MostrarEstGrupo(Control c, String curso, int grupo) {
+            super("Mostrar Estudiantes de un Grupo");
+            tabla= new ModeloTabla5();
+            this.curso=curso;    
+            this.grupo=grupo;
             l = new Lista();
         ajustarComponentes(getContentPane());   
         gestor=c;
+        
         setMinimumSize(new Dimension(600,400));
         setResizable(false);
         setLocationRelativeTo(null);
@@ -83,7 +81,7 @@ public class MostrarGruProf extends JFrame {
                 {
                     int row= tablaDatos.getSelectedRow();
                   Grupo c= (Grupo) l.getElemento(row);
-                    //mostrar estudiantes de un grupo
+                    //modificar nota
                 }
             }
         });
@@ -114,14 +112,14 @@ public class MostrarGruProf extends JFrame {
     { 
         
         l.Clean();
-        gestor.gruposProfe(cedula,l);
-            Grupo c= new Grupo();
-            Curso p= new Curso();
+            gestor.EstGrupo(curso, grupo, l);
+            Alumno c= new Alumno();
+            Nota p= new Nota();
             for(int i=0; i< l.size();i++)
             {
-                c= (Grupo)l.getElemento(i);
-                gestor.MostrarCurso(p, c.getCurso(),2);
-                tabla.addRow(new Object[]{c.getNumero(),p.getCodigo(),p.getNombre()});
+                p= (Nota)l.getElemento(i);
+                gestor.buscarPer(c, p.getESTUDIANTE());
+                tabla.addRow(new Object[]{c.getCedula(),c.getNombre(),p.getNOTA()});
             }  
             
     }
@@ -133,18 +131,19 @@ public class MostrarGruProf extends JFrame {
    
     private JButton aceptar;
    private JTable tablaDatos;
-   public ModeloTabla4 tabla;
+   public ModeloTabla5 tabla;
     
     private Lista l;
-    private String cedula;
+    private String curso;
+    private int grupo;
     
     
 }
- class ModeloTabla4 extends DefaultTableModel {
+ class ModeloTabla5 extends DefaultTableModel {
 
-        public ModeloTabla4() {
+        public ModeloTabla5() {
             super(new Object[][]{},
-                    new String[]{"numero","cod Curso","nombre Curso"});
+                    new String[]{"cedula Est","nombre Est","nota "});
             
             }
         
@@ -154,4 +153,5 @@ public class MostrarGruProf extends JFrame {
             return false;
         }
     }
+
 

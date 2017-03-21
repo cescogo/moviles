@@ -334,6 +334,11 @@ public class Control {
         accesoD.Cursoencurso(est, cur, n);
     }
     
+    public void EstGrupo(String cdo_Cur,int num_Gru, Lista l)
+    {
+        accesoD.EstDeGrupo(cdo_Cur, num_Gru, l);
+    }
+    
     private Persona user;
     private AccesoDB accesoD;
 

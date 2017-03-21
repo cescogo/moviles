@@ -82,6 +82,7 @@ public class MostrarGrupos extends JFrame {
         formulario.add(pTabla,BorderLayout.CENTER);
         principal.add(formulario);
         c.add(principal);
+       
         
     }
      private void salir()
@@ -96,9 +97,22 @@ public class MostrarGrupos extends JFrame {
         setVisible(true);
     }
     
+    private void limpiaTabla()
+    {
+//        tablaDatos.removeAll();
+//       
+        for(int i=0; i< tablaDatos.getRowCount();i++)
+        {
+            tablaDatos.removeRowSelectionInterval(0,tablaDatos.getRowCount()-1 );
+        }
+         tablaDatos.setModel(new ModeloTabla2());
+        
+    }
    
     private void mostrar()
-    {
+    { 
+        limpiaTabla();
+        
        if(buscar.getText().isEmpty())
        {
            JOptionPane.showMessageDialog(null, "Campo vacio","Error",JOptionPane.ERROR_MESSAGE);
@@ -120,8 +134,9 @@ public class MostrarGrupos extends JFrame {
                 gestor.buscarPer(p, c.getProfesor());
                 tabla.addRow(new Object[]{c.getNumero(),c.getProfesor(),p.getNombre()});
             }
+            l.Clean();
         }
-        
+       
     }
     
       private JPanel principal;

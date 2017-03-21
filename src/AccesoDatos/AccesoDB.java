@@ -699,6 +699,28 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
+    public void EstDeGrupo(String cod_Car,int num_Grupo, Lista l) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM NOTA WHERE GRUPO = '"+num_Grupo+"' AND "+"curso='"+cod_Car+"' AND condicion ='encurso'";
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {
+                Nota n = new Nota();
+                n.setCURSO(bd.registro.getString("curso"));
+                n.setCondision(bd.registro.getString("condicion"));
+                n.setESTUDIANTE(bd.registro.getString("estudiante"));
+                n.setGrupo(bd.registro.getString("Grupo"));
+                n.setNOTA(bd.registro.getFloat("nota"));
+                l.agregar(n);
+            }
+            bd.closeCon();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
     public void notasDEgrupo(String a, Lista l) {
         try {
