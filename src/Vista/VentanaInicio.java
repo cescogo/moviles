@@ -108,6 +108,13 @@ public class VentanaInicio extends JFrame{
             MostrarGruProf vi= new MostrarGruProf(gestor,t_usuario.getText());
             vi.init();
             this.dispose();
+            }else
+             if(aux==4)
+            {
+               
+            HistorialAcademico vi= new HistorialAcademico(gestor,t_usuario.getText());
+            vi.init();
+            this.dispose();
             }
         else
         {

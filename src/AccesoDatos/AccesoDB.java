@@ -689,7 +689,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT Curso FROM NOTA WHERE NOTA != 0 AND ESTUDIANTE=" + a;
+            String comandoListar = "SELECT * FROM NOTA WHERE condicion !='encurso' AND ESTUDIANTE=" + a;
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {
                 Nota n = new Nota();
@@ -698,8 +698,8 @@ public class AccesoDB {
                 n.setESTUDIANTE(bd.registro.getString("estudiante"));
                 n.setGrupo(bd.registro.getString("Grupo"));
                 n.setNOTA(bd.registro.getFloat("nota"));
-//               String aux = bd.registro.getString("Curso");
-                l.add(n);
+              
+               l.add(n);
             }
             bd.closeCon();
 

@@ -7,11 +7,9 @@ package Vista;
 
 import Control.Control;
 import Modelo.*;
-
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,12 +19,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,13 +29,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ccg
  */
-public class MostrarGruProf extends JFrame {
+public class HistorialAcademico extends JFrame {
     
-  public MostrarGruProf(Control c, String ced) {
-            super("Mostrar Grupos de un profesor");
-            tabla= new ModeloTabla4();
+  public HistorialAcademico(Control c, String ced) {
+            super("Mostrar cursos de un estudiante");
+            tabla= new ModeloTabla6();
             cedula=ced;    
-            l = new ArrayList<Grupo>();
+            l = new ArrayList<Nota>();
         ajustarComponentes(getContentPane());   
         gestor=c;
         setMinimumSize(new Dimension(600,400));
@@ -75,22 +70,7 @@ public class MostrarGruProf extends JFrame {
         tablaDatos.setModel(tabla);
         
         desplazamientoTabla.setViewportView(tablaDatos);
-        tablaDatos.addMouseListener(new MouseAdapter() 
-        {
-            
-            @Override
-            public void mouseClicked(MouseEvent e)
-            {
-                if(e.getClickCount()==2)
-                {
-                    int row= tablaDatos.getSelectedRow();
-                  Grupo c= l.get(row);
-                  venGrupos(c.getCurso(),c.getNumero());
-                  
-                    
-                }
-            }
-        });
+        
             
         pTabla.add(BorderLayout.CENTER, desplazamientoTabla);
         salir= new JButton("salir");
@@ -128,16 +108,16 @@ public class MostrarGruProf extends JFrame {
     private void mostrar()
     { 
         
-     
-        gestor.gruposProfe(cedula,l);
+        
+       gestor.ConsultaHistorial(cedula,l);
           
             Curso p= new Curso();
-           Grupo c= new Grupo();
+          Nota c= new Nota();
            for(int i=0; i< l.size();i++)
             {     
                 c=l.get(i);
-                gestor.MostrarCurso(p,c.getCurso(),2);
-                tabla.addRow(new Object[]{c.getNumero(),p.getCodigo(),p.getNombre()});
+                gestor.MostrarCurso(p,c.getCURSO(),2);
+                tabla.addRow(new Object[]{c.getCURSO(),p.getNombre(),c.getNOTA(),c.getCondision()});
             }  
             
     }
@@ -149,18 +129,18 @@ public class MostrarGruProf extends JFrame {
    
     private JButton salir;
    private JTable tablaDatos;
-   public ModeloTabla4 tabla;
+   public ModeloTabla6 tabla;
     
-    private  ArrayList<Grupo> l;
+    private  ArrayList<Nota> l;
     private String cedula;
     
     
 }
- class ModeloTabla4 extends DefaultTableModel {
+ class ModeloTabla6 extends DefaultTableModel {
 
-        public ModeloTabla4() {
+        public ModeloTabla6() {
             super(new Object[][]{},
-                    new String[]{"numero","cod Curso","nombre Curso"});
+                    new String[]{"codigo","nombre Curso","nota","condicion"});
             
             }
         
@@ -170,4 +150,5 @@ public class MostrarGruProf extends JFrame {
             return false;
         }
     }
+
 

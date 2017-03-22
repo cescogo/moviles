@@ -196,34 +196,7 @@ public class Control {
     public void BuscarGrpCrs(String curso, ArrayList<Grupo> grupos) {
         accesoD.BuscarGrpCrs(curso, grupos);
     }
-//    private void Adminciclo() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//
-//    private void AgregarAcceso() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    private void AdminMatricula() {
-//        String ced =  inter.SolicitaCedulas();
-//        Alumno al = new Alumno();
-//        mostrarCed(al, ced);
-//        
-//        
-//    }
-//
-//    private void FuncMatriculador() {
-//        inter.BienvInter(2);
-//    }
-//
-//    private void FuncAlumno() {
-//        inter.BienvInter(4);
-//        int opc = 0 ;
-//        while((opc = inter.leerI())!= 2)
-//            if(opc ==1)
-//                ConsultaHistorial();
-//    }
+
 
     public void ConsultaHistorial(String ced, ArrayList<Nota> l) {
         accesoD.Historial(ced, l);

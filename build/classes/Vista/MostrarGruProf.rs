@@ -1,3 +1,0 @@
-Vista.ModeloTabla2
-Vista.MostrarGruProf
-Vista.ModeloTabla4
