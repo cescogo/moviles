@@ -116,6 +116,7 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
     
    
     private void mostrar()
+            
     { 
         
         l.Clean();
