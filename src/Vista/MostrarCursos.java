@@ -14,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -120,12 +121,12 @@ public class MostrarCursos extends JFrame{
         }
         else
         { 
-            Lista l= new Lista();
+                   ArrayList<Curso> l = new ArrayList<>();
             gestor.MostrarCursos(l, buscar.getText());
             Curso c= new Curso();
             for(int i=0; i< l.size();i++)
             {
-                c= (Curso)l.getElemento(i);
+                c= l.get(i);
                 tabla.addRow(new Object[]{c.getCodigo(),c.getNombre(),c.getCreditos(),c.getHsemanales(),c.getNum_ciclo()});
             }
         }

@@ -13,6 +13,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -119,12 +120,12 @@ public class MostrarEstuCarre extends JFrame {
         }
         else
         { 
-            Lista l= new Lista();
+                   ArrayList<Alumno> l = new ArrayList<>();
             gestor.mostrarEstCar(l, buscar.getText());
             Alumno c= new Alumno();
             for(int i=0; i< l.size();i++)
             {
-                c= (Alumno)l.getElemento(i);
+                c=l.get(i);
                 tabla.addRow(new Object[]{c.getCedula(),c.getNombre(),c.getF_nac(),c.getEmail(),c.getTelefono()});
             }
         }

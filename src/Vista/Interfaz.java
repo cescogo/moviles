@@ -3,8 +3,7 @@ package Vista;
 import java.util.Scanner;
 import Control.Control;
 import Modelo.*;
-import java.awt.List;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 public class Interfaz {
 
@@ -215,7 +214,7 @@ public class Interfaz {
     }
 
     public void MostrarCarreras() {
-        Lista l = new Lista();
+        ArrayList<Carrera> l = new ArrayList<>();
         ctrl.MostrarCarreras(l);
         System.out.println(l.toString());
     }
@@ -297,7 +296,7 @@ public class Interfaz {
                     System.out.println(C.toString());
                     break;
                 case 3:
-                    Lista l = new Lista();
+                    ArrayList<Curso> l = new ArrayList<>();
                     ctrl.MostrarCursos(l, SolicitaCodCarrera());
                     System.out.println(l.toString());
                     break;
@@ -405,7 +404,7 @@ public class Interfaz {
                     System.out.println(per.toString());
                     break;
                 case 2:
-                    Lista l = new Lista();
+                            ArrayList<Profesor> l = new ArrayList<>();
                     ctrl.mostrarProNom(SolicitaNombres(), l);
                     System.out.println(l.toString());
                     break;
@@ -503,13 +502,13 @@ public class Interfaz {
                     System.out.println(per.toString());
                     break;
                 case 2:
-                    Lista l = new Lista();
+                           ArrayList<Alumno> l = new ArrayList<>();
                     ctrl.mostrarEstNom(SolicitaNombres(), l);
                     System.out.println(l.toString());
                     break;
                 case 3:
                     // buscar carrera
-                    Lista w = new Lista();
+                           ArrayList<Alumno> w = new ArrayList<>();
                     ctrl.mostrarPCar(SolicitaCodCarrera(), w);
                     System.out.println(w.toString());
                     break;
@@ -812,7 +811,7 @@ public class Interfaz {
     public void AdminOferta() {
         String Carrera = SolicitaCodCarrera();
         int ciclo = SolicitaCiclo();
-        Lista cursos = new Lista();
+                ArrayList<Curso> cursos = new ArrayList<>();
         ctrl.ofertaAcd(Carrera, ciclo, cursos);
         System.out.println(cursos.toString());
 
@@ -820,7 +819,7 @@ public class Interfaz {
 
         if (opc == 1) {
             String curso = SolicitaCodCurso();
-            Lista grupos = new Lista();
+                   ArrayList<Grupo> grupos = new ArrayList<>();
             ctrl.BuscarGrpCrs(curso, grupos);
             System.out.println(grupos.toString());
             int ccc = sbmgrpsCrs();
@@ -859,7 +858,7 @@ public class Interfaz {
     }
 
     private void ConsultaHistorial() {
-        Lista l = new Lista();
+                ArrayList<Nota> l = new ArrayList<>();
         ctrl.ConsultaHistorial(SolicitaCedulas("estudiante"), l);
         System.out.println(l.toString());
 
@@ -1145,7 +1144,7 @@ public class Interfaz {
         Alumno a = new Alumno();
         ctrl.mostrarPCed(a, SolicitaCedulas("alumno"));
         if (!a.getCedula().isEmpty()) {
-            Lista l = new Lista();
+                    ArrayList<Nota> l = new ArrayList<>();
             int op = 0;
             while (op != 3) {
                 ctrl.matriculados(a.getCedula(), l);
@@ -1229,7 +1228,7 @@ public class Interfaz {
     }
 
     private void FuncProfesor(String usr) {
-        Lista grupos = new Lista();
+                ArrayList<Grupo> grupos = new ArrayList<>();
         ctrl.gruposProfe(usr, grupos);
         System.out.println(grupos.toString());
         int opc =0;
@@ -1237,7 +1236,7 @@ public class Interfaz {
             opc = menunotas();
             if(opc == 1){
                 String codGrp = soliCodGRUPO();
-                Lista notas = new Lista();
+                       ArrayList<Nota> notas = new ArrayList<>();
                 ctrl.notasPgrupo(codGrp, notas);
                 System.out.println(notas.toString());
                 int op = 0;

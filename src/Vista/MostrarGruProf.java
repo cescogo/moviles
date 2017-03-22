@@ -15,6 +15,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,7 +39,7 @@ public class MostrarGruProf extends JFrame {
             super("Mostrar Grupos de un profesor");
             tabla= new ModeloTabla4();
             cedula=ced;    
-            l = new Lista();
+            l = new ArrayList<>();
         ajustarComponentes(getContentPane());   
         gestor=c;
         setMinimumSize(new Dimension(600,400));
@@ -82,7 +83,7 @@ public class MostrarGruProf extends JFrame {
                 if(e.getClickCount()==2)
                 {
                     int row= tablaDatos.getSelectedRow();
-                  Grupo c= (Grupo) l.getElemento(row);
+                  Grupo c= l.get(row);
                   venGrupos(c.getCurso(),c.getNumero());
                   
                     
@@ -105,7 +106,7 @@ public class MostrarGruProf extends JFrame {
     {
         VentanaInicio vi = new VentanaInicio();
         vi.init();
-        l.Clean();
+        l.clear();
         this.dispose();
     }
      
@@ -126,13 +127,13 @@ public class MostrarGruProf extends JFrame {
     private void mostrar()
     { 
         
-        l.Clean();
+        l.clear();
         gestor.gruposProfe(cedula,l);
             Grupo c= new Grupo();
             Curso p= new Curso();
             for(int i=0; i< l.size();i++)
             {
-                c= (Grupo)l.getElemento(i);
+                c= l.get(i);
                 gestor.MostrarCurso(p, c.getCurso(),2);
                 tabla.addRow(new Object[]{c.getNumero(),p.getCodigo(),p.getNombre()});
             }  
@@ -148,7 +149,7 @@ public class MostrarGruProf extends JFrame {
    private JTable tablaDatos;
    public ModeloTabla4 tabla;
     
-    private Lista l;
+    private  ArrayList<Grupo> l;
     private String cedula;
     
     

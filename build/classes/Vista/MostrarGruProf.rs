@@ -1,0 +1,2 @@
+Vista.MostrarGruProf
+Vista.ModeloTabla4

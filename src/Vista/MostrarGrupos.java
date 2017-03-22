@@ -13,6 +13,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -121,17 +122,17 @@ public class MostrarGrupos extends JFrame {
         }
         else
         { 
-            Lista l= new Lista();
+             ArrayList<Grupo> l = new ArrayList<>();
             gestor.BuscarGrpCrs(buscar.getText(),l);
             Grupo c= new Grupo();
             Persona p= new Persona(0);
             for(int i=0; i< l.size();i++)
             {
-                c= (Grupo)l.getElemento(i);
+                c= l.get(i);
                 gestor.buscarPer(p, c.getProfesor());
                 tabla.addRow(new Object[]{c.getNumero(),c.getProfesor(),p.getNombre()});
             }
-            l.Clean();
+            l.clear();
         }
        
     }

@@ -1,0 +1,2 @@
+Vista.MostrarCursos
+Vista.ModeloTabla1

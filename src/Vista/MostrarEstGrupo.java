@@ -16,6 +16,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -40,7 +41,7 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
             this.curso=curso;    
             this.grupo=grupo;
             this.ced_prof=ced_prof;
-            l = new Lista();
+            l = new ArrayList<>();
         ajustarComponentes(getContentPane());   
         gestor=c;
         
@@ -138,7 +139,7 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
     {
         MostrarGruProf vi = new MostrarGruProf(gestor,ced_prof);
         vi.init();
-        l.Clean();
+        l.clear();
         this.dispose();
     }
      
@@ -153,13 +154,13 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
             
     { 
         
-        l.Clean();
+        l.clear();
             gestor.EstGrupo(curso, grupo, l);
             Alumno c= new Alumno();
             Nota p= new Nota();
             for(int i=0; i< l.size();i++)
             {
-                p= (Nota)l.getElemento(i);
+                p= l.get(i);
                 gestor.buscarPer(c, p.getESTUDIANTE());
                 tabla.addRow(new Object[]{c.getCedula(),c.getNombre(),p.getNOTA()});
             }  
@@ -178,7 +179,7 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
     private JButton agregar;
     private JButton modificar;
     private JLabel nota;
-    private Lista l;
+    private ArrayList<Nota> l ;
     private String curso;
     private int grupo;
     private int row;
