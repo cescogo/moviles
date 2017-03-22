@@ -99,14 +99,11 @@ public class MostrarGrupos extends JFrame {
     
     private void limpiaTabla()
     {
-//        tablaDatos.removeAll();
-//       
-        for(int i=0; i< tablaDatos.getRowCount();i++)
-        {
-            tablaDatos.removeRowSelectionInterval(0,tablaDatos.getRowCount()-1 );
-        }
-         tablaDatos.setModel(new ModeloTabla2());
-        
+      for(int i = tabla.getRowCount()-1;i>=0;--i)
+      {  
+          tabla.removeRow(0);
+      }
+       
     }
    
     private void mostrar()

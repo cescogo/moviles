@@ -84,6 +84,14 @@ public class MostrarEstuCarre extends JFrame {
         c.add(principal);
         
     }
+     private void limpiaTabla()
+    {
+      for(int i = tabla.getRowCount()-1;i>=0;--i)
+      {  
+          tabla.removeRow(0);
+      }
+       
+    }
      private void salir()
     {
         VenOpcEstudiante vi = new VenOpcEstudiante(gestor);
@@ -99,6 +107,7 @@ public class MostrarEstuCarre extends JFrame {
    
     private void mostrar()
     {
+        limpiaTabla();
        if(buscar.getText().isEmpty())
        {
            JOptionPane.showMessageDialog(null, "Campo vacio","Error",JOptionPane.ERROR_MESSAGE);

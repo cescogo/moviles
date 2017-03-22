@@ -7,14 +7,14 @@ public class Moviles {
 
     public static void main(String[] args) {
 
-      VentanaInicio vi= new VentanaInicio();
-       vi.init();
-//       Control ctrl  = new Control();
+//      VentanaInicio vi= new VentanaInicio();
+//       vi.init();
+       Control ctrl  = new Control();
 //       Interfaz in = new Interfaz(ctrl);
 //           in.initB();
 //        
-//      MostrarEstGrupo m= new MostrarEstGrupo(ctrl,"411",1);
-//       m.init();
+      MostrarGrupos m= new MostrarGrupos(ctrl);
+       m.init();
 //           
     }
     
