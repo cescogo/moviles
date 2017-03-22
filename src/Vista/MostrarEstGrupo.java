@@ -12,6 +12,7 @@ import Modelo.*;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,9 +20,11 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -53,11 +56,24 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
          principal = new JPanel();
         principal.setLayout(new BorderLayout());
         principal.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        modifica= new JPanel(new FlowLayout());
        
+        nota = new JLabel("nota a modificar");
+
+        t_nota = new JTextField(10);
+
         
+        agregar= new JButton("agregar nota");
+        agregar.addActionListener((ActionEvent e)->{agregar();});
+
+        
+        modifica.add(nota);
+        modifica.add(t_nota);
+        modifica.add(agregar);
+        modifica.setVisible(false);
          formulario =new JPanel(new BorderLayout());
        
-         
+         formulario.add(modifica,BorderLayout.NORTH);
         
        JPanel pTabla=new JPanel();
        
@@ -81,9 +97,9 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
             {
                 if(e.getClickCount()==2)
                 {
-                    int row= tablaDatos.getSelectedRow();
-                  Grupo c= (Grupo) l.getElemento(row);
-                    //modificar
+                    colum= tablaDatos.getSelectedColumn();
+                    row= tablaDatos.getSelectedRow();
+                    modifica.setVisible(true);
                 }
             }
         });
@@ -92,13 +108,31 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
         pTabla.add(BorderLayout.CENTER, desplazamientoTabla);
         salir= new JButton("salir");
         salir.addActionListener((ActionEvent e)->{salir();});
-        JPanel cancelar= new JPanel(new BorderLayout());
-        cancelar.add(salir,BorderLayout.EAST);
+        modificar= new JButton("aceptar");
+        modificar.addActionListener((ActionEvent e)->{modificarNotas();});
+        
+        
+        JPanel cancelar= new JPanel(new FlowLayout());
+        cancelar.add(modificar);
+        cancelar.add(salir);
+         
         formulario.add(cancelar,BorderLayout.SOUTH);
         formulario.add(pTabla,BorderLayout.CENTER);
         principal.add(formulario);
         c.add(principal);
         
+    }
+    
+    private void modificarNotas()
+    {
+        
+    }
+    
+    private void agregar()
+    {
+        tablaDatos.setValueAt(Float.parseFloat(t_nota.getText()), row, colum);
+        t_nota.setText("");
+        modifica.setVisible(false);
     }
      private void salir()
     {
@@ -136,14 +170,19 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
       private JPanel principal;
       private Control gestor;
     private JPanel formulario;
-   
+   private JPanel modifica;
     private JButton salir;
    private JTable tablaDatos;
    public ModeloTabla5 tabla;
-    
+    private JTextField t_nota;
+    private JButton agregar;
+    private JButton modificar;
+    private JLabel nota;
     private Lista l;
     private String curso;
     private int grupo;
+    private int row;
+    private int colum;
     private String ced_prof;
     
     
