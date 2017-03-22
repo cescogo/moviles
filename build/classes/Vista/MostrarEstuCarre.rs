@@ -1,2 +1,0 @@
-Vista.MostrarEstuCarre
-Vista.ModeloTabla3
