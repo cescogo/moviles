@@ -2,6 +2,7 @@ package Control;
 
 import AccesoDatos.AccesoDB;
 import Modelo.*;
+import java.util.ArrayList;
 
 public class Control {
 
@@ -34,7 +35,7 @@ public class Control {
         accesoD.BuscarCarreraNom(C, c);
     }
 
-    public void MostrarCarreras(Lista l) {
+    public void MostrarCarreras(ArrayList<Carrera> l) {
         accesoD.mostrarCAs(l);
     }
 
@@ -70,7 +71,7 @@ public class Control {
         }
     }
 
-    public void MostrarCursos(Lista l, String cod) {
+    public void MostrarCursos(ArrayList<Curso> l, String cod) {
         accesoD.BuscarCursoCar(l, cod);
     }
 
@@ -125,11 +126,11 @@ public class Control {
 
     }
 
-    public void mostrarProNom(String nom, Lista l) {
+    public void mostrarProNom(String nom, ArrayList<Profesor> l) {
         accesoD.BuscarPrfNombre(nom, l);
     }
 
-    public void mostrarEstNom(String nom, Lista l) {
+    public void mostrarEstNom(String nom, ArrayList<Alumno> l) {
         accesoD.BuscarEstNom(nom, l);
     }
 
@@ -152,7 +153,7 @@ public class Control {
         accesoD.Buscar(a, ced);
     }
 
-    public void mostrarPCar(String carr, Lista l) {
+    public void mostrarPCar(String carr, ArrayList<Alumno> l) {
         accesoD.BuscarEstCarr(carr, l);
     }
 
@@ -182,17 +183,17 @@ public class Control {
     }
     
     
-   public void mostrarEstCar(Lista l,String car)
+   public void mostrarEstCar(ArrayList<Alumno> l,String car)
    {
        accesoD.BuscarEstCarr(car, l);
    }
 
 //</editor-fold>
-    public void ofertaAcd(String Carrera, int ciclo, Lista cursos) {
+    public void ofertaAcd(String Carrera, int ciclo, ArrayList<Curso> cursos) {
         accesoD.ofertaAcd(Carrera, ciclo, cursos);
     }
 
-    public void BuscarGrpCrs(String curso, Lista grupos) {
+    public void BuscarGrpCrs(String curso, ArrayList<Grupo> grupos) {
         accesoD.BuscarGrpCrs(curso, grupos);
     }
 //    private void Adminciclo() {
@@ -224,11 +225,11 @@ public class Control {
 //                ConsultaHistorial();
 //    }
 
-    public void ConsultaHistorial(String ced, Lista l) {
+    public void ConsultaHistorial(String ced, ArrayList<Nota> l) {
         accesoD.Historial(ced, l);
     }
 
-    public void matriculados(String ced, Lista l) {
+    public void matriculados(String ced, ArrayList<Nota> l) {
         accesoD.Matriculados(ced, l);
     }
 //
@@ -309,11 +310,11 @@ public class Control {
     {
         accesoD.Desmatricula(ced ,cur); 
     }
-    public void notasPgrupo(String cdogrp, Lista l){
+    public void notasPgrupo(String cdogrp, ArrayList<Nota> l){
            accesoD.notasDEgrupo(cdogrp, l);
     }
     
-    public void gruposProfe(String ced, Lista l){
+    public void gruposProfe(String ced, ArrayList<Grupo> l){
                 accesoD.BuscarGrpPrf(ced, l);
     }
     public void notaEst(String a, String est, Nota n){
@@ -334,7 +335,7 @@ public class Control {
         accesoD.Cursoencurso(est, cur, n);
     }
     
-    public void EstGrupo(String cdo_Cur,int num_Gru, Lista l)
+    public void EstGrupo(String cdo_Cur,int num_Gru, ArrayList<Nota> l)
     {
         accesoD.EstDeGrupo(cdo_Cur, num_Gru, l);
     }

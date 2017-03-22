@@ -12,6 +12,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import Modelo.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -154,7 +155,7 @@ public class AccesoDB {
         }
     }
 
-    public void BuscarCursoCar(Lista l, String carr) {
+    public void BuscarCursoCar(ArrayList<Curso> l, String carr) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -169,7 +170,7 @@ public class AccesoDB {
                 a.setHsemanales(bd.registro.getInt("H_SEMANALES"));
                 a.setCarrera(bd.registro.getString("COD_CARRERA"));
                 a.setNum_ciclo(bd.registro.getInt("NUM_CICLO"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
         } catch (Exception e) {
@@ -177,7 +178,7 @@ public class AccesoDB {
         }
     }
 
-    public void BuscarCursosCar(Curso a, String carrera, Lista l) {
+    public void BuscarCursosCar(Curso x, String carrera, ArrayList<Curso> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -185,13 +186,14 @@ public class AccesoDB {
             String comandoListar = "SELECT * FROM curso WHERE COD_CARRERA ='" + carrera + "'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {
+                Curso a = new Curso();
                 a.setNum_ciclo(bd.registro.getInt("Num_ciclo"));
                 a.setNombre(bd.registro.getString("nombre"));
                 a.setCreditos(bd.registro.getInt("creditos"));
                 a.setHsemanales(bd.registro.getInt("H_SEMANALES"));
                 a.setCodigo(bd.registro.getString("codigo"));
                 a.setNum_ciclo(bd.registro.getInt("NUM_CICLO"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
         } catch (Exception e) {
@@ -260,7 +262,7 @@ public class AccesoDB {
         }
     }
 
-    public void BuscarEstNom(String nom, Lista l) {
+    public void BuscarEstNom(String nom, ArrayList<Alumno> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -276,7 +278,7 @@ public class AccesoDB {
                 a.setTelefono(bd.registro.getInt("telefono"));
                 a.setTipo(bd.registro.getInt("tipo"));
                 a.setF_nac(bd.registro.getString("F_NACIMIENTO"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
 
@@ -285,7 +287,7 @@ public class AccesoDB {
         }
     }
 
-    public void BuscarEstCarr(String carr, Lista l) {
+    public void BuscarEstCarr(String carr, ArrayList<Alumno> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -301,7 +303,7 @@ public class AccesoDB {
                 a.setTelefono(bd.registro.getInt("telefono"));
                 a.setTipo(bd.registro.getInt("tipo"));
                 a.setF_nac(bd.registro.getString("F_NACIMIENTO"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
 
@@ -361,7 +363,7 @@ public class AccesoDB {
 
     }
 
-    public void BuscarPrfNombre(String nom, Lista l) {
+    public void BuscarPrfNombre(String nom, ArrayList<Profesor> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -376,7 +378,7 @@ public class AccesoDB {
                 a.setNombre(bd.registro.getString("nombre"));
                 a.setTelefono(bd.registro.getInt("telefono"));
                 a.setTipo(bd.registro.getInt("tipo"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
 
@@ -431,7 +433,7 @@ public class AccesoDB {
         }
     }
 
-    public void mostrar(Persona a, Lista l) {
+    public void mostrar(Persona a, ArrayList<Persona> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -445,7 +447,7 @@ public class AccesoDB {
                 a.setNombre(bd.registro.getString("nombre"));
                 a.setTelefono(bd.registro.getInt("telefono"));
                 a.setTipo(bd.registro.getInt("tipo"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
 
@@ -454,7 +456,7 @@ public class AccesoDB {
         }
     }
 
-    public void mostrarCAs(Lista l) {
+    public void mostrarCAs(ArrayList<Carrera> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -465,7 +467,7 @@ public class AccesoDB {
                 Carrera a = new Carrera();
                 a.setCodigo(bd.registro.getString("CODIGO"));
                 a.setNombre(bd.registro.getString("NOMBRE"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
         } catch (Exception e) {
@@ -473,7 +475,7 @@ public class AccesoDB {
         }
     }
 
-    public void mostrar(Ciclo a, Lista l) {
+    public void mostrar(Ciclo a, ArrayList<Ciclo> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -486,7 +488,7 @@ public class AccesoDB {
                 a.setFinicio(bd.registro.getString("fecha_inicio"));
                 a.setId(bd.registro.getString("id"));
                 a.setNciclo(bd.registro.getInt("num_ciclo"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
         } catch (Exception e) {
@@ -494,7 +496,7 @@ public class AccesoDB {
         }
     }
 
-    public void mostrarCUs(Lista l, String cod) {
+    public void mostrarCUs(ArrayList<Curso> l, String cod) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -509,7 +511,7 @@ public class AccesoDB {
                 a.setHsemanales(bd.registro.getInt("h_semanales"));
                 a.setCarrera(bd.registro.getString("COD_CARRERA"));
                 a.setNum_ciclo(bd.registro.getInt("num_ciclo"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
 
@@ -518,7 +520,7 @@ public class AccesoDB {
         }
     }
 
-    public void mostrar(Grupo a, Lista l) {
+    public void mostrar(Grupo a, ArrayList<Grupo> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -530,7 +532,7 @@ public class AccesoDB {
                 a.setNumero(bd.registro.getInt("numero"));
                 a.setProfesor(bd.registro.getString("id_prof"));
                 a.setCurso(bd.registro.getString("cod_curso"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
         } catch (Exception e) {
@@ -640,7 +642,7 @@ public class AccesoDB {
         }
     }
 
-    public void BuscarGrpCrs(String curso, Lista l) {
+    public void BuscarGrpCrs(String curso, ArrayList<Grupo> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -653,7 +655,7 @@ public class AccesoDB {
                 a.setCurso(bd.registro.getString("COD_CURSO"));
                 a.setNumero(bd.registro.getInt("NUMERO"));
                 a.setId(bd.registro.getString("ID_GRUPO"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
         } catch (Exception e) {
@@ -661,7 +663,7 @@ public class AccesoDB {
         }
     }
 
-    public void BuscarGrpPrf(String profe, Lista l) {
+    public void BuscarGrpPrf(String profe, ArrayList<Grupo> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -674,7 +676,7 @@ public class AccesoDB {
                 a.setNumero(bd.registro.getInt("NUMERO"));
                 a.setProfesor(bd.registro.getString("ID_PROF"));
                 a.setCurso(bd.registro.getString("COD_CURSO"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
         } catch (Exception e) {
@@ -682,7 +684,7 @@ public class AccesoDB {
         }
     }
 
-    public void Historial(String a, Lista l) {
+    public void Historial(String a, ArrayList<Nota> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -690,8 +692,14 @@ public class AccesoDB {
             String comandoListar = "SELECT Curso FROM NOTA WHERE NOTA != 0 AND ESTUDIANTE=" + a;
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {
-                String aux = bd.registro.getString("Curso");
-                l.agregar(aux);
+                Nota n = new Nota();
+                n.setCURSO(bd.registro.getString("curso"));
+                n.setCondision(bd.registro.getString("condicion"));
+                n.setESTUDIANTE(bd.registro.getString("estudiante"));
+                n.setGrupo(bd.registro.getString("Grupo"));
+                n.setNOTA(bd.registro.getFloat("nota"));
+//               String aux = bd.registro.getString("Curso");
+                l.add(n);
             }
             bd.closeCon();
 
@@ -699,7 +707,7 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
-    public void EstDeGrupo(String cod_Car,int num_Grupo, Lista l) {
+    public void EstDeGrupo(String cod_Car,int num_Grupo, ArrayList<Nota> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -713,7 +721,7 @@ public class AccesoDB {
                 n.setESTUDIANTE(bd.registro.getString("estudiante"));
                 n.setGrupo(bd.registro.getString("Grupo"));
                 n.setNOTA(bd.registro.getFloat("nota"));
-                l.agregar(n);
+                l.add(n);
             }
             bd.closeCon();
 
@@ -722,7 +730,7 @@ public class AccesoDB {
         }
     }
 
-    public void notasDEgrupo(String a, Lista l) {
+    public void notasDEgrupo(String a, ArrayList<Nota> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -736,7 +744,7 @@ public class AccesoDB {
                 n.setESTUDIANTE(bd.registro.getString("estudiante"));
                 n.setGrupo(bd.registro.getString("Grupo"));
                 n.setNOTA(bd.registro.getFloat("nota"));
-                l.agregar(n);
+                l.add(n);
             }
             bd.closeCon();
 
@@ -766,7 +774,7 @@ public class AccesoDB {
         }
     }
     
-    public void Matriculados(String w, Lista l) {
+    public void Matriculados(String w, ArrayList<Nota> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -780,7 +788,7 @@ public class AccesoDB {
                 n.setESTUDIANTE(bd.registro.getString("estudiante"));
                 n.setGrupo(bd.registro.getString("grupo"));
                 n.setNOTA(bd.registro.getInt("nota"));
-                l.agregar(n);
+                l.add(n);
             }
             bd.closeCon();
 
@@ -1087,7 +1095,7 @@ public class AccesoDB {
     }
     //</editor-fold> 
 
-    public void ofertaAcd(String Carrera, int ciclo, Lista l) {
+    public void ofertaAcd(String Carrera, int ciclo, ArrayList<Curso> l) {
         try {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
@@ -1103,7 +1111,7 @@ public class AccesoDB {
                 a.setHsemanales(bd.registro.getInt("H_SEMANALES"));
                 a.setCodigo(bd.registro.getString("codigo"));
                 a.setNum_ciclo(bd.registro.getInt("NUM_CICLO"));
-                l.agregar(a);
+                l.add(a);
             }
             bd.closeCon();
 
