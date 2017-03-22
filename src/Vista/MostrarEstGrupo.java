@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -96,11 +97,12 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
             @Override
             public void mouseClicked(MouseEvent e)
             {
-                if(e.getClickCount()==2)
+                if(e.getClickCount()==2 && tablaDatos.getSelectedColumn()==2)
                 {
                     colum= tablaDatos.getSelectedColumn();
                     row= tablaDatos.getSelectedRow();
                     modifica.setVisible(true);
+                   
                 }
             }
         });
@@ -126,13 +128,39 @@ public MostrarEstGrupo(Control c, String curso, int grupo,String ced_prof) {
     
     private void modificarNotas()
     {
+        Iterator<Nota> ite=l.iterator();
         
+       while(ite.hasNext())
+        {
+            gestor.actualiza(ite.next());
+            
+        }
+       salir();
     }
     
     private void agregar()
     {
         tablaDatos.setValueAt(Float.parseFloat(t_nota.getText()), row, colum);
-        t_nota.setText("");
+          
+        float aux=Float.parseFloat(t_nota.getText());
+        if(aux> 67.6 && aux< 70)
+        {
+            l.get(row).setNOTA(70);
+            l.get(row).setCondision("aprobado");
+        }
+        else
+        {
+            if(aux< 67.6)
+            {
+                 l.get(row).setCondision("aplazado");
+            }
+        else
+            {
+                 l.get(row).setCondision("aprobado");
+            }
+             l.get(row).setNOTA(Float.parseFloat(t_nota.getText()));
+        }
+        t_nota.setText("");   
         modifica.setVisible(false);
     }
      private void salir()

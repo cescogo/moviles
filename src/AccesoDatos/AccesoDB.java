@@ -957,8 +957,8 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             String sql = "update nota set nota = '" + a.getNOTA()
-                    +"'WHERE estudiante = '" + a.getESTUDIANTE()+ "' "
-                    + " And grupo = '"+a.getGrupo()+"' AND condicion = 'encurso'";
+                    +"',condicion='"+a.getCondision()+"'WHERE estudiante = '" + a.getESTUDIANTE()+ "' "
+                    + " And grupo = '"+a.getGrupo()+"' AND condicion = 'encurso' and curso='"+a.getCURSO()+"'";
             Statement s = bd.conexion.createStatement();
             s.executeUpdate(sql);
             bd.closeCon();
