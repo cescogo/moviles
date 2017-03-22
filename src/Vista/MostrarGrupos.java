@@ -7,7 +7,7 @@ package Vista;
 
 import Control.Control;
 import Modelo.*;
-import Modelo.Lista;
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;

@@ -7,7 +7,7 @@ package Vista;
 
 import Control.Control;
 import Modelo.*;
-import Modelo.Lista;
+
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -39,7 +39,7 @@ public class MostrarGruProf extends JFrame {
             super("Mostrar Grupos de un profesor");
             tabla= new ModeloTabla4();
             cedula=ced;    
-            l = new ArrayList<>();
+            l = new ArrayList<Grupo>();
         ajustarComponentes(getContentPane());   
         gestor=c;
         setMinimumSize(new Dimension(600,400));
