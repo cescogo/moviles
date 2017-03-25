@@ -278,6 +278,7 @@ public class AccesoDB {
                 a.setTelefono(bd.registro.getInt("telefono"));
                 a.setTipo(bd.registro.getInt("tipo"));
                 a.setF_nac(bd.registro.getString("F_NACIMIENTO"));
+                a.setCarrera(bd.registro.getString("Carrera"));
                 l.add(a);
             }
             bd.closeCon();
@@ -303,6 +304,7 @@ public class AccesoDB {
                 a.setTelefono(bd.registro.getInt("telefono"));
                 a.setTipo(bd.registro.getInt("tipo"));
                 a.setF_nac(bd.registro.getString("F_NACIMIENTO"));
+                a.setCarrera(bd.registro.getString("Carrera"));
                 l.add(a);
             }
             bd.closeCon();
@@ -555,7 +557,9 @@ public class AccesoDB {
                 a.setTelefono(bd.registro.getInt("telefono"));
                 a.setTipo(bd.registro.getInt("tipo"));
                 if (a instanceof Alumno) {
-                    ((Alumno) a).setF_nac("F_NACIMIENTO");
+                    ((Alumno) a).setF_nac(bd.registro.getString("F_NACIMIENTO"));
+                    ((Alumno) a).setCarrera(bd.registro.getString("Carrera"));
+                    
                 }
             }
             bd.closeCon();
@@ -689,7 +693,7 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             bd.comando = bd.conexion.createStatement();
-            String comandoListar = "SELECT * FROM NOTA WHERE condicion !='encurso' AND ESTUDIANTE=" + a;
+            String comandoListar = "SELECT * FROM NOTA WHERE condicion !='encurso' AND ESTUDIANTE='" + a+"'";
             bd.registro = bd.comando.executeQuery(comandoListar);
             while (bd.registro.next()) {
                 Nota n = new Nota();
@@ -957,8 +961,9 @@ public class AccesoDB {
             ConexionBD bd = new ConexionBD();
             bd.Connect();
             String sql = "update nota set nota = '" + a.getNOTA()
-                    +"',condicion='"+a.getCondision()+"'WHERE estudiante = '" + a.getESTUDIANTE()+ "' "
-                    + " And grupo = '"+a.getGrupo()+"' AND condicion = 'encurso' and curso='"+a.getCURSO()+"'";
+                   +"'WHERE estudiante = '" + a.getESTUDIANTE()+ "' "
+                    + " And grupo = '"+a.getGrupo()
+                    +"' AND condicion = 'encurso'";
             Statement s = bd.conexion.createStatement();
             s.executeUpdate(sql);
             bd.closeCon();
