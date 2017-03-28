@@ -177,6 +177,28 @@ public class AccesoDB {
             System.err.println(e.getMessage());
         }
     }
+    public void BuscarCursoCar(ArrayList<Curso> l, String carr, String clc) {
+        try {
+            ConexionBD bd = new ConexionBD();
+            bd.Connect();
+            bd.comando = bd.conexion.createStatement();
+            String comandoListar = "SELECT * FROM curso WHERE COD_CARRERA ='" + carr + "' AND NUM_CICLO='"+clc+"'";
+            bd.registro = bd.comando.executeQuery(comandoListar);
+            while (bd.registro.next()) {
+                Curso a = new Curso();
+                a.setCodigo(bd.registro.getString("codigo"));
+                a.setNombre(bd.registro.getString("nombre"));
+                a.setCreditos(bd.registro.getInt("creditos"));
+                a.setHsemanales(bd.registro.getInt("H_SEMANALES"));
+                a.setCarrera(bd.registro.getString("COD_CARRERA"));
+                a.setNum_ciclo(bd.registro.getInt("NUM_CICLO"));
+                l.add(a);
+            }
+            bd.closeCon();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
     public void BuscarCursosCar(Curso x, String carrera, ArrayList<Curso> l) {
         try {

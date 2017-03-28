@@ -70,6 +70,9 @@ public class Control {
             accesoD.BuscarCursoCod(C, cod);
         }
     }
+    public void MostrarCursos(ArrayList<Curso> l, String cod, String clc) {
+        accesoD.BuscarCursoCar(l, cod, clc);
+    }
 
     public void MostrarCursos(ArrayList<Curso> l, String cod) {
         accesoD.BuscarCursoCar(l, cod);
